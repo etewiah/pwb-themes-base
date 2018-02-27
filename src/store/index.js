@@ -9,20 +9,22 @@ const store = new Vuex.Store({
   state: {
     currentPage: {},
     currentPageParts: {},
+    properties: []
   },
   actions: {
     loadPage: function({ commit }) {
       axios.get('/api_public/v1/home').then((response) => {
-        commit('setPage', { result: response.data })
+        commit('setPageContent', { result: response.data })
       }, (err) => {
         console.log(err)
       })
     },
   },
   mutations: {
-    setPage: (state, { result }) => {
+    setPageContent: (state, { result }) => {
       state.currentPage = result.page
       state.currentPageParts = result.page_parts
+      state.properties = result.properties
     }
   },
   getters: {
