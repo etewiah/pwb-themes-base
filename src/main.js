@@ -8,16 +8,29 @@ import store from './store'
 // import i18n from './i18n/'
 // import axios from 'axios'
 import 'vuetify/dist/vuetify.min.css'
+import * as VueGoogleMaps from 'vue2-google-maps'
 
-Vue.use(Vuetify, { theme: {
-  primary: '#ee44aa',
-  secondary: '#424242',
-  accent: '#82B1FF',
-  error: '#FF5252',
-  info: '#2196F3',
-  success: '#4CAF50',
-  warning: '#FFC107'
-}})
+Vue.use(VueGoogleMaps, {
+  load: {
+    key: 'AIzaSyCPorm8YzIaUGhKfe5cvpgofZ_gdT8hdZw',
+    // libraries: 'places', // This is required if you use the Autocomplete plugin
+    // OR: libraries: 'places,drawing'
+    // OR: libraries: 'places,drawing,visualization'
+    // (as you require)
+  }
+})
+
+Vue.use(Vuetify, {
+  theme: {
+    primary: '#ee44aa',
+    secondary: '#424242',
+    accent: '#82B1FF',
+    error: '#FF5252',
+    info: '#2196F3',
+    success: '#4CAF50',
+    warning: '#FFC107'
+  }
+})
 
 Vue.config.productionTip = false
 

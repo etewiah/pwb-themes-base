@@ -8,8 +8,9 @@ const store = new Vuex.Store({
   state: {
     currentPage: {},
     currentPageParts: {},
-    properties: [],
-    displaySettings: {}
+    properties: {},
+    displaySettings: {},
+    agencyMapMarker: {}
   },
   actions: {
     loadPage: function({ commit }, pageName) {
@@ -31,6 +32,7 @@ const store = new Vuex.Store({
   mutations: {
     setDisplaySettings: (state, { result }) => {
       state.displaySettings = result.display_settings
+      state.agencyMapMarker = result.agency_map_marker
     },
     setPageContent: (state, { result }) => {
       state.currentPage = result.page

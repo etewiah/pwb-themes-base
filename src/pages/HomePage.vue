@@ -1,11 +1,9 @@
 <template>
   <div>
-    <LandingHero :blockContents="currentPageParts.landing_hero" ></LandingHero>
-    <AboutUsServices :blockContents="currentPageParts.about_us_services" ></AboutUsServices>
-
-    <PropertiesRow :propertiesToDisplay="propertiesForSale" ></PropertiesRow>
-    <PropertiesRow :propertiesToDisplay="propertiesForRent" ></PropertiesRow>
-
+    <LandingHero :blockContents="currentPageParts.landing_hero"></LandingHero>
+    <AboutUsServices :blockContents="currentPageParts.about_us_services"></AboutUsServices>
+    <PropertiesRow :propertiesToDisplay="propertiesForSale"></PropertiesRow>
+    <PropertiesRow :propertiesToDisplay="propertiesForRent"></PropertiesRow>
     <section>
       <v-container grid-list-xl>
         <v-layout row wrap justify-center class="my-5">
@@ -81,13 +79,22 @@ export default {
       return this.$store.state.currentPageParts
     },
     propertiesForSale() {
-      return this.$store.state.properties.for_sale
+      if (this.$store.state.properties) {
+        return this.$store.state.properties.for_sale
+      } else {
+        return []
+      }
     },
     propertiesForRent() {
-      return this.$store.state.properties.for_rent
+      if (this.$store.state.properties) {
+        return this.$store.state.properties.for_rent
+      } else {
+        return []
+      }
     },
   },
 }
+
 </script>
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
