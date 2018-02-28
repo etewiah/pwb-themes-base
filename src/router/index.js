@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import HelloWorld from '@/components/HelloWorld'
 import HomePage from '@/pages/HomePage'
 import StandardPage from '@/pages/StandardPage'
+import ContactUsPage from '@/pages/ContactUsPage'
 import GenericContainer from '@/pages/GenericContainer'
 
 Vue.use(Router)
@@ -24,6 +25,16 @@ export default new Router({
       path: '/:locale/buy',
       name: 'HelloWorld',
       component: HelloWorld
+    },
+    {
+      path: '/:locale/rent',
+      name: 'HelloWorld',
+      component: HelloWorld
+    },
+    {
+      path: '/:locale/contact-us',
+      // name: 'HelloWorld',
+      component: ContactUsPage
     },
     {
       path: '/:locale/p/:pageName',

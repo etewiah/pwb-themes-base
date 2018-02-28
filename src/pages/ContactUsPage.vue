@@ -1,26 +1,26 @@
 <template>
   <div>
     <ContentHtml :blockContents="currentPageParts.content_html" ></ContentHtml>
-    <OurAgency :blockContents="currentPageParts.our_agency" ></OurAgency>
+    <FormAndMap></FormAndMap>
   </div>
 </template>
 <script>
 import ContentHtml from '@/components/page-parts/ContentHtml'
-import OurAgency from '@/components/page-parts/OurAgency'
+import FormAndMap from '@/components/page-parts/FormAndMap'
 // import PropertiesRow from '@/components/PropertiesRow'
 export default {
   components: {
     // PropertiesRow,
-    OurAgency,
+    FormAndMap,
     ContentHtml,
   },
   watch: {
-    '$route' (to, from) {
-      this.$store.dispatch('loadPage', to.params.pageName)
-    }
+    // '$route' (to, from) {
+    //   this.$store.dispatch('loadPage', to.params.pageName)
+    // }
   },
   mounted: function() {
-    this.$store.dispatch('loadPage', this.$route.params["pageName"])
+    this.$store.dispatch('loadPage', 'contact-us')
   },
   computed: {
     // currentPage() {

@@ -71,7 +71,7 @@ export default {
     LandingHero,
   },
   mounted: function() {
-    this.$store.dispatch('loadPage', this.$route.params["pageName"])
+    this.$store.dispatch('loadPage', 'home')
   },
   computed: {
     currentPage() {
