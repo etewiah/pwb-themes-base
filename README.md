@@ -1,6 +1,15 @@
-# pwb-themes-base
+# PropertyWebBuilder Themable front end
 
-> Vue.js based themes for PropertyWebBuilder
+> Built with vue and vuetify
+
+Please help support this project by making a contribution to PropertyWebBuilder here: https://opencollective.com/property_web_builder
+
+[![Gitter](https://badges.gitter.im/dev-1pr/1pr.svg)](https://gitter.im/property_web_builder/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=body_badge)
+
+PropertyWebBuilder is a website builder for the real estate sector.  It can be adapted for use as a CRM, property listings site, vacation rentals listing site etc.
+
+This project implements a new look and feel for PropertyWebBuilder.  The goal is to make it easier to customise and to provide more functionality.  As of February 2018, it is under active development and any help in completing it will be much appreciated.
+
 
 ## Build Setup
 
