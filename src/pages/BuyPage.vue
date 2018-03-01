@@ -1,43 +1,55 @@
 <template>
   <section fluid>
     <v-container>
-      <v-layout column wrap class="my-5" align-center>
+      <v-layout wrap class="my-5" >
         <v-flex xs8>
           <PropertiesCol :propertiesToDisplay="propertiesForSale"></PropertiesCol>
         </v-flex>
         <v-flex xs4>
-          <!-- <PropertiesCol :propertiesToDisplay="propertiesForSale"></PropertiesCol> -->
+          <PropertySearchCol></PropertySearchCol>
         </v-flex>
       </v-layout>
     </v-container>
+    <v-flex xs12>
+      <pwb-map style="min-height: 600px;" :mapMarkers="mapMarkers" :zoom="15">
+      </pwb-map>
+    </v-flex>
   </section>
 </template>
 <script>
 import PropertiesCol from '@/components/PropertiesCol'
+import PropertySearchCol from '@/components/PropertySearchCol'
+import PwbMap from '@/components/PwbMap'
 export default {
   components: {
+    PwbMap,
     PropertiesCol,
+    PropertySearchCol,
   },
   mounted: function() {
     this.$store.dispatch('loadPage', 'home')
   },
   computed: {
-    currentPage() {
-      return this.$store.state.currentPage
-    },
-    currentPageParts() {
-      return this.$store.state.currentPageParts
+    mapMarkers() {
+      let mapMarkers = []
+      if (this.propertiesForSale) {
+        this.propertiesForSale.forEach(function(property) {
+          mapMarkers.push({
+            id: property.id,
+            title: property.title,
+            image_url: property.primary_image_url,
+            position: {
+              lat: property.latitude,
+              lng: property.longitude
+            }
+          })
+        })
+      }
+      return mapMarkers
     },
     propertiesForSale() {
       if (this.$store.state.properties) {
         return this.$store.state.properties.for_sale
-      } else {
-        return []
-      }
-    },
-    propertiesForRent() {
-      if (this.$store.state.properties) {
-        return this.$store.state.properties.for_rent
       } else {
         return []
       }

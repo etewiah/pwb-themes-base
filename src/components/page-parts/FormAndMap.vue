@@ -2,8 +2,8 @@
   <section>
     <v-container grid-list-xl>
       <v-layout row wrap justify-center class="my-5">
-        <v-flex xs12 sm4>
-          <v-card class="elevation-0 transparent">
+        <v-flex xs12 sm6>
+          <v-card class="elevation-1">
             <v-card-title primary-title class="layout justify-center">
               <div class="headline">
                 Fill in the following form to contact us:
@@ -24,7 +24,7 @@
           </v-card>
         </v-flex>
         <v-flex xs12 sm4 offset-sm1>
-          <v-card class="elevation-0 transparent">
+          <v-card class="elevation-2 transparent">
             <v-card-title primary-title class="layout justify-center">
               <div class="headline">Contact Information</div>
             </v-card-title>
@@ -58,7 +58,7 @@
               </v-list-tile>
             </v-list>
           </v-card>
-          <pwb-map style="min-height: 600px;" :markers="[]" :mapMarkers="mapMarkers" :zoom="15">
+          <pwb-map style="min-height: 600px;" :mapMarkers="mapMarkers" :zoom="15">
           </pwb-map>
         </v-flex>
       </v-layout>
