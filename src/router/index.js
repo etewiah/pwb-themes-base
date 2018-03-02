@@ -45,7 +45,7 @@ export default new Router({
     //   path: '/:locale',
     //   // name: 'site-page',
     //   component: GenericContainer,
-    //   redirect: { name: 'homePage' },
+    //   // redirect: { name: 'homePage' },
     //   children: [{
     //       path: '',
     //       name: 'homePage',
