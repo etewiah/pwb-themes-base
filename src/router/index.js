@@ -5,6 +5,7 @@ import HomePage from '@/pages/HomePage'
 import BuyPage from '@/pages/BuyPage'
 import RentPage from '@/pages/RentPage'
 import StandardPage from '@/pages/StandardPage'
+import PropertyDetails from '@/pages/PropertyDetails'
 import ContactUsPage from '@/pages/ContactUsPage'
 import GenericContainer from '@/pages/GenericContainer'
 import ThemeGenerator from '@/components/ThemeGenerator'
@@ -45,6 +46,27 @@ export default new Router({
       path: '/:locale/p/:pageName',
       name: 'standardPageDetails',
       component: StandardPage
+    },
+    {
+      path: '/:locale/properties/:saleOrRent/:propertyId',
+      name: 'propertyDetails',
+      component: PropertyDetails,
+      // children: [{
+      //     path: '',
+      //     name: 'homePage',
+      //     component: HomePage,
+      //   },
+      //   {
+      //     path: '/p',
+      //     name: 'standardPage',
+      //     component: GenericContainer,
+      //     children: [{
+      //       name: 'standardPageDetails',
+      //       path: '/:pageName',
+      //       component: HomePage
+      //     }]
+      //   }
+      // ]
     },
     // {
     //   path: '/:locale',

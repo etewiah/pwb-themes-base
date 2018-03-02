@@ -2,7 +2,11 @@
     <v-container fluid grid-list-md>
       <v-layout row wrap>
         <v-flex v-bind="{ [`xs${property.flex}`]: true }" v-for="property in propertiesToDisplay" :key="property.id">
-          <v-card>
+          <v-card :to="{name: 'propertyDetails',
+         params: { locale: 'en', 
+         propertyId: property.id,
+         saleOrRent: saleOrRent}
+       }">
             <v-card-media :src="property.primary_image_url" height="300px">
               <v-container fill-height fluid>
                 <v-layout fill-height>
@@ -47,7 +51,7 @@
 </template>
 <script>
 export default {
-  props: ["propertiesToDisplay"],
+  props: ["propertiesToDisplay", "saleOrRent"],
 }
 
 </script>

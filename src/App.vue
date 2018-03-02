@@ -21,7 +21,7 @@
           </v-card>
         </v-expansion-panel-content>
       </v-expansion-panel>
-      <ThemeGenerator></ThemeGenerator>>
+      <ThemeGenerator></ThemeGenerator>
       <v-content>
         <router-view/>
         <v-footer class="blue darken-2">

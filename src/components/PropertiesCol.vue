@@ -2,7 +2,11 @@
   <v-container fluid grid-list-md>
     <v-layout row wrap>
       <v-flex xs12 v-for="property in propertiesToDisplay" :key="property.id">
-        <v-card style="margin: 9px 0px;">
+        <v-card style="margin: 9px 0px;" :to="{name: 'propertyDetails',
+         params: { locale: 'en', 
+         propertyId: property.id,
+         saleOrRent: saleOrRent}
+       }">
           <v-layout row wrap>
             <v-flex style="padding: 0px;" xs6>
               <v-card>
@@ -56,7 +60,7 @@
 </template>
 <script>
 export default {
-  props: ["propertiesToDisplay"],
+  props: ["propertiesToDisplay", "saleOrRent"],
 }
 
 </script>

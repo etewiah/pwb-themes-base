@@ -7,12 +7,21 @@ const store = new Vuex.Store({
   modules: {},
   state: {
     currentPage: {},
+    currentProperty: {},
     currentPageParts: {},
     properties: {},
     displaySettings: {},
     agencyMapMarker: {}
   },
   actions: {
+    loadProperty: function({ commit }, propertyId) {
+      let apiUrl = '/api_public/v1/en/properties/' + propertyId
+      axios.get(apiUrl).then((response) => {
+        commit('setCurrentProperty', { result: response.data })
+      }, (err) => {
+        console.log(err)
+      })
+    },
     loadPage: function({ commit }, pageName) {
       let apiUrl = '/api_public/v1/en/pages/' + pageName
       axios.get(apiUrl).then((response) => {
@@ -33,6 +42,9 @@ const store = new Vuex.Store({
     setDisplaySettings: (state, { result }) => {
       state.displaySettings = result.display_settings
       state.agencyMapMarker = result.agency_map_marker
+    },
+    setCurrentProperty: (state, { result }) => {
+      state.currentProperty = result.property
     },
     setPageContent: (state, { result }) => {
       state.currentPage = result.page

@@ -3,7 +3,7 @@
     <v-container>
       <v-layout wrap class="my-5" >
         <v-flex xs8>
-          <PropertiesCol :propertiesToDisplay="propertiesForSale"></PropertiesCol>
+          <PropertiesCol :propertiesToDisplay="propertiesForSale" :saleOrRent="'buy'"></PropertiesCol>
         </v-flex>
         <v-flex xs4>
           <PropertySearchCol></PropertySearchCol>
