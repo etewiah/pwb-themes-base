@@ -21,6 +21,7 @@
           </v-card>
         </v-expansion-panel-content>
       </v-expansion-panel>
+      <ThemeGenerator></ThemeGenerator>>
       <v-content>
         <router-view/>
         <v-footer class="blue darken-2">
@@ -39,10 +40,14 @@
   </v-app>
 </template>
 <script>
+import ThemeGenerator from '@/components/ThemeGenerator'
 export default {
+  components: {
+    ThemeGenerator
+  },
   data() {
     return {
-      fluid: false,
+      fluid: true,
       clipped: false,
       drawer: true,
       fixed: false,
@@ -57,7 +62,6 @@ export default {
     }
   },
   name: 'App',
-  components: {},
   mounted: function() {
     this.$store.dispatch('loadSettings')
   },

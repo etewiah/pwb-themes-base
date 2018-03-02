@@ -7,6 +7,7 @@ import RentPage from '@/pages/RentPage'
 import StandardPage from '@/pages/StandardPage'
 import ContactUsPage from '@/pages/ContactUsPage'
 import GenericContainer from '@/pages/GenericContainer'
+import ThemeGenerator from '@/components/ThemeGenerator'
 
 Vue.use(Router)
 
@@ -17,6 +18,10 @@ export default new Router({
       path: '/',
       name: 'HomePage',
       component: HomePage
+    },
+    {
+      path: '/theme',
+      component: ThemeGenerator
     },
     {
       path: '/:initlocale',
