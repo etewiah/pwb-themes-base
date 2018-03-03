@@ -93,12 +93,13 @@ export default {
   // },
   computed: {
     center: function() {
-     if (this.mapMarkers[0]) {
-        var lat = this.mapMarkers[0].position.lat
-        var lng = this.mapMarkers[0].position.lng
+     if (this.mapMarkers[0] && this.mapMarkers[0].position.lat) {
+        let lat = this.mapMarkers[0].position.lat
+        let lng = this.mapMarkers[0].position.lng
         return { lat: lat, lng: lng }
       } else {
-        return { lat: 10, lng: 10 }
+        let latLng = { lat: 10, lng: 10 }
+        return latLng
       }
       // `this` points to the vm instance
     }

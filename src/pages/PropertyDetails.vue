@@ -48,6 +48,7 @@
           <v-card class="elevation-2 transparent">
             <v-card-title primary-title class="layout justify-center">
               <div class="headline">
+                {{ $t("requestPropertyInfo") }}
                 Request Info:
               </div>
             </v-card-title>

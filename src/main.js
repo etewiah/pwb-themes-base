@@ -5,7 +5,7 @@ import App from './App'
 import router from './router'
 import Vuetify from 'vuetify'
 import store from './store'
-// import i18n from './i18n/'
+import i18n from './i18n/'
 // import axios from 'axios'
 import 'vuetify/dist/vuetify.min.css'
 import * as VueGoogleMaps from 'vue2-google-maps'
@@ -44,10 +44,15 @@ Vue.use(Vuetify, {
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */
-new Vue({
+export const app = new Vue({
   el: '#app',
   router,
   store,
+  i18n,
   components: { App },
   template: '<App/>'
 })
+
+// Useful for debugging
+window['vue'] = app
+window.store = store
