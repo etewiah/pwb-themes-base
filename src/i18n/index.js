@@ -13,14 +13,14 @@ Vue.use(VueI18n)
 
 
 let messages = {}
-locales.forEach(v => {
-  messages[v] = require(`./${v}/index`).default
-})
+// locales.forEach(v => {
+//   messages[v] = require(`./${v}/index`).default
+// })
 // messages = store.state.propertiesStore.properties
 
 const i18n = new VueI18n({
   // locale: helper.ls.get('locale', "es"),
-  locale: "es",
+  // locale: "es",
   silentTranslationWarn: true,
   messages
 })

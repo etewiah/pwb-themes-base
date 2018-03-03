@@ -54,5 +54,5 @@ export const app = new Vue({
 })
 
 // Useful for debugging
-window['vue'] = app
-window.store = store
+// window['vue'] = app
+// window.store = store

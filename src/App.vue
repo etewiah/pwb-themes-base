@@ -62,6 +62,9 @@ export default {
     }
   },
   name: 'App',
+  beforeCreate: function() {
+    this.$store.commit('setCurrentLocale', this.$route.params["locale"])
+  },
   mounted: function() {
     this.$store.dispatch('loadSettings')
   },

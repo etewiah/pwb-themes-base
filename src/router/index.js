@@ -25,7 +25,7 @@ export default new Router({
       component: ThemeGenerator
     },
     {
-      path: '/:initlocale',
+      path: '/:locale',
       name: 'landing',
       component: HomePage
     },
