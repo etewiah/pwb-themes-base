@@ -63,7 +63,10 @@ export default {
   },
   name: 'App',
   beforeCreate: function() {
-    this.$store.commit('setCurrentLocale', this.$route.params["locale"])
+    // when served by rails, "/" should redirect to a route 
+    // with a locale but just in case will default to "en"
+    let locale = this.$route.params["locale"] || "en"
+    this.$store.commit('setCurrentLocale', locale)
   },
   mounted: function() {
     this.$store.dispatch('loadSettings')
