@@ -9,9 +9,14 @@
       </v-card-title>
       <v-card-text>
         <form @submit.prevent="onSubmitContactForm">
-          <v-layout v-for="(field, index) in searchFields" :key="field.fieldName" row>
+          <v-layout v-for="(fieldDetails, index) in searchFields" :key="fieldDetails.fieldName" row>
             <v-flex xs12 sm12 offset-sm0>
-              <v-text-field name="title" :label="'Title '" v-model="field.fieldValue"></v-text-field>
+            <template v-if="fieldDetails.inputType == 'select'">
+              <SelectField :fieldDetails="fieldDetails"  :fieldOptions="fieldOptions" ></SelectField>
+            </template>
+            <template v-else>
+              <v-text-field name="title" :label="'Title '" v-model="fieldDetails.fieldValue"></v-text-field>
+            </template>
             </v-flex>
           </v-layout>
           <v-flex xs12 sm12 offset-sm0>
@@ -23,11 +28,24 @@
   </v-container>
 </template>
 <script>
+import SelectField from '@/components/form-fields/SelectField'
+// import { required, minLength } from 'vuelidate/lib/validators'
+// import _ from 'lodash'
 export default {
+  components: {
+    SelectField
+  },
   props: [],
   data() {
     return {
+      fieldOptions: [],
       searchFields: [{
+        labelTextTKey: "fieldLabels.tipo",
+        tooltipTextTKey: "",
+        fieldName: "prop_type_key",
+        inputType: "select",
+        optionsKey: "property-types",
+      }, {
         labelTextTKey: "webContentLabels.suffixEn",
         fieldType: "simpleInput",
         fieldName: "page_title_en",

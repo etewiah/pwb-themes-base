@@ -14,8 +14,25 @@ const store = new Vuex.Store({
     properties: {},
     displaySettings: {},
     agencyMapMarker: {},
+    fieldOptions: {},
+    // TODO: use below to refresh settings when true
+    lastLoadedFromLS: false
   },
   actions: {
+    loadSearchPage: function({ commit }, saleOrRent) {
+      let fieldNames = "property-origins, property-types, property-states, property-labels"
+      axios.get('/api/v1/select_values', {
+        params: {
+          field_names: fieldNames
+        }
+      }).then((response) => {
+        // this data isn't monitored so setting it directly
+        // state.fieldOptions = response.data
+        // commit('setProperties', { result: response.data })
+      }, (err) => {
+        console.log(err)
+      })
+    },
     loadProperty: function({ commit }, propertyId) {
       let apiUrl = this.getters.baseApiUrl + '/properties/' + propertyId
       axios.get(apiUrl).then((response) => {
@@ -66,7 +83,7 @@ const store = new Vuex.Store({
   },
   getters: {
     baseApiUrl: state => {
-      return '/api_public/v1/' + state.currentLocale 
+      return '/api_public/v1/' + state.currentLocale
     }
   }
 })
