@@ -30,7 +30,15 @@
                   </div>
                 </v-card-title>
                 <v-card-actions>
-                  <v-spacer></v-spacer>
+                  <v-btn>Monthly rent: {{property.price_rental_monthly_current_cents}}</v-btn>
+                  <v-btn>Sale Price: {{property.price_sale_current_cents}}</v-btn>
+                  <v-btn>Type: {{property.prop_type_key}}</v-btn>
+                </v-card-actions>
+                <v-card-actions>
+                  <!-- <v-spacer></v-spacer> -->
+            <v-btn>Baths: {{property.count_bathrooms}}</v-btn>
+            <v-btn>Beds: {{property.count_bedrooms}}</v-btn>
+
                   <li class="hidden-xs"><i class="fa fa-bed"></i> <small>
                       1
                     </small></li>

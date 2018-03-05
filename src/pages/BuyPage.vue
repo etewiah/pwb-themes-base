@@ -1,12 +1,12 @@
 <template>
   <section fluid>
     <v-container>
-      <v-layout wrap class="my-5" >
+      <v-layout wrap class="my-5">
         <v-flex xs8>
           <PropertiesCol :propertiesToDisplay="propertiesForSale" :saleOrRent="'buy'"></PropertiesCol>
         </v-flex>
         <v-flex xs4>
-          <PropertySearchCol></PropertySearchCol>
+          <PropertySearchCol :searchFields="searchFields" @updateSearch="updateSearch"></PropertySearchCol>
         </v-flex>
       </v-layout>
     </v-container>
@@ -27,7 +27,37 @@ export default {
     PropertySearchCol,
   },
   mounted: function() {
-    this.$store.dispatch('loadPage', 'home')
+    this.$store.dispatch('loadSearchPage', 'buy')
+  },
+  methods: {
+    updateSearch(fieldDetails) {
+      this.$store.dispatch('updateSearch', 'buy')
+    }
+  },
+  data() {
+    return {
+      // searchFieldOptions: [],
+      searchFields: [{
+        labelTextTKey: "fieldLabels.tipo",
+        tooltipTextTKey: "",
+        fieldName: "prop_type_key",
+        inputType: "select",
+        optionsKey: "property_types",
+      }, {
+        labelTextTKey: "simple_form.labels.search.for_rent_price_from",
+        tooltipTextTKey: "",
+        fieldName: "sale_prices_from",
+        inputType: "select",
+        optionsKey: "sale_prices_from",
+      }, {
+        labelTextTKey: "simple_form.labels.search.for_rent_price_till",
+        tooltipTextTKey: "",
+        fieldName: "sale_prices_till",
+        inputType: "select",
+        optionsKey: "sale_prices_till",
+      }],
+
+    }
   },
   computed: {
     mapMarkers() {
@@ -49,7 +79,7 @@ export default {
     },
     propertiesForSale() {
       if (this.$store.state.properties) {
-        return this.$store.state.properties.for_sale
+        return this.$store.state.propSearchResults
       } else {
         return []
       }

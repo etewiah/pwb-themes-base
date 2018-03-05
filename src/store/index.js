@@ -12,27 +12,28 @@ const store = new Vuex.Store({
     currentProperty: {},
     currentPageParts: {},
     properties: {},
+    propSearchResults: [],
     displaySettings: {},
     agencyMapMarker: {},
-    fieldOptions: {},
+    searchFieldOptions: {},
     // TODO: use below to refresh settings when true
     lastLoadedFromLS: false
   },
   actions: {
-    loadSearchPage: function({ commit }, saleOrRent) {
-      let fieldNames = "property-origins, property-types, property-states, property-labels"
-      axios.get('/api/v1/select_values', {
-        params: {
-          field_names: fieldNames
-        }
-      }).then((response) => {
-        // this data isn't monitored so setting it directly
-        // state.fieldOptions = response.data
-        // commit('setProperties', { result: response.data })
-      }, (err) => {
-        console.log(err)
-      })
-    },
+    // loadSearchPage: function({ commit }, saleOrRent) {
+    //   let fieldNames = "property-origins, property-types, property-states, property-labels"
+    //   axios.get('/api/v1/select_values', {
+    //     params: {
+    //       field_names: fieldNames
+    //     }
+    //   }).then((response) => {
+    //     // this data isn't monitored so setting it directly
+    //     // state.fieldOptions = response.data
+    //     // commit('setProperties', { result: response.data })
+    //   }, (err) => {
+    //     console.log(err)
+    //   })
+    // },
     loadProperty: function({ commit }, propertyId) {
       let apiUrl = this.getters.baseApiUrl + '/properties/' + propertyId
       axios.get(apiUrl).then((response) => {
@@ -45,6 +46,23 @@ const store = new Vuex.Store({
       let apiUrl = this.getters.baseApiUrl + '/pages/' + pageName
       axios.get(apiUrl).then((response) => {
         commit('setPageContent', { result: response.data })
+      }, (err) => {
+        console.log(err)
+      })
+    },
+    loadSearchPage: function({ commit }, pageName) {
+      let apiUrl = this.getters.baseApiUrl + '/search_page/' + pageName
+      axios.get(apiUrl).then((response) => {
+        commit('setSearchPageContent', { result: response.data })
+        commit('setSearchResults', { result: response.data })
+      }, (err) => {
+        console.log(err)
+      })
+    },
+    updateSearch: function({ commit }, pageName) {
+      let apiUrl = this.getters.baseApiUrl + '/properties/search'
+      axios.get(apiUrl).then((response) => {
+        commit('setSearchResults', { result: response.data })
       }, (err) => {
         console.log(err)
       })
@@ -65,6 +83,7 @@ const store = new Vuex.Store({
     setClientSettings: (state, { result }) => {
       state.displaySettings = result.display_settings
       state.agencyMapMarker = result.agency_map_marker
+      state.searchFieldOptions = result.search_field_options
       // state.phrases = result.phrases
       // console.log(app.$i18n.messages.es)
       // app.$i18n.messages.es = result.translations
@@ -74,6 +93,13 @@ const store = new Vuex.Store({
     },
     setCurrentProperty: (state, { result }) => {
       state.currentProperty = result.property
+    },
+    setSearchPageContent: (state, { result }) => {
+      state.currentPage = result.page
+      state.currentPageParts = result.page_parts
+    },
+    setSearchResults: (state, { result }) => {
+      state.propSearchResults = result.prop_search_results
     },
     setPageContent: (state, { result }) => {
       state.currentPage = result.page

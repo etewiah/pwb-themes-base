@@ -3,7 +3,7 @@
     <div class="text-xs-left">
       {{$t(fieldDetails.labelTextTKey) }}:
     </div>
-    <v-select :items="selectItems" v-model="localFieldValue" label="Select" @change="fieldChangeHandler" item-text="name" single-line bottom></v-select>
+    <v-select :items="selectItems" v-model="localFieldValue" :label="$t(fieldDetails.labelTextTKey)" @change="fieldChangeHandler" item-text="name" single-line bottom></v-select>
   </div>
 </template>
 <script>
@@ -51,7 +51,6 @@ export default {
             value: optionKey
           })
         })
-        // debugger
       }
       return selectItems
     },
@@ -60,7 +59,7 @@ export default {
     fieldChangeHandler(newValue) {
       // let newValue = event.currentTarget.value
       this.fieldDetails.newValue = newValue
-      this.$store.dispatch('updatePendingChanges', this.fieldDetails)
+      this.$emit('selectChanged', this.fieldDetails)
     }
   }
 }
