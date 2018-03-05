@@ -6,7 +6,7 @@
           <PropertiesCol :propertiesToDisplay="propertiesForSale" :saleOrRent="'buy'"></PropertiesCol>
         </v-flex>
         <v-flex xs4>
-          <PropertySearchCol :searchFields="searchFields" @updateSearch="updateSearch"></PropertySearchCol>
+          <PropertySearchCol :routeParams="routeParams" :searchFields="searchFields" @updateSearch="updateSearch"></PropertySearchCol>
         </v-flex>
       </v-layout>
     </v-container>
@@ -27,11 +27,23 @@ export default {
     PropertySearchCol,
   },
   mounted: function() {
-    this.$store.dispatch('loadSearchPage', 'buy')
+    let routeParams = JSON.parse(JSON.stringify(this.routeParams))
+    // need to do JSON trick above as passing $route.query to 
+    // $router.push does not work
+    routeParams['op'] = 'buy'
+// debugger
+    this.$store.dispatch('loadSearchPage', routeParams)
   },
   methods: {
     updateSearch(fieldDetails) {
-      this.$store.dispatch('updateSearch', 'buy')
+      let routeParams = JSON.parse(JSON.stringify(this.routeParams))
+      // need to do JSON trick above as passing $route.query to 
+      // $router.push does not work
+      routeParams[fieldDetails.queryStringName] = fieldDetails.newValue
+      // debugger
+      this.$router.push({ name: 'buyPage', query: routeParams })
+      routeParams['op'] = 'buy'
+      this.$store.dispatch('updateSearch', routeParams)
     }
   },
   data() {
@@ -41,18 +53,21 @@ export default {
         labelTextTKey: "fieldLabels.tipo",
         tooltipTextTKey: "",
         fieldName: "prop_type_key",
+        queryStringName: "type",
         inputType: "select",
         optionsKey: "property_types",
       }, {
-        labelTextTKey: "simple_form.labels.search.for_rent_price_from",
+        labelTextTKey: "simple_form.labels.search.for_sale_price_from",
         tooltipTextTKey: "",
-        fieldName: "sale_prices_from",
+        fieldName: "sale_price_from",
+        queryStringName: "price_from",
         inputType: "select",
         optionsKey: "sale_prices_from",
       }, {
-        labelTextTKey: "simple_form.labels.search.for_rent_price_till",
+        labelTextTKey: "simple_form.labels.search.for_sale_price_till",
         tooltipTextTKey: "",
-        fieldName: "sale_prices_till",
+        fieldName: "sale_price_till",
+        queryStringName: "price_till",
         inputType: "select",
         optionsKey: "sale_prices_till",
       }],
@@ -60,6 +75,15 @@ export default {
     }
   },
   computed: {
+    routeParams() {
+      // let routeParams = {
+      //   sale_price_from: "50,000"
+      // }
+      // if (this.$route.query.price_till) {
+      //   routeParams.sale_price_till = this.$route.query.price_till
+      // }
+      return this.$route.query
+    },
     mapMarkers() {
       let mapMarkers = []
       if (this.propertiesForSale) {

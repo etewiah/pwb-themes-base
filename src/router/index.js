@@ -31,10 +31,12 @@ export default new Router({
     },
     {
       path: '/:locale/buy',
+      name: 'buyPage',
       component: BuyPage
     },
     {
       path: '/:locale/rent',
+      name: 'rentPage',
       component: RentPage
     },
     {

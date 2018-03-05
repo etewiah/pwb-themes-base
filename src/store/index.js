@@ -50,18 +50,22 @@ const store = new Vuex.Store({
         console.log(err)
       })
     },
-    loadSearchPage: function({ commit }, pageName) {
-      let apiUrl = this.getters.baseApiUrl + '/search_page/' + pageName
-      axios.get(apiUrl).then((response) => {
+    loadSearchPage: function({ commit }, searchParams) {
+      let apiUrl = this.getters.baseApiUrl + '/search_page' 
+      axios.get(apiUrl, {
+        params: searchParams
+      }).then((response) => {
         commit('setSearchPageContent', { result: response.data })
         commit('setSearchResults', { result: response.data })
       }, (err) => {
         console.log(err)
       })
     },
-    updateSearch: function({ commit }, pageName) {
+    updateSearch: function({ commit }, searchParams) {
       let apiUrl = this.getters.baseApiUrl + '/properties/search'
-      axios.get(apiUrl).then((response) => {
+      axios.get(apiUrl, {
+        params: searchParams
+      }).then((response) => {
         commit('setSearchResults', { result: response.data })
       }, (err) => {
         console.log(err)

@@ -12,7 +12,7 @@
         <v-layout v-for="(fieldDetails, index) in searchFields" :key="fieldDetails.fieldName" row>
           <v-flex xs12 sm12 offset-sm0>
             <template v-if="fieldDetails.inputType == 'select'">
-              <SelectField @selectChanged="updateSearch" :fieldDetails="fieldDetails" :fieldOptions="searchFieldOptions"></SelectField>
+              <SelectField @selectChanged="updateSearch" :fieldDetails="fieldDetails" :currentFieldValue="routeParams[fieldDetails.queryStringName]" :fieldOptions="searchFieldOptions"></SelectField>
             </template>
             <!--               <template v-else>
                 <v-text-field name="title" :label="'Title '" v-model="fieldDetails.fieldValue"></v-text-field>
@@ -31,21 +31,37 @@
 <script>
 import SelectField from '@/components/form-fields/SelectField'
 // import { required, minLength } from 'vuelidate/lib/validators'
-// import _ from 'lodash'
+import _ from 'lodash'
 export default {
   components: {
     SelectField
   },
-  props: ["searchFields"],
+  props: ["searchFields", "routeParams"],
   methods: {
     updateSearch(fieldDetails) {
       this.$emit('updateSearch', fieldDetails)
     }
   },
   computed: {
+    // searchParams() {
+    //   let searchParams = {}
+    //   if (this.routeParams.price_till) {
+    //     searchParams.sale_price_till = this.routeParams.price_till
+    //   }
+    //   let searchFields = this.searchFields
+    //   let routeParams = this.routeParams
+    //   // The keys used in query params 
+    //   Object.keys(this.routeParams).forEach(function(routeParam) {
+    //     let searchField = _.find(searchFields, { queryStringName: routeParam })
+    //     console.log(searchField)
+    //     searchParams[searchField.fieldName] = routeParams[routeParam]
+
+    //   })
+    //   return searchParams
+    // },
     searchFieldOptions() {
       return this.$store.state.searchFieldOptions
-    }
+    },
   },
   // data() {
   // },
