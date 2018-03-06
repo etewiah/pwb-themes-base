@@ -1,8 +1,8 @@
 <template>
-  <div>
-    <div class="text-xs-left">
+  <div class="mt-5">
+    <v-subheader class="subheading text-xs-left">
       {{$t(fieldDetails.labelTextTKey) }}:
-    </div>
+    </v-subheader>
     <vue-slider ref="slider" v-model="value" v-bind="fieldDetails.sliderOptions" @callback="fieldChangeHandler"></vue-slider>
     <!--     <v-select :items="selectItems" v-model="localFieldValue" :label="$t(fieldDetails.labelTextTKey)" @change="fieldChangeHandler" item-text="name" single-line bottom></v-select>
  -->
@@ -36,26 +36,7 @@ export default {
     }
   },
   computed: {
-    // value() {
-    //   let selectRange = [2, 20]
-    //   // let untranslated = this.fieldOptions[this.fieldDetails.optionsKey] || null
-    //   // let selectItems = [{ name: "", value: "" }]
-    //   // let i18n = this.$i18n
-    //   // let fieldName = this.fieldDetails.fieldName
-    //   // if (untranslated) {
-    //   //   untranslated.forEach(function(optionKey) {
-    //   //     let name = i18n.t(optionKey)
-    //   //     if (fieldName === "currency") {
-    //   //       optionKey = optionKey.toUpperCase()
-    //   //     }
-    //   //     selectItems.push({
-    //   //       name: name,
-    //   //       value: optionKey
-    //   //     })
-    //   //   })
-    //   // }
-    //   return selectRange
-    // },
+
   },
   mounted: function() {
     // this.$refs.slider.setValue([23, 44])

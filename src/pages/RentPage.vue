@@ -58,26 +58,70 @@ export default {
       // searchFieldOptions: [],
       searchFields: [{
         labelTextTKey: "fieldLabels.tipo",
+        classNames: "sm12",
         tooltipTextTKey: "",
         fieldName: "prop_type_key",
         queryStringName: "type",
         inputType: "select",
         optionsKey: "property_types",
       }, {
+        labelTextTKey: "bathrooms",
+        classNames: "sm6",
+        tooltipTextTKey: "",
+        fieldName: "bathrooms",
+        inputType: "slider",
+        defaultValue: [1, 3],
+        sliderOptions: {
+          width: "90%",
+          height: 8,
+          dotSize: 16,
+          min: 0,
+          max: 10,
+          interval: 1,
+          show: true,
+          // below needed so value change only occurs once dragging stops:
+          lazy: true,
+          tooltipDir: [
+            "bottom",
+            "top"
+          ]
+        }
+      }, {
+        labelTextTKey: "bedrooms",
+        classNames: "sm6",
+        tooltipTextTKey: "",
+        fieldName: "bedrooms",
+        inputType: "slider",
+        defaultValue: [2, 5],
+        sliderOptions: {
+          width: "90%",
+          height: 8,
+          dotSize: 16,
+          min: 0,
+          max: 20,
+          interval: 1,
+          show: true,
+          lazy: true,
+          tooltipDir: [
+            "bottom",
+            "top"
+          ]
+        }
+      }, {
         labelTextTKey: "rental_price",
+        classNames: "sm12",
         tooltipTextTKey: "",
         fieldName: "price",
         inputType: "slider",
         defaultValue: [0, 10000],
         sliderOptions: {
-          width: "90%",
+          width: "100%",
           height: 8,
           dotSize: 16,
           min: 0,
           max: 10000,
           interval: 500,
           show: true,
-          // below needed so value change only occurs once dragging stops:
           lazy: true,
           tooltipDir: [
             "bottom",

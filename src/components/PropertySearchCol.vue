@@ -9,8 +9,8 @@
       </v-card-title>
       <v-card-text>
         <!-- <form @submit.prevent="onSubmitContactForm"> -->
-        <v-layout v-for="(fieldDetails, index) in searchFields" :key="fieldDetails.fieldName" row>
-          <v-flex xs12 sm12 offset-sm0>
+        <v-layout wrap row>
+          <v-flex  v-for="(fieldDetails, index) in searchFields" :key="fieldDetails.fieldName"  :class="fieldDetails.classNames" offset-sm0>
             <template v-if="fieldDetails.inputType == 'select'">
               <SelectField @selectChanged="updateSearch" :fieldDetails="fieldDetails" :currentFieldValue="routeParams[fieldDetails.queryStringName]" :fieldOptions="searchFieldOptions"></SelectField>
             </template>
@@ -23,10 +23,6 @@
  -->
           </v-flex>
         </v-layout>
-        <!--           <v-flex xs12 sm12 offset-sm0>
-            <v-btn class="primary" type="submit">Send</v-btn>
-          </v-flex>
-        </form> -->
       </v-card-text>
     </v-card>
   </v-container>
@@ -51,22 +47,6 @@ export default {
     }
   },
   computed: {
-    // searchParams() {
-    //   let searchParams = {}
-    //   if (this.routeParams.price_till) {
-    //     searchParams.sale_price_till = this.routeParams.price_till
-    //   }
-    //   let searchFields = this.searchFields
-    //   let routeParams = this.routeParams
-    //   // The keys used in query params 
-    //   Object.keys(this.routeParams).forEach(function(routeParam) {
-    //     let searchField = _.find(searchFields, { queryStringName: routeParam })
-    //     console.log(searchField)
-    //     searchParams[searchField.fieldName] = routeParams[routeParam]
-
-    //   })
-    //   return searchParams
-    // },
     searchFieldOptions() {
       return this.$store.state.searchFieldOptions
     },

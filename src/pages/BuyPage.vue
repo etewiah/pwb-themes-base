@@ -28,8 +28,6 @@ export default {
   },
   mounted: function() {
     let routeParams = JSON.parse(JSON.stringify(this.routeParams))
-    // need to do JSON trick above as passing $route.query to 
-    // $router.push does not work
     routeParams['op'] = 'buy'
 // debugger
     this.$store.dispatch('loadSearchPage', routeParams)
@@ -39,8 +37,17 @@ export default {
       let routeParams = JSON.parse(JSON.stringify(this.routeParams))
       // need to do JSON trick above as passing $route.query to 
       // $router.push does not work
-      routeParams[fieldDetails.queryStringName] = fieldDetails.newValue
-      // debugger
+      if (fieldDetails.inputType === "slider") {
+        let minQueryStringName = fieldDetails.fieldName + "_min"
+        let maxQueryStringName = fieldDetails.fieldName + "_max"
+        routeParams[minQueryStringName] = fieldDetails.newValue[0]
+        routeParams[maxQueryStringName] = fieldDetails.newValue[1]
+        // routeParams[fieldDetails.queryStringName] = fieldDetails.newValue        
+        // debugger
+      } else {
+        routeParams[fieldDetails.queryStringName] = fieldDetails.newValue
+      }
+
       this.$router.push({ name: 'buyPage', query: routeParams })
       routeParams['op'] = 'buy'
       this.$store.dispatch('updateSearch', routeParams)
@@ -48,28 +55,78 @@ export default {
   },
   data() {
     return {
-      // searchFieldOptions: [],
       searchFields: [{
         labelTextTKey: "fieldLabels.tipo",
+        classNames: "sm12",
         tooltipTextTKey: "",
         fieldName: "prop_type_key",
         queryStringName: "type",
         inputType: "select",
         optionsKey: "property_types",
       }, {
-        labelTextTKey: "simple_form.labels.search.for_sale_price_from",
+        labelTextTKey: "bathrooms",
+        classNames: "sm6",
         tooltipTextTKey: "",
-        fieldName: "sale_price_from",
-        queryStringName: "price_from",
-        inputType: "select",
-        optionsKey: "sale_prices_from",
+        fieldName: "bathrooms",
+        inputType: "slider",
+        defaultValue: [1, 3],
+        sliderOptions: {
+          width: "90%",
+          height: 8,
+          dotSize: 16,
+          min: 0,
+          max: 10,
+          interval: 1,
+          show: true,
+          // below needed so value change only occurs once dragging stops:
+          lazy: true,
+          tooltipDir: [
+            "bottom",
+            "top"
+          ]
+        }
       }, {
-        labelTextTKey: "simple_form.labels.search.for_sale_price_till",
+        labelTextTKey: "bedrooms",
+        classNames: "sm6",
         tooltipTextTKey: "",
-        fieldName: "sale_price_till",
-        queryStringName: "price_till",
-        inputType: "select",
-        optionsKey: "sale_prices_till",
+        fieldName: "bedrooms",
+        inputType: "slider",
+        defaultValue: [2, 5],
+        sliderOptions: {
+          width: "90%",
+          height: 8,
+          dotSize: 16,
+          min: 0,
+          max: 20,
+          interval: 1,
+          show: true,
+          lazy: true,
+          tooltipDir: [
+            "bottom",
+            "top"
+          ]
+        }
+      }, {
+        labelTextTKey: "sale_price",
+        classNames: "sm12",
+        tooltipTextTKey: "",
+        fieldName: "price",
+        inputType: "slider",
+        defaultValue: [50000, 100000],
+        sliderOptions: {
+          width: "100%",
+          height: 8,
+          dotSize: 16,
+          min: 5000,
+          max: 500000,
+          interval: 5000,
+          show: true,
+          lazy: true,
+          tooltipDir: [
+            "bottom",
+            "top"
+          ]
+        }
       }],
 
     }
