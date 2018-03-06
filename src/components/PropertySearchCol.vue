@@ -14,6 +14,9 @@
             <template v-if="fieldDetails.inputType == 'select'">
               <SelectField @selectChanged="updateSearch" :fieldDetails="fieldDetails" :currentFieldValue="routeParams[fieldDetails.queryStringName]" :fieldOptions="searchFieldOptions"></SelectField>
             </template>
+            <template v-else-if="fieldDetails.inputType == 'slider'">
+              <SearchSlider :fieldDetails="fieldDetails" :currentFieldValue="routeParams[fieldDetails.queryStringName]" :fieldOptions="searchFieldOptions"></SearchSlider>
+            </template>
             <!--               <template v-else>
                 <v-text-field name="title" :label="'Title '" v-model="fieldDetails.fieldValue"></v-text-field>
               </template>
@@ -30,10 +33,15 @@
 </template>
 <script>
 import SelectField from '@/components/form-fields/SelectField'
+import SearchSlider from '@/components/form-fields/SearchSlider'
 // import { required, minLength } from 'vuelidate/lib/validators'
 import _ from 'lodash'
+// import vueSlider from 'vue-slider-component'
+
 export default {
   components: {
+    SearchSlider,
+    // vueSlider,
     SelectField
   },
   props: ["searchFields", "routeParams"],
@@ -63,8 +71,10 @@ export default {
       return this.$store.state.searchFieldOptions
     },
   },
-  // data() {
-  // },
+  data() {
+    return {
+    }
+  },
 }
 
 </script>
