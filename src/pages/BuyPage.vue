@@ -102,7 +102,7 @@ export default {
       return mapMarkers
     },
     propertiesForSale() {
-      if (this.$store.state.properties) {
+      if (this.$store.state.propSearchResults) {
         return this.$store.state.propSearchResults
       } else {
         return []

@@ -3,7 +3,7 @@
     <v-container>
       <v-layout wrap class="my-5">
         <v-flex xs8>
-          <PropertiesCol :propertiesToDisplay="propertiesForSale" :saleOrRent="'rent'"></PropertiesCol>
+          <PropertiesCol :propertiesToDisplay="propertiesForRent" :saleOrRent="'rent'"></PropertiesCol>
         </v-flex>
         <v-flex xs4>
           <PropertySearchCol :routeParams="routeParams" :searchFields="searchFields" @updateSearch="updateSearch"></PropertySearchCol>
@@ -28,10 +28,8 @@ export default {
   },
   mounted: function() {
     let routeParams = JSON.parse(JSON.stringify(this.routeParams))
-    // need to do JSON trick above as passing $route.query to 
-    // $router.push does not work
     routeParams['op'] = 'rent'
-// debugger
+    // debugger
     this.$store.dispatch('loadSearchPage', routeParams)
   },
   methods: {
@@ -39,7 +37,16 @@ export default {
       let routeParams = JSON.parse(JSON.stringify(this.routeParams))
       // need to do JSON trick above as passing $route.query to 
       // $router.push does not work
-      routeParams[fieldDetails.queryStringName] = fieldDetails.newValue
+      if (fieldDetails.inputType === "slider") {
+        let minQueryStringName = fieldDetails.fieldName + "_min"
+        let maxQueryStringName = fieldDetails.fieldName + "_max"
+        routeParams[minQueryStringName] = fieldDetails.newValue[0]
+        routeParams[maxQueryStringName] = fieldDetails.newValue[1]
+        // routeParams[fieldDetails.queryStringName] = fieldDetails.newValue        
+        // debugger
+      } else {
+        routeParams[fieldDetails.queryStringName] = fieldDetails.newValue
+      }
       // debugger
       this.$router.push({ name: 'rentPage', query: routeParams })
       routeParams['op'] = 'rent'
@@ -57,19 +64,26 @@ export default {
         inputType: "select",
         optionsKey: "property_types",
       }, {
-        labelTextTKey: "simple_form.labels.search.for_rent_price_from",
+        labelTextTKey: "rental_price",
         tooltipTextTKey: "",
-        fieldName: "rent_price_from",
-        queryStringName: "price_from",
+        fieldName: "price",
         inputType: "slider",
-        optionsKey: "rent_prices_from",
-      }, {
-        labelTextTKey: "simple_form.labels.search.for_rent_price_till",
-        tooltipTextTKey: "",
-        fieldName: "rent_price_till",
-        queryStringName: "price_till",
-        inputType: "select",
-        optionsKey: "rent_prices_till",
+        defaultValue: [0, 10000],
+        sliderOptions: {
+          width: "90%",
+          height: 8,
+          dotSize: 16,
+          min: 0,
+          max: 10000,
+          interval: 500,
+          show: true,
+          // below needed so value change only occurs once dragging stops:
+          lazy: true,
+          tooltipDir: [
+            "bottom",
+            "top"
+          ]
+        }
       }],
 
     }
@@ -86,8 +100,8 @@ export default {
     },
     mapMarkers() {
       let mapMarkers = []
-      if (this.propertiesForSale) {
-        this.propertiesForSale.forEach(function(property) {
+      if (this.propertiesForRent) {
+        this.propertiesForRent.forEach(function(property) {
           mapMarkers.push({
             id: property.id,
             title: property.title,
@@ -101,8 +115,8 @@ export default {
       }
       return mapMarkers
     },
-    propertiesForSale() {
-      if (this.$store.state.properties) {
+    propertiesForRent() {
+      if (this.$store.state.propSearchResults) {
         return this.$store.state.propSearchResults
       } else {
         return []

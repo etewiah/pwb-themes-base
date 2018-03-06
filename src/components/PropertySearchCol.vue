@@ -15,7 +15,7 @@
               <SelectField @selectChanged="updateSearch" :fieldDetails="fieldDetails" :currentFieldValue="routeParams[fieldDetails.queryStringName]" :fieldOptions="searchFieldOptions"></SelectField>
             </template>
             <template v-else-if="fieldDetails.inputType == 'slider'">
-              <SearchSlider :fieldDetails="fieldDetails" :currentFieldValue="routeParams[fieldDetails.queryStringName]" :fieldOptions="searchFieldOptions"></SearchSlider>
+              <SearchSlider @selectChanged="updateSearch"  :fieldDetails="fieldDetails" :routeParams="routeParams" :fieldOptions="searchFieldOptions"></SearchSlider>
             </template>
             <!--               <template v-else>
                 <v-text-field name="title" :label="'Title '" v-model="fieldDetails.fieldValue"></v-text-field>
