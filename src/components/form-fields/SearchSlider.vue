@@ -1,38 +1,45 @@
 <template>
   <div class="mt-5">
-    <v-subheader class="subheading text-xs-left">
+    <v-subheader class="mb-5 subheading text-xs-left">
       {{$t(fieldDetails.labelTextTKey) }}:
     </v-subheader>
-    <vue-slider ref="slider" v-model="value" v-bind="fieldDetails.sliderOptions" @callback="fieldChangeHandler"></vue-slider>
+    <vue-slider ref="slider" v-model="value" v-bind="fieldDetails.sliderOptions" @callback="fieldChangeHandler">
+      <template v-if="fieldDetails.fieldName == 'price'" slot="tooltip" slot-scope="{ value }">
+        <span class="vue-slider-tooltip" :style="">
+          <PriceWithCurrency :value="value"></PriceWithCurrency>
+        </span>
+      </template>
+    </vue-slider>
     <!--     <v-select :items="selectItems" v-model="localFieldValue" :label="$t(fieldDetails.labelTextTKey)" @change="fieldChangeHandler" item-text="name" single-line bottom></v-select>
  -->
   </div>
 </template>
 <script>
 import vueSlider from 'vue-slider-component'
-
+import PriceWithCurrency from '@/components/PriceWithCurrency'
 export default {
   components: {
     vueSlider,
+    PriceWithCurrency
   },
   props: ["fieldDetails", "routeParams", "cancelPendingChanges", "fieldOptions"],
   data() {
     return {
       localFieldValue: "",
       originalValue: "",
-      value: [0, 555],
-      sliderOptions: {
-        width: "100%",
-        height: 8,
-        dotSize: 16,
-        min: 0,
-        max: 1000000,
-        interval: 1000,
-        disabled: false,
-        show: true,
-        // below needed so value change only occurs once dragging stops:
-        lazy: true
-      }
+      value: [],
+      // sliderOptions: {
+      //   width: "100%",
+      //   height: 8,
+      //   dotSize: 16,
+      //   min: 0,
+      //   max: 1000000,
+      //   interval: 1000,
+      //   disabled: false,
+      //   show: true,
+      //   // below needed so value change only occurs once dragging stops:
+      //   lazy: true
+      // }
     }
   },
   computed: {

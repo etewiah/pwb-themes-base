@@ -8,6 +8,8 @@ const store = new Vuex.Store({
   modules: {},
   state: {
     currentLocale: "nl",
+    currentCurrency: "usd",
+    baseCurrency: "usd",
     currentPage: {},
     currentProperty: {},
     currentPageParts: {},

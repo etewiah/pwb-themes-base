@@ -113,7 +113,7 @@ export default {
         tooltipTextTKey: "",
         fieldName: "price",
         inputType: "slider",
-        defaultValue: [0, 10000],
+        defaultValue: [100, 1000],
         sliderOptions: {
           width: "100%",
           height: 8,

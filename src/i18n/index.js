@@ -22,7 +22,22 @@ const i18n = new VueI18n({
   // locale: helper.ls.get('locale', "es"),
   // locale: "es",
   silentTranslationWarn: true,
-  messages
+  messages,
+  numberFormats: {
+    'en-US': {
+      currency: {
+        style: 'currency',
+        currency: 'USD'
+      }
+    },
+    'EUR': {
+      currency: {
+        style: 'currency',
+        currency: 'EUR',
+        currencyDisplay: 'symbol'
+      }
+    }
+  }
 })
 
 
