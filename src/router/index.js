@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import HelloWorld from '@/components/HelloWorld'
+// import HelloWorld from '@/components/HelloWorld'
 import HomePage from '@/pages/HomePage'
 import BuyPage from '@/pages/BuyPage'
 import RentPage from '@/pages/RentPage'
@@ -41,7 +41,6 @@ export default new Router({
     },
     {
       path: '/:locale/contact-us',
-      // name: 'HelloWorld',
       component: ContactUsPage
     },
     {
