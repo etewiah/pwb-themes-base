@@ -1,7 +1,6 @@
 <template>
   <div>
     <div class="text-xs-left">
-      {{$t(fieldDetails.labelTextTKey) }}:
     </div>
     <v-select :items="selectItems" v-model="localFieldValue" :label="$t(fieldDetails.labelTextTKey)" @change="fieldChangeHandler" item-text="name" single-line bottom></v-select>
   </div>
@@ -9,26 +8,26 @@
 <script>
 // import _ from 'lodash'
 export default {
-  props: ["fieldDetails", "currentFieldValue", "cancelPendingChanges", "fieldOptions"],
+  props: ["fieldDetails", "currentFieldValue", "fieldOptions"],
   data() {
     return {
       localFieldValue: "",
-      originalValue: "",
+      // originalValue: "",
     }
   },
   watch: {
-    'cancelPendingChanges' (newValue, oldValue) {
-      if (oldValue === false) {
-        // when cancelPendingChanges on parent changes from 
-        // false to true
-        // reset model to its original value
-        this.localFieldValue = this.originalValue
-      }
-    },
+    // 'cancelPendingChanges' (newValue, oldValue) {
+    //   if (oldValue === false) {
+    //     // when cancelPendingChanges on parent changes from 
+    //     // false to true
+    //     // reset model to its original value
+    //     this.localFieldValue = this.originalValue
+    //   }
+    // },
     currentFieldValue: {
       handler(newValue, oldVal) {
-        this.localFieldValue = newValue
-        this.originalValue = newValue
+        this.localFieldValue = this.fieldDetails.optionsKey + "." + newValue
+        // this.originalValue = newValue
       },
       // deep: true,
       immediate: true,
@@ -56,9 +55,12 @@ export default {
     },
   },
   methods: {
-    fieldChangeHandler(newValue) {
-      // let newValue = event.currentTarget.value
-      this.fieldDetails.newValue = newValue
+    fieldChangeHandler(selectKey) {
+      // this.fieldDetails.newValueFullKey = selectKey
+      // substr below removes the prefix for the key (like "propertyTypes.")
+      // This is to avoid cluttering the url with long querystrings
+      let shortSelectKey = selectKey.substr(this.fieldDetails.optionsKey.length + 1)
+      this.fieldDetails.newValue = shortSelectKey
       this.$emit('selectChanged', this.fieldDetails)
     }
   }

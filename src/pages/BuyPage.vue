@@ -56,15 +56,15 @@ export default {
   data() {
     return {
       searchFields: [{
-        labelTextTKey: "fieldLabels.tipo",
+        labelTextTKey: "common.fieldLabels.propertyType",
         classNames: "sm12",
         tooltipTextTKey: "",
         fieldName: "prop_type_key",
         queryStringName: "type",
         inputType: "select",
-        optionsKey: "property_types",
+        optionsKey: "propertyTypes",
       }, {
-        labelTextTKey: "bathrooms",
+        labelTextTKey: "common.fieldLabels.bathrooms",
         classNames: "sm6",
         tooltipTextTKey: "",
         fieldName: "bathrooms",
@@ -86,7 +86,7 @@ export default {
           ]
         }
       }, {
-        labelTextTKey: "bedrooms",
+        labelTextTKey: "common.fieldLabels.bedrooms",
         classNames: "sm6",
         tooltipTextTKey: "",
         fieldName: "bedrooms",
@@ -107,7 +107,7 @@ export default {
           ]
         }
       }, {
-        labelTextTKey: "sale_price",
+        labelTextTKey: "common.fieldLabels.salePrice",
         classNames: "sm12",
         tooltipTextTKey: "",
         fieldName: "price",

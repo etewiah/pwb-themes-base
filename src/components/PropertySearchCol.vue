@@ -4,7 +4,7 @@
       <v-card-title primary-title>
         <div>
           <div class="headline">Search</div>
-          <span class="grey--text">...</span>
+          <span class="grey--text"></span>
         </div>
       </v-card-title>
       <v-card-text>

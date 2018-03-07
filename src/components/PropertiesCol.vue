@@ -40,7 +40,7 @@
                       <PriceWithCurrency :value="property.price_rental_monthly_current_cents"></PriceWithCurrency>
                     </v-btn>
                   </div>
-                  <v-btn>Type: {{property.prop_type_key}}</v-btn>
+                  <v-btn>Type: {{ $t(property.prop_type_key) }}</v-btn>
                 </v-card-actions>
                 <v-card-actions>
                   <!-- <v-spacer></v-spacer> -->
