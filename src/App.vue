@@ -19,7 +19,7 @@
           </template>
           <v-btn></v-btn>
         </v-toolbar-items>
-<!--         <v-menu offset-y>
+        <!--         <v-menu offset-y>
           <v-btn icon dark slot="activator">
             <v-icon dark>language</v-icon>
           </v-btn>
@@ -56,28 +56,31 @@
       <ThemeGenerator></ThemeGenerator>
       <v-content>
         <router-view/>
-        <v-footer class="blue darken-2">
-          <v-layout row wrap align-center>
-            <v-flex xs12>
-              <div class="white--text ml-3">
-                Powered with
-                <v-icon class="red--text">favorite</v-icon>
-                by <a class="white--text" href="https://vuetifyjs.com" target="_blank">PropertyWebBuilder</a>
-              </div>
-            </v-flex>
-          </v-layout>
-        </v-footer>
       </v-content>
     </v-container>
+    <v-footer class="blue darken-2" height="auto">
+      <v-layout row wrap align-center>
+        <v-flex xs12>
+          <PageFooter></PageFooter>
+          <div class="white--text ml-3">
+            Powered with
+            <v-icon class="red--text">favorite</v-icon>
+            by <a class="white--text" href="https://vuetifyjs.com" target="_blank">PropertyWebBuilder</a>
+          </div>
+        </v-flex>
+      </v-layout>
+    </v-footer>
   </v-app>
 </template>
 <script>
 import ThemeGenerator from '@/components/ThemeGenerator'
 import LangSwitcher from '@/components/LangSwitcher'
+import PageFooter from '@/components/PageFooter'
 export default {
   components: {
     ThemeGenerator,
-    LangSwitcher
+    LangSwitcher,
+    PageFooter
   },
   data() {
     return {
@@ -121,4 +124,6 @@ export default {
 
 </script>
 <style scoped>
+
+
 </style>

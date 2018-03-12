@@ -9,7 +9,12 @@ import i18n from './i18n/'
 // import axios from 'axios'
 import 'vuetify/dist/vuetify.min.css'
 import * as VueGoogleMaps from 'vue2-google-maps'
+import fontawesome from "@fortawesome/fontawesome"
+import FontAwesomeIcon from '@fortawesome/vue-fontawesome'
+// import webfonts from "@fortawesome/fontawesome-free-webfonts"
+// import brands from "@fortawesome/fontawesome-free-brands"
 
+Vue.use(FontAwesomeIcon)
 Vue.use(VueGoogleMaps, {
   load: {
     key: 'AIzaSyCPorm8YzIaUGhKfe5cvpgofZ_gdT8hdZw',

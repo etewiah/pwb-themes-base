@@ -1,8 +1,10 @@
 <template>
-  <div>
-    <ContentHtml :blockContents="currentPageParts.content_html" ></ContentHtml>
-    <OurAgency :blockContents="currentPageParts.our_agency" ></OurAgency>
-  </div>
+  <v-container grid-list-xl>
+    <v-layout row wrap justify-center class="my-0">
+      <ContentHtml :blockContents="currentPageParts.content_html"></ContentHtml>
+      <OurAgency :blockContents="currentPageParts.our_agency"></OurAgency>
+    </v-layout>
+  </v-container>
 </template>
 <script>
 import ContentHtml from '@/components/page-parts/ContentHtml'
@@ -31,6 +33,7 @@ export default {
     }
   },
 }
+
 </script>
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
