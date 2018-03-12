@@ -30,20 +30,21 @@ module.exports = {
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
     proxyTable: {
-      // proxy all requests starting with /api_public to local rails server
-      '/api_public': {
-        // run https://github.com/etewiah/property_web_builder
-        // on port 3000 and connect to it for api_public calls
-        // target: 'http://localhost:3000/api_public',
-        target: 'https://pwb-jan-2018.herokuapp.com/api_public',
-        changeOrigin: true,
-        pathRewrite: {
-          '^/api_public': ''
-        }
-      },
+      // // proxy all requests starting with /api_public to local rails server
+      // '/api_public': {
+      //   // run https://github.com/etewiah/property_web_builder
+      //   // on port 3000 and connect to it for api_public calls
+      //   target: 'http://localhost:3000/api_public',
+      //   // target: 'https://pwb-jan-2018.herokuapp.com/api_public',
+      //   changeOrigin: true,
+      //   pathRewrite: {
+      //     '^/api_public': ''
+      //   }
+      // },
       '/uploads': {
         // run https://github.com/etewiah/property_web_builder
         // on port 3000 and connect to it for uploads calls
+        // which are for images 
         target: 'http://localhost:3000/uploads',
         // target: 'https://pwb-jan-2018.herokuapp.com/uploads',
         changeOrigin: true,

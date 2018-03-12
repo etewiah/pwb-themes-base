@@ -115,7 +115,8 @@ const store = new Vuex.Store({
   },
   getters: {
     baseApiUrl: state => {
-      return '/api_public/v1/' + state.currentLocale
+      // console.log(process.env.API_URL_BASE)
+      return process.env.API_URL_BASE + '/api_public/v1/' + state.currentLocale
     }
   }
 })
