@@ -34,8 +34,8 @@ module.exports = {
       '/api_public': {
         // run https://github.com/etewiah/property_web_builder
         // on port 3000 and connect to it for api_public calls
-        target: 'http://localhost:3000/api_public',
-        // target: 'https://pwb-jan-2018.herokuapp.com/api_public',
+        // target: 'http://localhost:3000/api_public',
+        target: 'https://pwb-jan-2018.herokuapp.com/api_public',
         changeOrigin: true,
         pathRewrite: {
           '^/api_public': ''
