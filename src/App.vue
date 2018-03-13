@@ -13,11 +13,9 @@
         <v-toolbar-title>PropertyWebBuilder</v-toolbar-title>
         <v-spacer></v-spacer>
         <v-toolbar-side-icon class="hidden-md-and-up"></v-toolbar-side-icon>
+        <MainNav :navLinks="displaySettings.top_nav_links"></MainNav>  
+          <!-- <v-btn></v-btn> -->
         <v-toolbar-items class="hidden-sm-and-down">
-          <template v-for="item in displaySettings.top_nav_links">
-            <v-btn :to="{path: item.target_path}" exact flat>{{item.link_title}}</v-btn>
-          </template>
-          <v-btn></v-btn>
         </v-toolbar-items>
 <!--         <v-menu offset-y>
           <v-btn icon dark slot="activator">
@@ -74,10 +72,12 @@
 <script>
 import ThemeGenerator from '@/components/ThemeGenerator'
 import LangSwitcher from '@/components/LangSwitcher'
+import MainNav from '@/components/sections/MainNav'
 export default {
   components: {
     ThemeGenerator,
-    LangSwitcher
+    LangSwitcher,
+    MainNav
   },
   data() {
     return {
