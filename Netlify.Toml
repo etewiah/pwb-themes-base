@@ -5,6 +5,12 @@
   NODE_VERSION = "8"
   YARN_VERSION = "1.3.2"
   YARN_FLAGS = "--version"
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+  force = true # Ensure that we always redirect
+#
 
 #[Settings]
 #  ID = "Your_Site_ID"
