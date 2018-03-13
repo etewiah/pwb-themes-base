@@ -6,11 +6,11 @@
           <LangSwitcher></LangSwitcher>
         </v-toolbar-items>
         <v-spacer></v-spacer>
-        <span v-text="title" style="margin-top: -30px;"></span>
+        <!-- <span v-text="title" style="margin-top: -30px;"></span> -->
         <v-spacer></v-spacer>
       </v-toolbar>
       <v-toolbar>
-        <v-toolbar-title>Title</v-toolbar-title>
+        <v-toolbar-title>PropertyWebBuilder</v-toolbar-title>
         <v-spacer></v-spacer>
         <v-toolbar-side-icon class="hidden-md-and-up"></v-toolbar-side-icon>
         <v-toolbar-items class="hidden-sm-and-down">
@@ -53,15 +53,15 @@
           </v-card>
         </v-expansion-panel-content>
       </v-expansion-panel>
-      <ThemeGenerator></ThemeGenerator>
+      <!-- <ThemeGenerator></ThemeGenerator> -->
       <v-content>
         <router-view/>
-        <v-footer class="blue darken-2">
+        <v-footer absolute class="blue darken-2">
           <v-layout row wrap align-center>
             <v-flex xs12>
               <div class="white--text ml-3">
-                Powered with
-                <v-icon class="red--text">favorite</v-icon>
+                Powered
+                <!-- <v-icon class="red--text">favorite</v-icon> -->
                 by <a class="white--text" href="https://vuetifyjs.com" target="_blank">PropertyWebBuilder</a>
               </div>
             </v-flex>

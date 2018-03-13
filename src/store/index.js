@@ -13,7 +13,7 @@ const store = new Vuex.Store({
     currentPage: {},
     currentProperty: {},
     currentPageParts: {},
-    properties: {},
+    summaryProperties: {},
     propSearchResults: [],
     displaySettings: {},
     agencyMapMarker: {},
@@ -110,7 +110,7 @@ const store = new Vuex.Store({
     setPageContent: (state, { result }) => {
       state.currentPage = result.page
       state.currentPageParts = result.page_parts
-      state.properties = result.properties
+      state.summaryProperties = result.properties
     }
   },
   getters: {

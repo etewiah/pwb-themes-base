@@ -1,10 +1,10 @@
 <template>
     <v-container fluid grid-list-md>
       <div>
-        {{ $t("requestPropertyInfo") }}
+        <!-- {{ $t("requestPropertyInfo") }} -->
       </div>
       <v-layout row wrap>
-        <v-flex v-bind="{ [`xs${property.flex}`]: true }" v-for="property in propertiesToDisplay" :key="property.id">
+        <v-flex xs6 sm4 v-for="property in propertiesToDisplay" :key="property.id">
           <v-card :to="{name: 'propertyDetails',
          params: { locale: 'en', 
          propertyId: property.id,
