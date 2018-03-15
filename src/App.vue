@@ -6,18 +6,16 @@
           <LangSwitcher></LangSwitcher>
         </v-toolbar-items>
         <v-spacer></v-spacer>
-        <span v-text="title" style="margin-top: -30px;"></span>
+        <!-- <span v-text="title" style="margin-top: -30px;"></span> -->
         <v-spacer></v-spacer>
       </v-toolbar>
       <v-toolbar>
-        <v-toolbar-title>Title</v-toolbar-title>
+        <v-toolbar-title>PropertyWebBuilder</v-toolbar-title>
         <v-spacer></v-spacer>
         <v-toolbar-side-icon class="hidden-md-and-up"></v-toolbar-side-icon>
+        <MainNav :navLinks="displaySettings.top_nav_links"></MainNav>
+        <!-- <v-btn></v-btn> -->
         <v-toolbar-items class="hidden-sm-and-down">
-          <template v-for="item in displaySettings.top_nav_links">
-            <v-btn :to="{path: item.target_path}" exact flat>{{item.link_title}}</v-btn>
-          </template>
-          <v-btn></v-btn>
         </v-toolbar-items>
         <!--         <v-menu offset-y>
           <v-btn icon dark slot="activator">
@@ -53,40 +51,46 @@
           </v-card>
         </v-expansion-panel-content>
       </v-expansion-panel>
-      <ThemeGenerator></ThemeGenerator>
+      <!-- <ThemeGenerator></ThemeGenerator> -->
       <v-content>
         <router-view/>
       </v-content>
-    </v-container>
-    <v-footer class="blue darken-2" height="auto">
-      <v-layout row wrap align-center>
-        <v-flex xs12>
+      <v-footer absolute >
+        <v-container :fluid="fluid" class="blue darken-2 pa-0" height="auto">
           <PageFooter></PageFooter>
-          <div class="white--text ml-3">
-            Powered with
-            <v-icon class="red--text">favorite</v-icon>
-            by <a class="white--text" href="https://vuetifyjs.com" target="_blank">PropertyWebBuilder</a>
-          </div>
-        </v-flex>
-      </v-layout>
-    </v-footer>
+          <v-layout row wrap align-center>
+            <v-flex xs12>
+              <div class="white--text ml-3">
+                Powered
+                <!-- <v-icon class="red--text">favorite</v-icon> -->
+                by <a class="white--text" href="https://vuetifyjs.com" target="_blank">PropertyWebBuilder</a>
+              </div>
+            </v-flex>
+          </v-layout>
+        </v-container>
+      </v-footer>
+    </v-container>
   </v-app>
 </template>
 <script>
 import ThemeGenerator from '@/components/ThemeGenerator'
 import LangSwitcher from '@/components/LangSwitcher'
 import PageFooter from '@/components/PageFooter'
+import MainNav from '@/components/sections/MainNav'
+
 export default {
   components: {
     ThemeGenerator,
     LangSwitcher,
-    PageFooter
+    PageFooter,
+    MainNav
+
   },
   data() {
     return {
       // locales: ['en', 'nl', 'es'],
       colors: ['blue', 'green', 'purple', 'red'],
-      fluid: true,
+      fluid: false,
       clipped: false,
       drawer: true,
       fixed: false,

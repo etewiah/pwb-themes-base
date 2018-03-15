@@ -155,7 +155,7 @@
     },
     methods: {
       applyTheme () {
-        debugger
+        // debugger
       }, 
       change (value) {
         this.theme[this.active] = value.hex

@@ -3,7 +3,7 @@
     <LandingHero :blockContents="currentPageParts.landing_hero"></LandingHero>
     <AboutUsServices :blockContents="currentPageParts.about_us_services"></AboutUsServices>
     <PropertiesRow :propertiesToDisplay="propertiesForSale" :saleOrRent="'buy'"></PropertiesRow>
-    <PropertiesRow :propertiesToDisplay="propertiesForRent" :saleOrRent="'rent'" ></PropertiesRow>
+    <!-- <PropertiesRow :propertiesToDisplay="propertiesForRent" :saleOrRent="'rent'" ></PropertiesRow> -->
     <section>
       <v-container grid-list-xl>
         <v-layout row wrap justify-center class="my-5">
@@ -79,15 +79,15 @@ export default {
       return this.$store.state.currentPageParts
     },
     propertiesForSale() {
-      if (this.$store.state.properties) {
-        return this.$store.state.properties.for_sale
+      if (this.$store.state.summaryProperties) {
+        return this.$store.state.summaryProperties.for_sale
       } else {
         return []
       }
     },
     propertiesForRent() {
-      if (this.$store.state.properties) {
-        return this.$store.state.properties.for_rent
+      if (this.$store.state.summaryProperties) {
+        return this.$store.state.summaryProperties.for_rent
       } else {
         return []
       }
