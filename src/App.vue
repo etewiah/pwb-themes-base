@@ -1,6 +1,6 @@
 <template>
   <v-app light>
-    <v-container :fluid="fluid" class="pa-0">
+    <v-container :fluid="fluid" class="pa-0 elevation-20">
       <v-toolbar class="primary" style="height:28px;" primary>
         <v-toolbar-items>
           <LangSwitcher></LangSwitcher>
@@ -9,7 +9,7 @@
         <!-- <span v-text="title" style="margin-top: -30px;"></span> -->
         <v-spacer></v-spacer>
       </v-toolbar>
-      <v-toolbar>
+      <v-toolbar class="elevation-0">
         <v-toolbar-title>PropertyWebBuilder</v-toolbar-title>
         <v-spacer></v-spacer>
         <v-toolbar-side-icon class="hidden-md-and-up"></v-toolbar-side-icon>
@@ -52,11 +52,11 @@
         </v-expansion-panel-content>
       </v-expansion-panel>
       <!-- <ThemeGenerator></ThemeGenerator> -->
-      <v-content>
+      <v-content class="">
         <router-view/>
       </v-content>
-      <v-footer absolute >
-        <v-container :fluid="fluid" class="blue darken-2 pa-0" height="auto">
+      <v-footer class="" style="background:none" absolute>
+        <v-container :fluid="fluid"  class="blue darken-2 pa-0">
           <PageFooter></PageFooter>
           <v-layout row wrap align-center>
             <v-flex xs12>
