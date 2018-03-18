@@ -13,6 +13,7 @@ import fontawesome from "@fortawesome/fontawesome"
 // import FontAwesomeIcon from '@fortawesome/vue-fontawesome'
 import webfonts from "@fortawesome/fontawesome-free-webfonts"
 import brands from "@fortawesome/fontawesome-free-brands"
+import solid from "@fortawesome/fontawesome-free-solid"
 
 // Vue.use(FontAwesomeIcon)
 Vue.use(VueGoogleMaps, {

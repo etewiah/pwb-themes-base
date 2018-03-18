@@ -17,6 +17,7 @@ const store = new Vuex.Store({
     propSearchResults: [],
     displaySettings: {},
     agencyMapMarker: {},
+    currentAgency: {},
     searchFieldOptions: {},
     // TODO: use below to refresh settings when true
     lastLoadedFromLS: false
@@ -90,7 +91,7 @@ const store = new Vuex.Store({
       state.displaySettings = result.display_settings
       state.agencyMapMarker = result.agency_map_marker
       state.searchFieldOptions = result.search_field_options
-      // state.phrases = result.phrases
+      state.currentAgency = result.current_agency
       // console.log(app.$i18n.messages.es)
       // app.$i18n.messages.es = result.translations
       let locale = state.currentLocale

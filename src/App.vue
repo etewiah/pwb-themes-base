@@ -58,16 +58,7 @@
       <v-footer class="" style="background:none" absolute>
         <v-container :fluid="fluid"  class="blue darken-2 pa-0">
           <PageFooter></PageFooter>
-          <v-layout row wrap align-center>
-            <v-flex xs12>
-              <div class="white--text ml-3">
-                Powered
-                <!-- <v-icon class="red--text">favorite</v-icon> -->
-                by <a class="white--text" href="https://vuetifyjs.com" target="_blank">PropertyWebBuilder</a>
-              </div>
-            </v-flex>
-          </v-layout>
-        </v-container>
+<!--  -->        </v-container>
       </v-footer>
     </v-container>
   </v-app>
