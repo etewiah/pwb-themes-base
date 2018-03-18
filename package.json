@@ -12,7 +12,9 @@
   },
   "dependencies": {
     "@fortawesome/fontawesome": "^1.1.4",
-    "@fortawesome/vue-fontawesome": "0.0.22",
+    "@fortawesome/fontawesome-free-brands": "^5.0.8",
+    "@fortawesome/fontawesome-free-solid": "^5.0.8",
+    "@fortawesome/fontawesome-free-webfonts": "^1.0.4",
     "vue": "^2.5.2",
     "vue-router": "^3.0.1",
     "vue-slider-component": "^2.5.8",

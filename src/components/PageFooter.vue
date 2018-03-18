@@ -1,12 +1,17 @@
 <template>
   <v-card flat tile>
-    <v-card-title class="teal white--text">
+    <v-card-title class="">
       <strong class="subheading">Get connected with us on social networks!</strong>
       <v-spacer></v-spacer>
-      <font-awesome-icon :icon="['fab', 'font-awesome']" />
-      <v-btn v-for="icon in icons" :key="icon" icon dark class="mx-3">
-        <v-icon size="24px">{{ icon }}</v-icon>
+
+      <v-btn v-for="icon in icons" :key="icon" icon class="mx-3">
+        <v-icon  large color="purple darken-2" size="24px">{{ icon }}</v-icon>
       </v-btn>
+
+<!--       <v-btn v-for="icon in socialMediaLinks" :key="icon" icon class="mx-3">
+        {{ icon }}
+      </v-btn>
+ -->
     </v-card-title>
     <v-card-text class="grey lighten-3">
       <v-layout>
@@ -41,14 +46,21 @@
   </v-card>
 </template>
 <script>
-import FontAwesomeIcon from '@fortawesome/vue-fontawesome'
+// import fontawesome from "@fortawesome/fontawesome"
+// // import webfonts from "@fortawesome/fontawesome-free-webfonts"
+// // import brands from "@fortawesome/fontawesome-free-brands"
+
+// import FontAwesomeIcon from '@fortawesome/vue-fontawesome'
+// import faCoffee from '@fortawesome/fontawesome-free-solid/faCoffee'
+
 export default {
   components: {
-    FontAwesomeIcon
+    // faCoffee,
+    // FontAwesomeIcon
   },
   data() {
     return {
-      icons: ['fa-facebook', 'fa-twitter', 'fa-google-plus', 'fa-linkedin', 'fa-instagram'],
+      icons: ['fab fa-facebook', 'fab fa-twitter', 'fab fa-google-plus', 'fab fa-linkedin', 'fab fa-instagram'],
       rows: [{
           title: 'Company Name',
           children: ['Here you can use rows and columns here to organize your footer content. Lorem ipsum dolor sit amet, consectetur adipisicing elit']
@@ -65,8 +77,8 @@ export default {
     }
   },
   computed: {
-    expLocales: function() {
-
+    socialMediaLinks: function() {
+      return this.$store.state.displaySettings.social_media
     }
   },
   methods: {}
