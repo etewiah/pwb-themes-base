@@ -45,26 +45,7 @@
           </v-card>
         </v-flex>
         <v-flex xs12 sm4>
-          <v-card class="elevation-2 transparent">
-            <v-card-title primary-title class="layout justify-center">
-              <div class="headline">
-                {{ $t("requestPropertyInfo") }}
-                Request Info:
-              </div>
-            </v-card-title>
-            <v-card-text>
-              <form @submit.prevent="onSubmitContactForm">
-                <v-layout v-for="(field, index) in propertyContactFields" :key="field.fieldName" row>
-                  <v-flex xs12 sm12 offset-sm0>
-                    <v-text-field name="title" :label="'Title '" v-model="field.fieldValue"></v-text-field>
-                  </v-flex>
-                </v-layout>
-                <v-flex xs12 sm12 offset-sm0>
-                  <v-btn class="primary" type="submit">Send</v-btn>
-                </v-flex>
-              </form>
-            </v-card-text>
-          </v-card>
+              <PropertyEnquiry></PropertyEnquiry>
         </v-flex>
       </v-layout>
     </v-container>
@@ -76,8 +57,10 @@
 </template>
 <script>
 import PwbMap from '@/components/PwbMap'
+import PropertyEnquiry from '@/components/sections/PropertyEnquiry'
 export default {
   components: {
+    PropertyEnquiry,
     PwbMap,
   },
   props: [],
@@ -112,26 +95,6 @@ export default {
   },
   data() {
     return {
-      // pendingChanges: {},
-      // hasPendingChanges: false,
-      propertyContactFields: [{
-        labelTextTKey: "webContentLabels.suffixEn",
-        fieldType: "simpleInput",
-        fieldName: "page_title_en",
-        inputType: "text",
-        constraints: {
-          inputValue: {}
-        }
-      }, {
-        labelTextTKey: "webContentLabels.suffixDe",
-        fieldType: "simpleInput",
-        fieldName: "page_title_de",
-        inputType: "text",
-        constraints: {
-          inputValue: {}
-        }
-      }],
-
     }
   },
 }

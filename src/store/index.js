@@ -4,6 +4,14 @@ import axios from 'axios'
 import { app } from '../main'
 Vue.use(Vuex)
 
+// below needed for rails to recognise request.xhr?
+// axios.defaults.headers.common["X-Requested-With"] = "XMLHttpRequest"
+// without above X-CSRF-Token token would not get sent from rails
+// but when I set it, a preflight call to options is sent.....
+// axios.defaults.headers.common['X-CSRF-Token'] = token
+// axios.defaults.headers.common['Accept'] = 'application/json'
+
+
 const store = new Vuex.Store({
   modules: {},
   state: {
@@ -37,6 +45,22 @@ const store = new Vuex.Store({
     //     console.log(err)
     //   })
     // },
+    sendPropertyEnquiry: function({ commit }, enquiryData) {
+      let apiUrl = this.getters.baseApiUrl + '/request_property_info'
+      axios.post(apiUrl, {
+        contact: enquiryData
+      }, {
+        // headers: {
+        //   // 'Content-Type': 'application/vnd.api+json',
+        //   // 'Accept': 'application/vnd.api+json'
+        // }
+      }).then(response => {
+        // debugger
+        commit('setPropertyEnquiry', { result: response.data })
+      }, (err) => {
+        console.log(err)
+      })
+    },
     loadProperty: function({ commit }, propertyId) {
       let apiUrl = this.getters.baseApiUrl + '/properties/' + propertyId
       axios.get(apiUrl).then((response) => {
@@ -54,7 +78,7 @@ const store = new Vuex.Store({
       })
     },
     loadSearchPage: function({ commit }, searchParams) {
-      let apiUrl = this.getters.baseApiUrl + '/search_page' 
+      let apiUrl = this.getters.baseApiUrl + '/search_page'
       axios.get(apiUrl, {
         params: searchParams
       }).then((response) => {
@@ -77,6 +101,11 @@ const store = new Vuex.Store({
     loadSettings: function({ commit }) {
       let apiUrl = this.getters.baseApiUrl + '/client_settings'
       axios.get(apiUrl).then((response) => {
+        let token = response.headers["x-csrf-token"]
+        console.log(axios.defaults)
+        // debugger 
+        axios.defaults.headers.common["X-CSRF-Token"] = token
+
         commit('setClientSettings', { result: response.data })
       }, (err) => {
         console.log(err)
@@ -86,6 +115,13 @@ const store = new Vuex.Store({
   mutations: {
     setCurrentLocale: (state, locale) => {
       state.currentLocale = locale
+    },
+    setPropertyEnquiry: (state, { result }) => {
+      if (result.success) {
+        debugger
+      } else {
+        debugger
+      }
     },
     setClientSettings: (state, { result }) => {
       state.displaySettings = result.display_settings
@@ -117,7 +153,12 @@ const store = new Vuex.Store({
   getters: {
     baseApiUrl: state => {
       // console.log(process.env.API_URL_BASE)
-      return process.env.API_URL_BASE + '/api_public/v1/' + state.currentLocale
+      // return process.env.API_URL_BASE + '/api_public/v1/' + state.currentLocale
+      // Using above to call api from another domain causes issues with xsrf token
+      // which I need to be able to submit forms via posts
+      // Better to use config/index.js to proxy in dev and use proxy features
+      // of netlify when deploying
+      return '/api_public/v1/' + state.currentLocale
     }
   }
 })
