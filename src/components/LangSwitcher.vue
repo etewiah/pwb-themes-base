@@ -82,65 +82,62 @@ ul.idiomas li a {
   outline: 1px solid #555;
   margin: 0;
 }
-
+/*
 ul.idiomas .es {
-  background: url("/assets/idiomas.png") 0 0 no-repeat;
+  background: url("static/img/idiomas.png") 0 0 no-repeat;
 }
-
+*/
 ul.idiomas .en,
 ul.idiomas .uk {
-  background: url("/assets/idiomas.png") -20px 0;
+  background: url(/static/img/idiomas.png) -20px 0;
 }
 
 ul.idiomas .ru {
-  background: url("/assets/idiomas.png") -40px 0;
+  background: url("/static/img/idiomas.png") -40px 0;
 }
 
 ul.idiomas .sv {
-  background: url("/assets/idiomas.png") -60px 0;
+  background: url("/static/img/idiomas.png") -60px 0;
 }
 
 ul.idiomas .no {
-  background: url("/assets/idiomas.png") -80px 0;
+  background: url("/static/img/idiomas.png") -80px 0;
 }
 
 ul.idiomas .de {
-  background: url("/assets/idiomas.png") -100px 0;
+  background: url("/static/img/idiomas.png") -100px 0;
 }
 
 ul.idiomas .fr {
-  background: url("/assets/idiomas.png") -120px 0;
+  background: url("/static/img/idiomas.png") -120px 0;
 }
 
 ul.idiomas .ne {
-  background: url("/assets/idiomas.png") -140px 0;
+  background: url("/static/img/idiomas.png") -140px 0;
 }
 
 ul.idiomas .ch {
-  background: url("/assets/idiomas.png") -160px 0;
+  background: url("/static/img/idiomas.png") -160px 0;
 }
 
 ul.idiomas .fi {
-  background: url("/assets/idiomas.png") -180px 0;
+  background: url("/static/img/idiomas.png") -180px 0;
 }
 
 ul.idiomas .eu {
-  background: url("/assets/idiomas.png") -200px 0;
+  background: url("/static/img/idiomas.png") -200px 0;
 }
 
 ul.idiomas .pt {
-  background: url("/assets/idiomas.png") -220px 0;
+  background: url("/static/img/idiomas.png") -220px 0;
 }
 
 ul.idiomas .ar {
-  background: url("/assets/idiomas.png") -240px 0;
-  /*  background: url('/images/arab_league_mini.png');
-  background: url('/images/egypt_flag.png');
-*/
+  background: url("/static/img/idiomas.png") -240px 0;
 }
 
 ul.idiomas .ca {
-  background: url("/assets/idiomas.png") -260px 0;
+  background: url("/static/img/idiomas.png") -260px 0;
 }
 
 ul.idiomas .br {
@@ -210,7 +207,7 @@ ul.idiomas .bg {
 
 ul.idiomas li.selected,
 ul.idiomas li:hover {
-  background: url("/assets/simple-nav-arrow.png") no-repeat top center;
+  background: url("/static/img/simple-nav-arrow.png") no-repeat top center;
 }
 
 </style>
