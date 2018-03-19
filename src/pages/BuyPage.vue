@@ -26,13 +26,22 @@ export default {
     PropertiesCol,
     PropertySearchCol,
   },
+  watch: {
+    '$route' (to, from) {
+      if (to.params.locale !== from.params.locale) {
+        this.loadSearch()
+      }
+    }
+  },
   mounted: function() {
-    let routeParams = JSON.parse(JSON.stringify(this.routeParams))
-    routeParams['op'] = 'buy'
-// debugger
-    this.$store.dispatch('loadSearchPage', routeParams)
+    this.loadSearch()
   },
   methods: {
+    loadSearch() {
+      let routeParams = JSON.parse(JSON.stringify(this.routeParams))
+      routeParams['op'] = 'buy'
+      this.$store.dispatch('loadSearchPage', routeParams)
+    },
     updateSearch(fieldDetails) {
       let routeParams = JSON.parse(JSON.stringify(this.routeParams))
       // need to do JSON trick above as passing $route.query to 

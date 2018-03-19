@@ -44,12 +44,20 @@ export default {
     switchLocale(locale) {
       console.log(this.$route)
       let params = this.$route.params
-      params["locale"] = locale.shortLocale
-
+      // params["locale"] = locale.shortLocale
+      // doing above and pushing that to the router
+      // would mean from and to in my route watch
+      // would be the same
+      let newParams = {
+        locale: locale.shortLocale
+      }
       this.$store.commit('setCurrentLocale', locale.shortLocale)
       this.$store.dispatch('loadSettings')
 
-      this.$router.replace({ name: this.$route.name, params: params })
+      // this.$router.replace({ name: this.$route.name, params: params })
+      this.$router.push({ name: this.$route.name, params: newParams })
+      // location.reload()
+      // this.$router.go()
     }
   }
 }
@@ -82,11 +90,9 @@ ul.idiomas li a {
   outline: 1px solid #555;
   margin: 0;
 }
-/*
 ul.idiomas .es {
-  background: url("static/img/idiomas.png") 0 0 no-repeat;
+  background: url("/static/img/idiomas.png") 0 0 no-repeat;
 }
-*/
 ul.idiomas .en,
 ul.idiomas .uk {
   background: url(/static/img/idiomas.png) -20px 0;

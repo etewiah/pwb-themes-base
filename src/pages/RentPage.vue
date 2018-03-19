@@ -26,13 +26,22 @@ export default {
     PropertiesCol,
     PropertySearchCol,
   },
+  watch: {
+    '$route' (to, from) {
+      if (to.params.locale !== from.params.locale) {
+        this.loadSearch()
+      }
+    }
+  },
   mounted: function() {
-    let routeParams = JSON.parse(JSON.stringify(this.routeParams))
-    routeParams['op'] = 'rent'
-    // debugger
-    this.$store.dispatch('loadSearchPage', routeParams)
+    this.loadSearch()
   },
   methods: {
+    loadSearch() {
+      let routeParams = JSON.parse(JSON.stringify(this.routeParams))
+      routeParams['op'] = 'rent'
+      this.$store.dispatch('loadSearchPage', routeParams)
+    },
     updateSearch(fieldDetails) {
       let routeParams = JSON.parse(JSON.stringify(this.routeParams))
       // need to do JSON trick above as passing $route.query to 
@@ -43,11 +52,9 @@ export default {
         routeParams[minQueryStringName] = fieldDetails.newValue[0]
         routeParams[maxQueryStringName] = fieldDetails.newValue[1]
         // routeParams[fieldDetails.queryStringName] = fieldDetails.newValue        
-        // debugger
       } else {
         routeParams[fieldDetails.queryStringName] = fieldDetails.newValue
       }
-      // debugger
       this.$router.push({ name: 'rentPage', query: routeParams })
       routeParams['op'] = 'rent'
       this.$store.dispatch('updateSearch', routeParams)

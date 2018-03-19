@@ -56,9 +56,10 @@
         <router-view/>
       </v-content>
       <v-footer class="" style="background:none" absolute>
-        <v-container :fluid="fluid"  class="blue darken-2 pa-0">
+        <v-container :fluid="fluid" class="blue darken-2 pa-0">
           <PageFooter></PageFooter>
-<!--  -->        </v-container>
+          <!--  -->
+        </v-container>
       </v-footer>
     </v-container>
   </v-app>
