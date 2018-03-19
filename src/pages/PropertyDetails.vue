@@ -94,7 +94,7 @@ export default {
       return this.$store.state.currentProperty
     },
     mapMarkers: function() {
-      if (this.currentProperty) {
+      if (this.currentProperty && this.currentProperty.id) {
         let mapMarker = {
           id: this.currentProperty.id,
           title: this.currentProperty.title,
@@ -108,7 +108,6 @@ export default {
       } else {
         return []
       }
-      // `this` points to the vm instance
     }
   },
   data() {

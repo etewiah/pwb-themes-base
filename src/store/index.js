@@ -16,7 +16,7 @@ const store = new Vuex.Store({
     summaryProperties: {},
     propSearchResults: [],
     displaySettings: {},
-    agencyMapMarker: {},
+    // agencyMapMarker: {},
     currentAgency: {},
     searchFieldOptions: {},
     // TODO: use below to refresh settings when true
@@ -89,7 +89,7 @@ const store = new Vuex.Store({
     },
     setClientSettings: (state, { result }) => {
       state.displaySettings = result.display_settings
-      state.agencyMapMarker = result.agency_map_marker
+      // state.agencyMapMarker = result.agency_map_marker
       state.searchFieldOptions = result.search_field_options
       state.currentAgency = result.current_agency
       // console.log(app.$i18n.messages.es)

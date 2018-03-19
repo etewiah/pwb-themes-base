@@ -58,8 +58,10 @@
               </v-list-tile>
             </v-list>
           </v-card>
+          <div v-if="mapMarkers">
           <pwb-map style="min-height: 600px;" :mapMarkers="mapMarkers" :zoom="15">
-          </pwb-map>
+          </pwb-map>            
+          </div>
         </v-flex>
       </v-layout>
     </v-container>
@@ -98,14 +100,11 @@ export default {
   },
   computed: {
     mapMarkers: function() {
-      if (this.$store.state.agencyMapMarker.position) {
-        // var lat = this.$store.state.agencyMapMarker.position.lat
-        // var lng = this.$store.state.agencyMapMarker.position.lng
-        return [this.$store.state.agencyMapMarker]
+      if (this.$store.state.currentAgency.agency_map_marker) {
+        return [this.$store.state.currentAgency.agency_map_marker]
       } else {
-        return []
+        return null
       }
-      // `this` points to the vm instance
     }
   },
   methods: {
