@@ -45,7 +45,7 @@
           </v-card>
         </v-flex>
         <v-flex xs12 sm4>
-              <PropertyEnquiry :propId="currentProperty.id"></PropertyEnquiry>
+          <PropertyEnquiry :propId="currentProperty.id"></PropertyEnquiry>
         </v-flex>
       </v-layout>
     </v-container>
@@ -57,7 +57,7 @@
 </template>
 <script>
 import PwbMap from '@/components/PwbMap'
-import PropertyEnquiry from '@/components/sections/PropertyEnquiry'
+import PropertyEnquiry from '@/components/sections/PropertyEnquiryForm'
 export default {
   components: {
     PropertyEnquiry,

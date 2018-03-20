@@ -3,6 +3,7 @@
     <v-container grid-list-xl>
       <v-layout row wrap justify-center class="my-5">
         <v-flex xs12 sm6>
+          <ContactUsForm></ContactUsForm>
           <v-card class="elevation-1">
             <v-card-title primary-title class="layout justify-center">
               <div class="headline">
@@ -69,9 +70,11 @@
 </template>
 <script>
 import PwbMap from '@/components/PwbMap'
+import ContactUsForm from '@/components/sections/ContactUsForm'
 export default {
   components: {
     PwbMap,
+    ContactUsForm,
   },
   props: [],
   data() {

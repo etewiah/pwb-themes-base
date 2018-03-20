@@ -1,7 +1,7 @@
 <template>
-  <v-card class="elevation-2 transparent">
-    <v-card-title primary-title class="layout justify-center">
-      <div class="headline">
+  <v-card class="elevation-2">
+    <v-card-title primary-title class="layout">
+      <div class="headline text-sm-left">
         {{ $t("client.requestPropertyInfo") }}:
       </div>
     </v-card-title>
@@ -22,11 +22,14 @@
           </template>
         </p>
         <p v-if="propertyEnquirySuccess.length">
-            <v-alert outline color="success" dismissible :value="true">
-              {{ propertyEnquirySuccess }}
-            </v-alert>
+          <v-alert outline color="success" dismissible v-model="successModel">
+            {{ propertyEnquirySuccess }}
+          </v-alert>
         </p>
         <v-flex xs12 sm12 offset-sm0>
+          <template v-if="propertyEnquirySending">
+            <v-progress-linear :indeterminate="true"></v-progress-linear>
+          </template>
           <v-btn class="primary" type="submit">Send</v-btn>
         </v-flex>
       </v-form>
@@ -39,6 +42,8 @@ export default {
   props: ["propId"],
   data() {
     return {
+      successModel: true,
+      // above only needed so success alert can be dismissed
       formValid: false,
       // validationErrors: [],
       propertyEnquiryFields: [{
@@ -64,11 +69,14 @@ export default {
         // property_id: this.propId,
         // not quite sure how to get above to work
         name: "",
-        message: "ss"
+        message: ""
       }
     }
   },
   computed: {
+    propertyEnquirySending() {
+      return this.$store.state.formsStore.propertyEnquirySending
+    },
     propertyEnquirySuccess() {
       return this.$store.state.formsStore.propertyEnquirySuccess
     },
