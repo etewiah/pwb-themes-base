@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import axios from 'axios'
 import { app } from '../main'
+import formsStore from "./modules/forms"
 Vue.use(Vuex)
 
 // below needed for rails to recognise request.xhr?
@@ -12,8 +13,11 @@ Vue.use(Vuex)
 // axios.defaults.headers.common['Accept'] = 'application/json'
 
 
+
 const store = new Vuex.Store({
-  modules: {},
+  modules: {
+    formsStore
+  },
   state: {
     currentLocale: "nl",
     currentCurrency: "usd",
@@ -45,22 +49,6 @@ const store = new Vuex.Store({
     //     console.log(err)
     //   })
     // },
-    sendPropertyEnquiry: function({ commit }, enquiryData) {
-      let apiUrl = this.getters.baseApiUrl + '/request_property_info'
-      axios.post(apiUrl, {
-        contact: enquiryData
-      }, {
-        // headers: {
-        //   // 'Content-Type': 'application/vnd.api+json',
-        //   // 'Accept': 'application/vnd.api+json'
-        // }
-      }).then(response => {
-        // debugger
-        commit('setPropertyEnquiry', { result: response.data })
-      }, (err) => {
-        console.log(err)
-      })
-    },
     loadProperty: function({ commit }, propertyId) {
       let apiUrl = this.getters.baseApiUrl + '/properties/' + propertyId
       axios.get(apiUrl).then((response) => {
@@ -115,13 +103,6 @@ const store = new Vuex.Store({
   mutations: {
     setCurrentLocale: (state, locale) => {
       state.currentLocale = locale
-    },
-    setPropertyEnquiry: (state, { result }) => {
-      if (result.success) {
-        debugger
-      } else {
-        debugger
-      }
     },
     setClientSettings: (state, { result }) => {
       state.displaySettings = result.display_settings

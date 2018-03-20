@@ -6,54 +6,84 @@
       </div>
     </v-card-title>
     <v-card-text>
-      <form @submit.prevent="onSubmitEnquiry">
-        <v-layout v-for="(field, index) in propertyEnquiryFields" :key="field.fieldName" row>
+      <!--       <form @submit.prevent="onSubmitEnquiry">
+ -->
+      <v-form v-model="formValid" ref="enqForm" lazy-validation @submit.prevent="onSubmitEnquiry">
+        <v-layout v-for="(field) in propertyEnquiryFields" :key="field.fieldName" row>
           <v-flex xs12 sm12 offset-sm0>
-            <v-text-field name="" :label="$t(field.labelTextTKey)" v-model="enquiryContent[field.fieldName]"></v-text-field>
+            <v-text-field :multi-line="field.multiLine" :required="true" :rules="field.validationRules" name="" :label="$t(field.labelTextTKey)" v-model="enquiryContent[field.fieldName]"></v-text-field>
           </v-flex>
         </v-layout>
+        <p v-if="propertyEnquiryErrors.length">
+          <template v-for="error in propertyEnquiryErrors">
+            <v-alert outline color="error" icon="warning" :value="true">
+              {{error}}
+            </v-alert>
+          </template>
+        </p>
+        <p v-if="propertyEnquirySuccess.length">
+            <v-alert outline color="success" dismissible :value="true">
+              {{ propertyEnquirySuccess }}
+            </v-alert>
+        </p>
         <v-flex xs12 sm12 offset-sm0>
           <v-btn class="primary" type="submit">Send</v-btn>
         </v-flex>
-      </form>
+      </v-form>
     </v-card-text>
   </v-card>
 </template>
 <script>
 export default {
-  components: {
-  },
-  props: [],
+  components: {},
+  props: ["propId"],
   data() {
     return {
+      formValid: false,
+      // validationErrors: [],
       propertyEnquiryFields: [{
         labelTextTKey: "client.name",
         fieldType: "simpleInput",
         fieldName: "name",
         inputType: "text",
-        constraints: {
-          inputValue: {}
-        }
+        validationRules: [
+          v => !!v || 'Name is required',
+          // v => /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(v) || 'E-mail must be valid'
+        ]
       }, {
         labelTextTKey: "client.message",
-        fieldType: "simpleInput",
+        multiLine: true,
         fieldName: "message",
         inputType: "text",
-        constraints: {
-          inputValue: {}
-        }
+        validationRules: [
+          // v => !!v || 'E-mail is required',
+          // v => /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(v) || 'E-mail must be valid'
+        ]
       }],
       enquiryContent: {
-        property_id: "1",
-        name: "rr",
+        // property_id: this.propId,
+        // not quite sure how to get above to work
+        name: "",
         message: "ss"
       }
     }
   },
   computed: {
+    propertyEnquirySuccess() {
+      return this.$store.state.formsStore.propertyEnquirySuccess
+    },
+    propertyEnquiryErrors() {
+      return this.$store.state.formsStore.propertyEnquiryErrors
+    },
   },
   methods: {
     onSubmitEnquiry() {
+      this.enquiryContent.property_id = this.propId
+      if (!this.formValid) {
+        this.$refs.enqForm.validate()
+        // in case nothing has been typed in, above will display error messages
+        return
+      }
       // var that = this
 
       this.$store.dispatch('sendPropertyEnquiry', this.enquiryContent)

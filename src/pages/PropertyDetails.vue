@@ -45,7 +45,7 @@
           </v-card>
         </v-flex>
         <v-flex xs12 sm4>
-              <PropertyEnquiry></PropertyEnquiry>
+              <PropertyEnquiry :propId="currentProperty.id"></PropertyEnquiry>
         </v-flex>
       </v-layout>
     </v-container>
