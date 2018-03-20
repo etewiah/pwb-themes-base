@@ -4,25 +4,6 @@
       <v-layout row wrap justify-center class="my-5">
         <v-flex xs12 sm6>
           <ContactUsForm></ContactUsForm>
-          <v-card class="elevation-1">
-            <v-card-title primary-title class="layout justify-center">
-              <div class="headline">
-                Fill in the following form to contact us:
-              </div>
-            </v-card-title>
-            <v-card-text>
-              <form @submit.prevent="onSubmitContactForm">
-                <v-layout v-for="(field, index) in contactUsFields" :key="field.fieldName" row>
-                  <v-flex xs12 sm12 offset-sm0>
-                    <v-text-field name="title" :label="'Title '" v-model="field.fieldValue"></v-text-field>
-                  </v-flex>
-                </v-layout>
-                <v-flex xs12 sm12 offset-sm0>
-                  <v-btn class="primary" type="submit">Send</v-btn>
-                </v-flex>
-              </form>
-            </v-card-text>
-          </v-card>
         </v-flex>
         <v-flex xs12 sm4 offset-sm1>
           <v-card class="elevation-2 transparent">
@@ -60,8 +41,8 @@
             </v-list>
           </v-card>
           <div v-if="mapMarkers">
-          <pwb-map style="min-height: 600px;" :mapMarkers="mapMarkers" :zoom="15">
-          </pwb-map>            
+            <pwb-map style="min-height: 600px;" :mapMarkers="mapMarkers" :zoom="15">
+            </pwb-map>
           </div>
         </v-flex>
       </v-layout>
@@ -78,28 +59,7 @@ export default {
   },
   props: [],
   data() {
-    return {
-      pendingChanges: {},
-      hasPendingChanges: false,
-      contactUsFields: [{
-        labelTextTKey: "webContentLabels.suffixEn",
-        fieldType: "simpleInput",
-        fieldName: "page_title_en",
-        inputType: "text",
-        constraints: {
-          inputValue: {}
-        }
-      }, {
-        labelTextTKey: "webContentLabels.suffixDe",
-        fieldType: "simpleInput",
-        fieldName: "page_title_de",
-        inputType: "text",
-        constraints: {
-          inputValue: {}
-        }
-      }],
-
-    }
+    return {}
   },
   computed: {
     mapMarkers: function() {
@@ -110,27 +70,7 @@ export default {
       }
     }
   },
-  methods: {
-    // onTitleChange(fieldName, newValue) {
-    //   if (this.currentPage[fieldName] !== newValue) {
-    //     this.pendingChanges[fieldName] = newValue
-    //   } else {
-    //     delete this.pendingChanges[fieldName]
-    //   }
-    //   this.hasPendingChanges = Object.keys(this.pendingChanges).length > 0
-    // },
-    onSubmitContactForm() {
-      var that = this
-      Object.keys(this.pendingChanges).forEach(function(pendingChangeKey) {
-        that.currentPage[pendingChangeKey] = that.pendingChanges[pendingChangeKey]
-      })
-      this.$store.dispatch('updatePage')
-      // TODO: ensure above is successfull before calling below:
-      this.pendingChanges = {}
-      this.hasPendingChanges = false
-    }
-
-  }
+  methods: {}
 }
 
 </script>

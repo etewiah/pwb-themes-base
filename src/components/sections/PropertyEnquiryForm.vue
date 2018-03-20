@@ -11,7 +11,7 @@
       <v-form v-model="formValid" ref="enqForm" lazy-validation @submit.prevent="onSubmitEnquiry">
         <v-layout v-for="(field) in propertyEnquiryFields" :key="field.fieldName" row>
           <v-flex xs12 sm12 offset-sm0>
-            <v-text-field :multi-line="field.multiLine" :required="true" :rules="field.validationRules" name="" :label="$t(field.labelTextTKey)" v-model="enquiryContent[field.fieldName]"></v-text-field>
+            <v-text-field :multi-line="field.multiLine" :required="field.required" :rules="field.validationRules" name="" :label="$t(field.labelTextTKey)" v-model="enquiryContent[field.fieldName]"></v-text-field>
           </v-flex>
         </v-layout>
         <p v-if="propertyEnquiryErrors.length">
@@ -48,21 +48,34 @@ export default {
       // validationErrors: [],
       propertyEnquiryFields: [{
         labelTextTKey: "client.name",
-        fieldType: "simpleInput",
         fieldName: "name",
         inputType: "text",
         validationRules: [
           v => !!v || 'Name is required',
-          // v => /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(v) || 'E-mail must be valid'
+        ]
+      }, {
+        labelTextTKey: "client.email",
+        fieldName: "email",
+        inputType: "text",
+        required: true,
+        validationRules: [
+          v => !!v || 'E-mail is required',
+          v => /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(v) || 'E-mail must be valid'
+        ]
+      }, {
+        labelTextTKey: "client.tel",
+        fieldName: "tel",
+        inputType: "text",
+        validationRules: [
         ]
       }, {
         labelTextTKey: "client.message",
         multiLine: true,
         fieldName: "message",
         inputType: "text",
+        required: true,
         validationRules: [
-          // v => !!v || 'E-mail is required',
-          // v => /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(v) || 'E-mail must be valid'
+          v => !!v || 'Message is required',
         ]
       }],
       enquiryContent: {

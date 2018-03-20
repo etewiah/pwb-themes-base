@@ -2,14 +2,14 @@
   <v-card class="elevation-2">
     <v-card-title primary-title class="layout">
       <div class="headline">
-        {{ $t("client.contactUs") }}:
+        {{ $t("client.contactUsPrompt") }}:
       </div>
     </v-card-title>
     <v-card-text>
       <v-form v-model="formValid" ref="enqForm" lazy-validation @submit.prevent="onSubmitEnquiry">
         <v-layout v-for="(field) in contactUsFields" :key="field.fieldName" row>
           <v-flex xs12 sm12 offset-sm0>
-            <v-text-field :multi-line="field.multiLine" :required="true" :rules="field.validationRules" name="" :label="$t(field.labelTextTKey)" v-model="enquiryContent[field.fieldName]"></v-text-field>
+            <v-text-field :multi-line="field.multiLine" :required="field.required" :rules="field.validationRules" name="" :label="$t(field.labelTextTKey)" v-model="enquiryContent[field.fieldName]"></v-text-field>
           </v-flex>
         </v-layout>
         <p v-if="contactUsErrors.length">
@@ -46,25 +46,39 @@ export default {
       // validationErrors: [],
       contactUsFields: [{
         labelTextTKey: "client.name",
-        fieldType: "simpleInput",
         fieldName: "name",
         inputType: "text",
+        required: true,
         validationRules: [
           v => !!v || 'Name is required',
-          // v => /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(v) || 'E-mail must be valid'
+        ]
+      }, {
+        labelTextTKey: "client.email",
+        fieldName: "email",
+        inputType: "text",
+        required: true,
+        validationRules: [
+          v => !!v || 'E-mail is required',
+          v => /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(v) || 'E-mail must be valid'
+        ]
+      }, {
+        labelTextTKey: "client.tel",
+        fieldName: "tel",
+        inputType: "text",
+        validationRules: [
         ]
       }, {
         labelTextTKey: "client.message",
         multiLine: true,
         fieldName: "message",
         inputType: "text",
+        required: true,
         validationRules: [
-          // v => !!v || 'E-mail is required',
-          // v => /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(v) || 'E-mail must be valid'
+          v => !!v || 'Message is required',
         ]
       }],
       enquiryContent: {
-        name: "dfds",
+        name: "",
         message: ""
       }
     }
@@ -88,8 +102,6 @@ export default {
         // in case nothing has been typed in, above will display error messages
         return
       }
-      // var that = this
-
       this.$store.dispatch('sendContactMessage', this.enquiryContent)
       // TODO: ensure above is successfull before calling below:
       // this.pendingChanges = {}
