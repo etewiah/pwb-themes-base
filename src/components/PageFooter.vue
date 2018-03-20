@@ -1,8 +1,9 @@
 <template>
   <v-card flat tile>
-    <v-card-title class="">
+<!--     <v-card-title class="">
     </v-card-title>
-    <v-card-text class="mt-5 grey lighten-3">
+ -->    
+      <v-card-text class="grey lighten-3">
       <v-layout>
         <v-flex>
           <div class="body-2 subheading">

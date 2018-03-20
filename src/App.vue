@@ -55,8 +55,8 @@
       <v-content class="">
         <router-view/>
       </v-content>
-      <v-footer class="" style="background:none" absolute>
-        <v-container :fluid="fluid" class="blue darken-2 pa-0">
+      <v-footer class="pt-5" style="background:transparent" absolute>
+        <v-container :fluid="fluid" class="pa-0" style="background:transparent" light>
           <PageFooter></PageFooter>
           <!--  -->
         </v-container>
