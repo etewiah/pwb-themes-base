@@ -22,7 +22,6 @@
               {{currentProperty.description}}
             </v-card-text>
             <v-card-actions>
-              <v-spacer></v-spacer>
               <li class="hidden-xs"><i class="fa fa-bed"></i> <small>
                       1
                     </small></li>
@@ -32,15 +31,31 @@
               <li class="hidden-xs"><i class="fa fa-arrows-alt"></i> <small>
                       90.0m<sup>2</sup></small></li>
               <li class="hidden-xs"></li>
-              <v-btn icon>
-                <v-icon>favorite</v-icon>
-              </v-btn>
-              <v-btn icon>
-                <v-icon>bookmark</v-icon>
-              </v-btn>
-              <v-btn icon>
-                <v-icon>share</v-icon>
-              </v-btn>
+              <v-spacer></v-spacer>
+              <social-sharing class="center" inline-template>
+                <div class="social-icons icon-circle">
+                  <network network="facebook">
+                    <a>
+                      <v-icon large style="color: #3C599F;"  size="20px">fab fa-facebook</v-icon>
+                    </a>
+                  </network>
+                  <network network="googleplus">
+                    <a>
+                      <v-icon large style="color: #CF3D2E;"  size="20px">fab fa-google-plus</v-icon>
+                    </a>
+                  </network>
+                  <network network="linkedin">
+                    <a>
+                      <v-icon large color="" style="color: #0085AE;" size="20px">fab fa-linkedin</v-icon>
+                    </a>
+                  </network>
+                  <network network="twitter">
+                    <v-btn large icon>
+                      <v-icon large color="blue" size="20px">fab fa-twitter</v-icon>
+                    </v-btn>
+                  </network>
+                </div>
+              </social-sharing>
             </v-card-actions>
           </v-card>
         </v-flex>
@@ -94,9 +109,10 @@ export default {
     }
   },
   data() {
-    return {
-    }
+    return {}
   },
 }
 
 </script>
+<style scoped>
+</style>

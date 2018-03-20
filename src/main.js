@@ -15,6 +15,10 @@ import webfonts from "@fortawesome/fontawesome-free-webfonts"
 import brands from "@fortawesome/fontawesome-free-brands"
 import solid from "@fortawesome/fontawesome-free-solid"
 
+import SocialSharing from "vue-social-sharing"
+
+Vue.use(SocialSharing)
+
 // Vue.use(FontAwesomeIcon)
 Vue.use(VueGoogleMaps, {
   load: {
