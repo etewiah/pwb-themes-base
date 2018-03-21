@@ -2,8 +2,8 @@
   <v-container fluid grid-list-md>
     <v-layout row wrap>
       <v-flex xs12 v-for="property in propertiesToDisplay" :key="property.id">
-        <v-card style="margin: 9px 0px;" :to="{name: 'propertyDetails',
-         params: { locale: 'en', 
+        <v-card hover style="margin: 9px 0px;" :to="{name: 'propertyDetails',
+         params: { locale: $store.state.currentLocale, 
          propertyId: property.id,
          saleOrRent: saleOrRent}
        }">
@@ -26,44 +26,34 @@
                 <v-card-title primary-title>
                   <div>
                     <div class="headline">{{ property.title }}</div>
-                    <span class="grey--text">...</span>
+                    <span class="grey--text"></span>
                   </div>
                 </v-card-title>
-                <v-card-actions>
-                  <div v-if="saleOrRent == 'buy'">
-                    <v-btn>
-                      <PriceWithCurrency :value="property.price_sale_current_cents"></PriceWithCurrency>
-                    </v-btn>
-                  </div>
-                  <div v-if="saleOrRent == 'rent'">
-                    <v-btn>
-                      <PriceWithCurrency :value="property.price_rental_monthly_current_cents"></PriceWithCurrency>
-                    </v-btn>
-                  </div>
-                  <v-btn>Type: {{ $t(property.prop_type_key) }}</v-btn>
-                </v-card-actions>
-                <v-card-actions>
-                  <!-- <v-spacer></v-spacer> -->
-                  <v-btn>Baths: {{property.count_bathrooms}}</v-btn>
-                  <v-btn>Beds: {{property.count_bedrooms}}</v-btn>
-                  <li class="hidden-xs"><i class="fa fa-bed"></i> <small>
-                      1
-                    </small></li>
-                  <li class="hidden-xs"><i class="fa fa-shower"></i> <small>
-                      1.0
-                    </small></li>
-                  <li class="hidden-xs"><i class="fa fa-arrows-alt"></i> <small>
-                      90.0m<sup>2</sup></small></li>
-                  <li class="hidden-xs"></li>
-                  <v-btn icon>
-                    <v-icon>favorite</v-icon>
-                  </v-btn>
-                  <v-btn icon>
-                    <v-icon>bookmark</v-icon>
-                  </v-btn>
-                  <v-btn icon>
-                    <v-icon>share</v-icon>
-                  </v-btn>
+                <v-card-actions style="height: 100%;" >
+                  <v-layout align-end>
+                    <v-flex>
+                      <v-btn class="mt-1" v-if="saleOrRent == 'buy'">
+                        <PriceWithCurrency :value="property.price_sale_current_cents"></PriceWithCurrency>
+                      </v-btn>
+                      <v-btn class="mt-1" v-if="saleOrRent == 'rent'">
+                        <PriceWithCurrency :value="property.price_rental_monthly_current_cents"></PriceWithCurrency>
+                      </v-btn>
+                      <v-btn class="mt-1" color="">
+                        <v-icon small>fa fa-shower</v-icon>
+                        <v-spacer></v-spacer>
+                        {{property.count_bathrooms }}
+                      </v-btn>
+                      <v-btn class="mt-1" color="">
+                        <v-icon small>fa fa-bed</v-icon>
+                        <v-spacer></v-spacer>
+                        {{property.count_bedrooms }}
+                      </v-btn>
+                      <v-btn class="mt-1"><i class="fa fa-arrows-alt"></i>
+                        <v-spacer></v-spacer>
+                        {{property.constructed_area }}m<sup>2</sup>
+                      </v-btn>
+                    </v-flex>
+                  </v-layout>
                 </v-card-actions>
               </v-card>
             </v-flex>

@@ -4,7 +4,7 @@
     <AboutUsServices :blockContents="currentPageParts.about_us_services"></AboutUsServices>
     <PropertiesRow :propertiesToDisplay="propertiesForSale" :saleOrRent="'buy'"></PropertiesRow>
     <!-- <PropertiesRow :propertiesToDisplay="propertiesForRent" :saleOrRent="'rent'" ></PropertiesRow> -->
-    <section>
+    <section style="display:none;">
       <v-container grid-list-xl>
         <v-layout row wrap justify-center class="my-5">
           <v-flex xs12 sm4>
@@ -67,6 +67,13 @@ export default {
     PropertiesRow,
     AboutUsServices,
     LandingHero,
+  },
+  watch: {
+    '$route' (to, from) {
+      if (to.params.locale !== from.params.locale) {
+        this.$store.dispatch('loadPage', 'home')
+      }
+    }
   },
   mounted: function() {
     this.$store.dispatch('loadPage', 'home')

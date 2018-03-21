@@ -1,60 +1,66 @@
 <template>
-    <v-container fluid grid-list-md>
-      <div>
-        <!-- {{ $t("requestPropertyInfo") }} -->
-      </div>
-      <v-layout row wrap>
-        <v-flex xs6 sm4 v-for="property in propertiesToDisplay" :key="property.id">
-          <v-card :to="{name: 'propertyDetails',
-         params: { locale: 'en', 
+  <v-container fluid grid-list-md>
+    <div>
+      <!-- {{ $t("requestPropertyInfo") }} -->
+    </div>
+    <v-layout row wrap>
+      <v-flex xs6 sm4 v-for="property in propertiesToDisplay" :key="property.id">
+        <v-card hover :to="{name: 'propertyDetails',
+         params: { locale: $store.state.currentLocale, 
          propertyId: property.id,
          saleOrRent: saleOrRent}
        }">
-            <v-card-media :src="property.primary_image_url" height="300px">
-              <v-container fill-height fluid>
-                <v-layout fill-height>
-                  <v-flex xs12 align-end flexbox>
-                    <span class="headline white--text" v-text="" />
-                  </v-flex>
-                </v-layout>
-              </v-container>
-            </v-card-media>
-            <v-card-title primary-title>
-              <div>
-                <div class="headline">{{ property.title }}</div>
-                <span class="grey--text">...</span>
-              </div>
-            </v-card-title>
-            <v-card-actions>
+          <v-card-media :src="property.primary_image_url" height="300px">
+            <v-container fill-height fluid>
+              <v-layout fill-height>
+                <v-flex xs12 align-end flexbox>
+                  <span class="headline white--text" v-text="" />
+                </v-flex>
+              </v-layout>
+            </v-container>
+          </v-card-media>
+          <v-card-title primary-title>
+            <div>
+              <div class="headline">{{ property.title }}</div>
+              <span class="grey--text"></span>
+            </div>
+          </v-card-title>
+          <v-card-actions>
+            <v-btn>
+              <PriceWithCurrency :value="property.price_sale_current_cents"></PriceWithCurrency>
+            </v-btn>
+            <v-btn color="">
+              <v-icon small>fa fa-shower</v-icon>
               <v-spacer></v-spacer>
-                <li class="hidden-xs"><i class="fa fa-bed"></i> <small>
-                      1
-                    </small></li>
-                <li class="hidden-xs"><i class="fa fa-shower"></i> <small>
-                      1.0
-                    </small></li>
-                <li class="hidden-xs"><i class="fa fa-arrows-alt"></i> <small>
-                      90.0m<sup>2</sup></small></li>
-                <li class="hidden-xs"></li>
-
-<!--               <v-btn icon>
-                <v-icon>favorite</v-icon>
-              </v-btn>
-              <v-btn icon>
-                <v-icon>bookmark</v-icon>
-              </v-btn>
-              <v-btn icon>
-                <v-icon>share</v-icon>
-              </v-btn> -->
-            </v-card-actions>
-          </v-card>
-        </v-flex>
-      </v-layout>
-    </v-container>
+              {{property.count_bathrooms }}
+            </v-btn>
+            <v-btn class="hidden-sm-and-down">
+              <v-icon small>fa fa-bed</v-icon>
+              <v-spacer></v-spacer>
+              {{property.count_bedrooms }}
+            </v-btn>
+            <v-btn class="hidden-md-and-down"><i class="fa fa-arrows-alt"></i>
+              <v-spacer></v-spacer>
+              {{property.constructed_area }}m<sup>2</sup>
+            </v-btn>
+          </v-card-actions>
+        </v-card>
+      </v-flex>
+    </v-layout>
+  </v-container>
 </template>
 <script>
+import PriceWithCurrency from '@/components/PriceWithCurrency'
 export default {
+  components: {
+    PriceWithCurrency,
+  },
   props: ["propertiesToDisplay", "saleOrRent"],
+  // computed: {
+  //   currentLocale() {
+  //     return this.$store.state.currentLocale
+  //   },
+  // }
 }
 
 </script>
