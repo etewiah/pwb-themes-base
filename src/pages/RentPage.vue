@@ -40,6 +40,8 @@ export default {
     loadSearch() {
       let routeParams = JSON.parse(JSON.stringify(this.routeParams))
       routeParams['op'] = 'rent'
+      routeParams["price_max"] = routeParams["price_max"] || 5000
+      routeParams["price_min"] = routeParams["price_min"] || 500
       this.$store.dispatch('loadSearchPage', routeParams)
     },
     updateSearch(fieldDetails) {
@@ -120,7 +122,7 @@ export default {
         tooltipTextTKey: "",
         fieldName: "price",
         inputType: "slider",
-        defaultValue: [100, 1000],
+        defaultValue: [500, 5000],
         sliderOptions: {
           width: "100%",
           height: 8,

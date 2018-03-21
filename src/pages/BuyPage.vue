@@ -40,6 +40,8 @@ export default {
     loadSearch() {
       let routeParams = JSON.parse(JSON.stringify(this.routeParams))
       routeParams['op'] = 'buy'
+      routeParams["price_max"] = routeParams["price_max"] || 1000000
+      routeParams["price_min"] = routeParams["price_min"] || 50000
       this.$store.dispatch('loadSearchPage', routeParams)
     },
     updateSearch(fieldDetails) {
@@ -121,14 +123,14 @@ export default {
         tooltipTextTKey: "",
         fieldName: "price",
         inputType: "slider",
-        defaultValue: [50000, 100000],
+        defaultValue: [50000, 1000000],
         sliderOptions: {
           width: "100%",
           height: 8,
           dotSize: 16,
-          min: 5000,
-          max: 500000,
-          interval: 5000,
+          min: 0,
+          max: 5000000,
+          interval: 25000,
           show: true,
           lazy: true,
           tooltipDir: [

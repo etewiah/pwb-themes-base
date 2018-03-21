@@ -61,7 +61,7 @@
               </div>
             </v-card-text>
             <v-card-actions>
-              <li class="hidden-xs"><i class="fa fa-bed"></i> <small>
+<!--               <li class="hidden-xs"><i class="fa fa-bed"></i> <small>
                       1
                     </small></li>
               <li class="hidden-xs"><i class="fa fa-shower"></i> <small>
@@ -70,7 +70,7 @@
               <li class="hidden-xs"><i class="fa fa-arrows-alt"></i> <small>
                       90.0m<sup>2</sup></small></li>
               <li class="hidden-xs"></li>
-              <v-spacer></v-spacer>
+              <v-spacer></v-spacer> -->
             </v-card-actions>
           </v-card>
           <div class="justify-center text-xs-center">

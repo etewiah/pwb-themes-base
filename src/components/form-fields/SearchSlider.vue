@@ -6,7 +6,7 @@
     <vue-slider ref="slider" v-model="value" v-bind="fieldDetails.sliderOptions" @callback="fieldChangeHandler">
       <template v-if="fieldDetails.fieldName == 'price'" slot="tooltip" slot-scope="{ value }">
         <span class="vue-slider-tooltip" :style="">
-          <PriceWithCurrency :value="value"></PriceWithCurrency>
+          <PriceWithCurrency :value="value * 100"></PriceWithCurrency>
         </span>
       </template>
     </vue-slider>
