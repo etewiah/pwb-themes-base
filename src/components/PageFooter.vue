@@ -1,9 +1,9 @@
 <template>
   <v-card flat tile>
-<!--     <v-card-title class="">
+    <!--     <v-card-title class="">
     </v-card-title>
- -->    
-      <v-card-text class="grey lighten-3">
+ -->
+    <v-card-text class="grey lighten-3">
       <v-layout>
         <v-flex>
           <div class="body-2 subheading">
@@ -18,18 +18,25 @@
             {{ currentAgency.email_primary }}
           </div>
         </v-flex>
-      <v-spacer></v-spacer>
+        <v-spacer></v-spacer>
         <div>
-          <v-btn v-for="icon in icons" :key="icon" icon class="mx-3">
+          <template v-for="(value, key) in displaySettings.social_media">
+            <template v-if="socialMediaIcons[key]">
+              <v-btn :href="value" icon class="mx-3">
+                <v-icon large color="purple darken-2" size="24px">{{ socialMediaIcons[key].classes }}</v-icon>
+              </v-btn>
+            </template>
+          </template>
+          <!--           <v-btn href="/ddd" v-for="icon in icons" :key="icon" icon class="mx-3">
             <v-icon large color="purple darken-2" size="24px">{{ icon }}</v-icon>
           </v-btn>
+ -->
         </div>
-      <v-spacer></v-spacer>
+        <v-spacer></v-spacer>
         <v-flex>
           <div> <span v-html="displaySettings.footer_html"></span>
           </div>
         </v-flex>
-
       </v-layout>
     </v-card-text>
     <v-card-actions class="grey lighten-2">
@@ -53,21 +60,33 @@ export default {
   },
   data() {
     return {
-      icons: ['fab fa-facebook', 'fab fa-twitter', 'fab fa-google-plus', 'fab fa-linkedin', 'fab fa-instagram'],
-      // rows: [{
-      //     title: 'Company Name',
-      //     children: ['Here you can use rows and columns here to organize your footer content. Lorem ipsum dolor sit amet, consectetur adipisicing elit']
-      //   },
-      // ]
+      socialMediaIcons: {
+        facebook: {
+          classes: "fab fa-facebook"
+        },
+        linkedin: {
+          classes: "fab fa-linkedin"
+        },
+        twitter: {
+          classes: "fab fa-twitter"
+        },
+        gplus: {
+          classes: "fab fa-google-plus"
+        },
+        pinterest: {
+          classes: "fab fa-pinterest"
+        },
+        youtube: {
+          classes: "fab fa-youtube"
+        },
+      },
+      // icons: ['fab fa-facebook', 'fab fa-twitter', 'fab fa-google-plus', 'fab fa-linkedin', 'fab fa-instagram'],
     }
   },
   computed: {
     displaySettings: function() {
       return this.$store.state.displaySettings
     },
-    // footerHtml: function() {
-    //   return this.$store.state.displaySettings.footer_html
-    // },
     currentAgency: function() {
       return this.$store.state.currentAgency
     }
@@ -77,6 +96,4 @@ export default {
 
 </script>
 <style scoped>
-
-
 </style>
