@@ -1,9 +1,9 @@
 <template>
-  <v-card flat tile>
+  <v-card class="" :dark="dark" flat tile>
     <!--     <v-card-title class="">
     </v-card-title>
  -->
-    <v-card-text class="grey lighten-3">
+    <v-card-text class="footercolor">
       <v-layout>
         <v-flex>
           <div class="body-2 subheading">
@@ -23,7 +23,7 @@
           <template v-for="(value, key) in displaySettings.social_media">
             <template v-if="socialMediaIcons[key]">
               <v-btn :href="value" icon class="mx-3">
-                <v-icon large color="purple darken-2" size="24px">{{ socialMediaIcons[key].classes }}</v-icon>
+                <v-icon large color="accent" size="24px">{{ socialMediaIcons[key].classes }}</v-icon>
               </v-btn>
             </template>
           </template>
@@ -39,15 +39,15 @@
         </v-flex>
       </v-layout>
     </v-card-text>
-    <v-card-actions class="grey lighten-2">
+    <v-card-actions class="">
       <div class="text-sm-left ml-3">
-        <router-link :to="{path: link.target_path}" exact v-for="link in displaySettings.footer_links" :key="link.slug" icon class="mx-3">
+        <router-link :to="{path: link.target_path}" exact v-for="link in displaySettings.footer_links" :key="link.slug" icon class="white--text mx-3">
           {{link.link_title}}
         </router-link>
       </div>
       <v-spacer></v-spacer>
       <div class="text-sm-right ml-3" style="float:right;">
-        Powered by <a class="" href="https://vuetifyjs.com" target="_blank"><strong>PropertyWebBuilder</strong></a>
+        Powered by <a class="white--text" href="https://propertywebbuilder.com" target="_blank"><strong>PropertyWebBuilder</strong></a>
       </div>
     </v-card-actions>
   </v-card>
@@ -84,16 +84,23 @@ export default {
     }
   },
   computed: {
+    dark: function() {
+      // TODO - figure out how to calculate this 
+      // based on how dark the footer color is
+      return true
+    },
     displaySettings: function() {
       return this.$store.state.displaySettings
     },
     currentAgency: function() {
       return this.$store.state.currentAgency
-    }
+    },
   },
   methods: {}
 }
 
 </script>
 <style scoped>
+
+
 </style>

@@ -1,6 +1,6 @@
 <template>
   <v-app light>
-    <v-container :fluid="fluid" class="pa-0 elevation-20">
+    <v-container :fluid="fluid" class="pb-5 pl-0 pr-0 pt-0 elevation-20">
       <v-toolbar class="primary" style="height:28px;" primary>
         <v-toolbar-items>
           <LangSwitcher></LangSwitcher>
@@ -9,7 +9,7 @@
         <!-- <span v-text="title" style="margin-top: -30px;"></span> -->
         <v-spacer></v-spacer>
       </v-toolbar>
-      <MainNav :displaySettings="displaySettings" ></MainNav>
+      <MainNav :displaySettings="displaySettings"></MainNav>
       <v-expansion-panel>
         <v-expansion-panel-content>
           <v-card>
@@ -21,8 +21,8 @@
       <v-content class="">
         <router-view/>
       </v-content>
-      <v-footer class="pt-5" style="background:transparent" absolute>
-        <v-container :fluid="fluid" class="pa-0" style="background:transparent" light>
+      <v-footer class="" style="background: transparent;"  absolute>
+        <v-container :fluid="fluid" class="pa-0"  light>
           <PageFooter></PageFooter>
           <!--  -->
         </v-container>
@@ -48,7 +48,7 @@ export default {
     return {
       // locales: ['en', 'nl', 'es'],
       colors: ['blue', 'green', 'purple', 'red'],
-      fluid: false,
+      // fluid: true,
       clipped: false,
       drawer: true,
       fixed: false,
@@ -74,10 +74,65 @@ export default {
     let locale = this.$route.params["locale"] || "en"
     this.$store.commit('setCurrentLocale', locale)
   },
+  watch: {
+    // active: {
+    //   handler() {
+    //     this.color = { hex: this.theme[this.active] }
+    //   },
+    //   immediate: true
+    // },
+    theme: {
+      handler() {
+        this.$vuetify.theme = this.theme
+      },
+      deep: true
+    }
+  },
   mounted: function() {
     this.$store.dispatch('loadSettings')
+    // let primaryColour = this.styleVariables.primary_color || "#68c368"
+    // let secondaryColour = this.styleVariables.secondary_color || "#8ec449"
+    // // debugger 8E24AA
+    // this.$vuetify.theme = {
+    //   primary: primaryColour,
+    //   secondary: secondaryColour,
+    //   // secondary: "#e57373",
+    //   accent: "#9c27b0",
+    //   error: "#f44336",
+    //   warning: "#ffeb3b",
+    //   info: "#2196f3",
+    //   success: "#4caf50"
+    // }
   },
   computed: {
+    styleVariables() {
+      return this.$store.state.displaySettings.style_variables || {}
+    },
+    theme() {
+      let primaryColour = this.styleVariables.primary_color
+       // || "#68c368"
+      let secondaryColour = this.styleVariables.secondary_color 
+      // || "#8ec449"
+      let footerColour = this.styleVariables.footer_bg_color
+      let actionColour = this.styleVariables.action_color
+      // debugger 8E24AA
+      let theme = {
+        primary: primaryColour,
+        secondary: secondaryColour,
+        // secondary: "#e57373",
+        accent: actionColour,
+        error: "#f44336",
+        warning: "#ffeb3b",
+        info: "#2196f3",
+        success: "#4caf50",
+        footercolor: footerColour
+      }
+      return theme
+    },
+    fluid() {
+      let body_style = this.styleVariables.body_style || "siteLayout.wide"
+      return body_style === "siteLayout.wide"
+    },
     displaySettings() {
       return this.$store.state.displaySettings
     },
@@ -89,4 +144,5 @@ export default {
 body {
   background-color: #fafafa;
 }
+
 </style>

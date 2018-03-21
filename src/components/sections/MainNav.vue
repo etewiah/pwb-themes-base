@@ -56,7 +56,7 @@
 </template>
 <script>
 export default {
-  props: ["navLinks", "displaySettings"],
+  props: ["displaySettings"],
   computed: {
     visibleLinks() {
       let visibleLinks = []
