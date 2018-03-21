@@ -9,8 +9,9 @@
       <!--       <form @submit.prevent="onSubmitEnquiry">
  -->
       <v-form v-model="formValid" ref="enqForm" lazy-validation @submit.prevent="onSubmitEnquiry">
-        <v-layout v-for="(field) in propertyEnquiryFields" :key="field.fieldName" row>
-          <v-flex xs12 sm12 offset-sm0>
+        <v-layout wrap row>
+          <v-flex v-for="(field) in propertyEnquiryFields" :key="field.fieldName" 
+           class="pt-0 pb-0" xs12 sm12 >
             <v-text-field :multi-line="field.multiLine" :required="field.required" :rules="field.validationRules" name="" :label="$t(field.labelTextTKey)" v-model="enquiryContent[field.fieldName]"></v-text-field>
           </v-flex>
         </v-layout>

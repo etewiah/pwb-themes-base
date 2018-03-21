@@ -2,14 +2,46 @@
   <section>
     <v-container grid-list-xl>
       <v-layout row wrap justify-center class="my-0">
-        <v-flex xs12 sm8>
+        <v-flex xs12>
           <v-card class="elevation-1">
             <v-card-title primary-title class="layout justify-center">
-              <div class="headline">
+              <div class="display-1">
                 {{currentProperty.title}}
               </div>
             </v-card-title>
-            <v-card-media :src="currentProperty.primary_image_url" height="500px">
+          </v-card>
+        </v-flex>
+        <v-flex xs12>
+          <template v-if="currentProperty.image_urls">
+            <v-carousel>
+              <v-carousel-item v-for="(item,i) in currentProperty.image_urls" :src="item" :key="i"></v-carousel-item>
+            </v-carousel>
+          </template>
+        </v-flex>
+        <v-flex xs12 sm8>
+          <v-card class="elevation-1">
+            <v-card-title primary-title class="layout justify-center">
+              <v-btn>
+                <PriceWithCurrency :value="currentProperty.price_sale_current_cents"></PriceWithCurrency>
+              </v-btn>
+              <v-btn color="">
+                <v-icon small>fa fa-shower</v-icon>
+              <v-spacer></v-spacer>
+                {{currentProperty.count_bathrooms }}
+              </v-btn>
+              <v-btn color="">
+                <v-icon small>fa fa-bed</v-icon>
+              <v-spacer></v-spacer>
+                {{currentProperty.count_bedrooms }}
+              </v-btn>
+              <v-btn><i class="fa fa-arrows-alt"></i>
+                <v-spacer></v-spacer>
+                {{currentProperty.constructed_area }}m<sup>2</sup>
+              </v-btn>
+              <div class="headline">
+              </div>
+            </v-card-title>
+            <!--            <v-card-media :src="currentProperty.primary_image_url" height="500px">
               <v-container fill-height fluid>
                 <v-layout fill-height>
                   <v-flex xs12 align-end flexbox>
@@ -17,9 +49,16 @@
                   </v-flex>
                 </v-layout>
               </v-container>
-            </v-card-media>
+            </v-card-media> -->
             <v-card-text>
-              {{currentProperty.description}}
+              <div class="title">
+                {{currentProperty.description}}
+              </div>
+              <div class="pt-5">
+                <v-chip outline v-for="(item,i) in currentProperty.extras_for_display" :src="item" :key="i" color="green">
+                  <v-icon left>check_circle</v-icon>{{item}}
+                </v-chip>
+              </div>
             </v-card-text>
             <v-card-actions>
               <li class="hidden-xs"><i class="fa fa-bed"></i> <small>
@@ -32,32 +71,34 @@
                       90.0m<sup>2</sup></small></li>
               <li class="hidden-xs"></li>
               <v-spacer></v-spacer>
-              <social-sharing class="center" inline-template>
-                <div class="social-icons icon-circle">
-                  <network network="facebook">
-                    <a>
-                      <v-icon large style="color: #3C599F;"  size="20px">fab fa-facebook</v-icon>
-                    </a>
-                  </network>
-                  <network network="googleplus">
-                    <a>
-                      <v-icon large style="color: #CF3D2E;"  size="20px">fab fa-google-plus</v-icon>
-                    </a>
-                  </network>
-                  <network network="linkedin">
-                    <a>
-                      <v-icon large color="" style="color: #0085AE;" size="20px">fab fa-linkedin</v-icon>
-                    </a>
-                  </network>
-                  <network network="twitter">
-                    <v-btn large icon>
-                      <v-icon large color="blue" size="20px">fab fa-twitter</v-icon>
-                    </v-btn>
-                  </network>
-                </div>
-              </social-sharing>
             </v-card-actions>
           </v-card>
+          <div class="justify-center text-xs-center">
+            <social-sharing class="center" inline-template>
+              <div class="social-icons icon-circle">
+                <network network="facebook">
+                  <a>
+                    <v-icon large style="color: #3C599F;" size="20px">fab fa-facebook</v-icon>
+                  </a>
+                </network>
+                <network network="googleplus">
+                  <a>
+                    <v-icon large style="color: #CF3D2E;" size="20px">fab fa-google-plus</v-icon>
+                  </a>
+                </network>
+                <network network="linkedin">
+                  <a>
+                    <v-icon large color="" style="color: #0085AE;" size="20px">fab fa-linkedin</v-icon>
+                  </a>
+                </network>
+                <network network="twitter">
+                  <v-btn large icon>
+                    <v-icon large color="blue" size="20px">fab fa-twitter</v-icon>
+                  </v-btn>
+                </network>
+              </div>
+            </social-sharing>
+          </div>
         </v-flex>
         <v-flex xs12 sm4>
           <PropertyEnquiry :propId="currentProperty.id"></PropertyEnquiry>
@@ -73,8 +114,10 @@
 <script>
 import PwbMap from '@/components/PwbMap'
 import PropertyEnquiry from '@/components/sections/PropertyEnquiryForm'
+import PriceWithCurrency from '@/components/PriceWithCurrency'
 export default {
   components: {
+    PriceWithCurrency,
     PropertyEnquiry,
     PwbMap,
   },
@@ -115,4 +158,6 @@ export default {
 
 </script>
 <style scoped>
+
+
 </style>

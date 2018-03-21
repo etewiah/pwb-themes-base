@@ -37,7 +37,7 @@
                       90.0m<sup>2</sup></small></li>
                 <li class="hidden-xs"></li>
 
-              <v-btn icon>
+<!--               <v-btn icon>
                 <v-icon>favorite</v-icon>
               </v-btn>
               <v-btn icon>
@@ -45,7 +45,7 @@
               </v-btn>
               <v-btn icon>
                 <v-icon>share</v-icon>
-              </v-btn>
+              </v-btn> -->
             </v-card-actions>
           </v-card>
         </v-flex>
