@@ -9,41 +9,7 @@
         <!-- <span v-text="title" style="margin-top: -30px;"></span> -->
         <v-spacer></v-spacer>
       </v-toolbar>
-      <v-toolbar class="elevation-0">
-        <v-toolbar-title>PropertyWebBuilder</v-toolbar-title>
-        <v-spacer></v-spacer>
-        <v-toolbar-side-icon class="hidden-md-and-up"></v-toolbar-side-icon>
-        <MainNav :navLinks="displaySettings.top_nav_links"></MainNav>
-        <!-- <v-btn></v-btn> -->
-        <v-toolbar-items class="hidden-sm-and-down">
-        </v-toolbar-items>
-        <!--         <v-menu offset-y>
-          <v-btn icon dark slot="activator">
-            <v-icon dark>language</v-icon>
-          </v-btn>
-          <v-list>
-            <v-list-tile v-for="lang in locales" :key="lang" @mouseover.native="changeLocale(lang)">
-              <v-list-tile-title>
-                {{lang}}
-              </v-list-tile-title>
-            </v-list-tile>
-          </v-list>
-        </v-menu>
-        <v-menu offset-y>
-          <v-btn icon dark slot="activator">
-            <v-icon dark>format_paint</v-icon>
-          </v-btn>
-          <v-list>
-            <v-list-tile v-for="n in colors" :key="n" :class="n" @mouseover.native="theme = n">
-            </v-list-tile>
-          </v-list>
-        </v-menu>
-        <v-menu offset-y>
-          <v-btn icon @click.stop="rightDrawer = !rightDrawer">
-            <v-icon dark>language</v-icon>
-          </v-btn>
-        </v-menu> -->
-      </v-toolbar>
+      <MainNav :displaySettings="displaySettings" ></MainNav>
       <v-expansion-panel>
         <v-expansion-panel-content>
           <v-card>
