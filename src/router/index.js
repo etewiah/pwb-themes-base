@@ -10,7 +10,10 @@ import ContactUsPage from '@/pages/ContactUsPage'
 import GenericContainer from '@/pages/GenericContainer'
 import ThemeGenerator from '@/components/ThemeGenerator'
 
+import Meta from 'vue-meta'
+
 Vue.use(Router)
+Vue.use(Meta)
 
 export default new Router({
   mode: 'history',

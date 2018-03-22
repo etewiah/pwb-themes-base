@@ -26,12 +26,12 @@
               </v-btn>
               <v-btn color="">
                 <v-icon small>fa fa-shower</v-icon>
-              <v-spacer></v-spacer>
+                <v-spacer></v-spacer>
                 {{currentProperty.count_bathrooms }}
               </v-btn>
               <v-btn color="">
                 <v-icon small>fa fa-bed</v-icon>
-              <v-spacer></v-spacer>
+                <v-spacer></v-spacer>
                 {{currentProperty.count_bedrooms }}
               </v-btn>
               <v-btn><i class="fa fa-arrows-alt"></i>
@@ -61,7 +61,7 @@
               </div>
             </v-card-text>
             <v-card-actions>
-<!--               <li class="hidden-xs"><i class="fa fa-bed"></i> <small>
+              <!--               <li class="hidden-xs"><i class="fa fa-bed"></i> <small>
                       1
                     </small></li>
               <li class="hidden-xs"><i class="fa fa-shower"></i> <small>
@@ -116,6 +116,11 @@ import PwbMap from '@/components/PwbMap'
 import PropertyEnquiry from '@/components/sections/PropertyEnquiryForm'
 import PriceWithCurrency from '@/components/PriceWithCurrency'
 export default {
+  metaInfo() {
+    return {
+      title: this.currentProperty.title,
+    }
+  },
   components: {
     PriceWithCurrency,
     PropertyEnquiry,
