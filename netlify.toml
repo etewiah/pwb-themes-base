@@ -6,12 +6,12 @@
   YARN_VERSION = "1.3.2"
   YARN_FLAGS = "--version"
 [[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200
-  force = true # Ensure that we always redirect
-[[redirects]]
   from = "/api_public/*"
   to = "https://pwb-jan-2018.herokuapp.com/api_public/:splat"
   status = 200
   force = true
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+  force = true # Ensure that we always redirect
