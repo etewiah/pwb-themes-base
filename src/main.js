@@ -32,9 +32,9 @@ Vue.use(VueGoogleMaps, {
 
 Vue.use(Vuetify, {
   theme: {
-      primary: '#ee44aa',
-      secondary: '#424242',
-      accent: '#82B1FF',
+      primary: '#eeeeee',
+      secondary: '#eeeeee',
+      accent: '#eeeeee',
       error: '#FF5252',
       info: '#2196F3',
       success: '#4CAF50',
