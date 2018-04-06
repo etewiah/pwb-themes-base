@@ -7,7 +7,7 @@
   YARN_FLAGS = "--version"
 [[redirects]]
   from = "/api_public/*"
-  to = "https://pwb-jan-2018.herokuapp.com/api_public/:splat"
+  to = "http://pwb1.relocationportal.com/api_public/:splat"
   status = 200
   force = true
 [[redirects]]
