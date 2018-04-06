@@ -1,5 +1,5 @@
 <template>
-  <v-app light>
+  <v-app v-resize="onResize" light>
     <v-container :fluid="fluid" class="pb-4 pl-0 pr-0 pt-0 elevation-20">
       <v-toolbar class="primary" style="height:28px;" primary>
         <v-toolbar-items>
@@ -21,8 +21,8 @@
       <v-content class="">
         <router-view/>
       </v-content>
-      <v-footer class="pt-2" style="background: transparent;"  absolute>
-        <v-container :fluid="fluid" class="pa-0"  light>
+      <v-footer class="pt-2" style="background: transparent;" absolute>
+        <v-container :fluid="fluid" class="pa-0" light>
           <PageFooter></PageFooter>
           <!--  -->
         </v-container>
@@ -59,13 +59,11 @@ export default {
     }
   },
   methods: {
-    // changeLocale(to) {
-    //   // global.helper.ls.set('locale', to)
-    //   // below works but I think it will be better 
-    //   // to reload the app...
-    //   this.$store.commit('setCurrentLocale', to)
-    //   this.$store.dispatch('loadSettings')
-    // },
+    onResize() {
+      // TODO - make use of this event
+      // this.$vuetify.breakpoint.smAndDown
+      // this.windowSize = { x: window.innerWidth, y: window.innerHeight }
+    }
   },
   name: 'App',
   beforeCreate: function() {
@@ -110,8 +108,8 @@ export default {
     },
     theme() {
       let primaryColour = this.styleVariables.primary_color
-       // || "#68c368"
-      let secondaryColour = this.styleVariables.secondary_color 
+      // || "#68c368"
+      let secondaryColour = this.styleVariables.secondary_color
       // || "#8ec449"
       let footerColour = this.styleVariables.footer_bg_color
       let actionColour = this.styleVariables.action_color

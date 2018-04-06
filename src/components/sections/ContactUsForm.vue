@@ -1,7 +1,7 @@
 <template>
   <v-card class="elevation-2">
     <v-card-title primary-title class="layout">
-      <div class="headline">
+      <div class="headline ml-2">
         {{ $t("client.contactUsPrompt") }}:
       </div>
     </v-card-title>
