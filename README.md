@@ -23,15 +23,13 @@ https://elated-mcclintock-50866b.netlify.com/
 It consumes the public api of a Rails app running PropertyWebBuilder here:
 https://pwb-jan-2018.herokuapp.com/api_public/v1/en/pages/home
 
+You can change the backend (source of the public api) by editing the \_redirects file in the dist folder.
+
 The main repo for PropertyWebBuilder is here:
 https://github.com/etewiah/property_web_builder
 
-There are quite a few things I need to add before I can consider this project complete:
+Features I'm currently working on include:
 
-* Add page meta details using https://github.com/declandewet/vue-meta 
-* Make use of localstorage to cache some data
-* A carousel for displaying the property images
-* Enable the forms which currently do nothing
 * Allow site visitors to make some limited changes to the theme
 * Add authentication so visitors can login to save their favourite properties
 * Enable real time currency conversion
