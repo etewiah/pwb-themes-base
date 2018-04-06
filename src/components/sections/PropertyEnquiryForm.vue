@@ -1,7 +1,7 @@
 <template>
   <v-card class="elevation-2">
     <v-card-title primary-title class="layout">
-      <div class="headline text-sm-left">
+      <div class="headline text-sm-left ml-3">
         {{ $t("client.requestPropertyInfo") }}:
       </div>
     </v-card-title>

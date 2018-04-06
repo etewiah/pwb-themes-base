@@ -1,23 +1,25 @@
 <template>
   <section>
+    <div>
+      <v-flex xs12>
+        <v-card class="elevation-1">
+          <v-card-title primary-title class="layout justify-center">
+            <div class="display-1">
+              {{currentProperty.title}}
+            </div>
+          </v-card-title>
+        </v-card>
+      </v-flex>
+      <v-flex xs12>
+        <template v-if="currentProperty.image_urls">
+          <v-carousel>
+            <v-carousel-item v-for="(item,i) in currentProperty.image_urls" :src="item" :key="i"></v-carousel-item>
+          </v-carousel>
+        </template>
+      </v-flex>
+    </div>
     <v-container grid-list-xl>
       <v-layout row wrap justify-center class="my-0">
-        <v-flex xs12>
-          <v-card class="elevation-1">
-            <v-card-title primary-title class="layout justify-center">
-              <div class="display-1">
-                {{currentProperty.title}}
-              </div>
-            </v-card-title>
-          </v-card>
-        </v-flex>
-        <v-flex xs12>
-          <template v-if="currentProperty.image_urls">
-            <v-carousel>
-              <v-carousel-item v-for="(item,i) in currentProperty.image_urls" :src="item" :key="i"></v-carousel-item>
-            </v-carousel>
-          </template>
-        </v-flex>
         <v-flex xs12 sm8>
           <v-card class="elevation-1">
             <v-card-title primary-title class="layout justify-center">
@@ -163,6 +165,16 @@ export default {
 
 </script>
 <style scoped>
+.carousel {
+  height: 600px;
+}
 
+@media only screen and (min-width: 768px) {
+  .carousel {
+    height: 800px;
+  }
+}
+
+@media only screen and (max-width: 599px) {}
 
 </style>

@@ -1,6 +1,6 @@
 <template>
   <v-app light>
-    <v-container :fluid="fluid" class="pb-5 pl-0 pr-0 pt-0 elevation-20">
+    <v-container :fluid="fluid" class="pb-4 pl-0 pr-0 pt-0 elevation-20">
       <v-toolbar class="primary" style="height:28px;" primary>
         <v-toolbar-items>
           <LangSwitcher></LangSwitcher>
@@ -21,7 +21,7 @@
       <v-content class="">
         <router-view/>
       </v-content>
-      <v-footer class="" style="background: transparent;"  absolute>
+      <v-footer class="pt-2" style="background: transparent;"  absolute>
         <v-container :fluid="fluid" class="pa-0"  light>
           <PageFooter></PageFooter>
           <!--  -->
