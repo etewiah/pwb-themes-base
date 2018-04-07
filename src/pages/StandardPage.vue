@@ -1,8 +1,8 @@
 <template>
   <v-container grid-list-xl>
-    <v-layout row wrap justify-center class="my-0">
-      <ContentHtml :blockContents="currentPageParts.content_html"></ContentHtml>
+    <v-layout row wrap justify-center class="mb-3">
       <OurAgency :blockContents="currentPageParts.our_agency"></OurAgency>
+      <ContentHtml :blockContents="currentPageParts.content_html"></ContentHtml>
     </v-layout>
   </v-container>
 </template>
@@ -29,7 +29,7 @@ export default {
     //   return this.$store.state.currentPage
     // },
     currentPageParts() {
-      return this.$store.state.currentPageParts
+      return this.$store.state.currentPageParts || {}
     }
   },
 }

@@ -1,8 +1,8 @@
 <template>
   <section v-if="blockContents">
     <v-container grid-list-xl>
-      <v-layout row wrap justify-center class="my-5">
-        <v-flex xs12 sm4>
+      <v-layout row wrap justify-center class="my-2">
+        <v-flex xs12 sm6>
           <v-card class="elevation-0 transparent">
             <v-card-title primary-title class="layout justify-center">
               <div class="headline">
@@ -14,7 +14,7 @@
             </v-card-text>
           </v-card>
         </v-flex>
-        <v-flex xs12 sm4 offset-sm1>
+        <v-flex xs12 sm6>
           <v-card class="elevation-0 transparent">
             <v-card-media :src="blockContents.blocks.our_agency_img.content" height="300px">
               <v-container fill-height fluid>

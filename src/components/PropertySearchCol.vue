@@ -1,12 +1,12 @@
 <template>
   <v-container>
     <v-card height="">
-      <v-card-title primary-title>
+<!--       <v-card-title primary-title>
         <div>
           <div class="headline">Search</div>
           <span class="grey--text"></span>
         </div>
-      </v-card-title>
+      </v-card-title> -->
       <v-card-text>
         <!-- <form @submit.prevent="onSubmitContactForm"> -->
         <v-layout wrap row>

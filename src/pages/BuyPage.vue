@@ -1,7 +1,12 @@
 <template>
   <section fluid>
     <v-container>
-      <v-layout wrap class="my-5">
+      <v-layout wrap >
+        <v-flex  xs12>
+          <div class="my-4 mx-1 display-1">
+            {{$t("client.searchForProperties") }}            
+          </div>
+        </v-flex>
         <v-flex xs8>
           <PropertiesCol :propertiesToDisplay="propertiesForSale" :saleOrRent="'buy'"></PropertiesCol>
         </v-flex>
