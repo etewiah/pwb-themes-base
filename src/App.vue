@@ -1,13 +1,15 @@
 <template>
   <v-app v-resize="onResize" light>
     <v-container :fluid="fluid" class="pb-4 pl-0 pr-0 pt-0 elevation-20">
-      <v-toolbar class="primary" style="height:28px;" primary>
-        <v-toolbar-items>
-          <LangSwitcher></LangSwitcher>
-        </v-toolbar-items>
-        <v-spacer></v-spacer>
-        <!-- <span v-text="title" style="margin-top: -30px;"></span> -->
-        <v-spacer></v-spacer>
+      <v-toolbar class="primary elevation-0" style="height:28px;" primary>
+        <v-container pt-1 mt-0>
+          <v-toolbar-items>
+            <LangSwitcher></LangSwitcher>
+          </v-toolbar-items>
+          <v-spacer></v-spacer>
+          <!-- <span v-text="title" style="margin-top: -30px;"></span> -->
+          <v-spacer></v-spacer>
+        </v-container>
       </v-toolbar>
       <MainNav :displaySettings="displaySettings"></MainNav>
       <v-expansion-panel>
@@ -62,7 +64,9 @@ export default {
     onResize() {
       // TODO - make use of this event
       // this.$vuetify.breakpoint.smAndDown
-      // this.windowSize = { x: window.innerWidth, y: window.innerHeight }
+      this.windowSize = { x: window.innerWidth, y: window.innerHeight }
+      console.log(this.windowSize)
+      console.log(this.$vuetify.breakpoint)
     }
   },
   name: 'App',
