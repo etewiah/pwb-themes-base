@@ -7,60 +7,62 @@
          propertyId: property.id,
          saleOrRent: saleOrRent}
        }">
-          <v-layout row wrap>
-            <v-flex style="padding: 0px;" xs6>
-              <v-card>
-                <v-card-media :src="property.primary_image_url" height="200px">
-                  <v-container fill-height fluid>
-                    <v-layout fill-height>
-                      <v-flex xs12 align-end flexbox>
-                        <div class="ribbon dark fondo_accion" style="">
-                          <span class="ma-0 prop-info-btn" v-if="saleOrRent == 'buy'">
+          <transition name="slide-fade">
+            <v-layout v-if="showTrans" row wrap>
+              <v-flex style="padding: 0px;" xs6>
+                <v-card transition="slide-x-transition">
+                  <v-card-media :src="property.primary_image_url" height="200px">
+                    <v-container fill-height fluid>
+                      <v-layout fill-height>
+                        <v-flex xs12 align-end flexbox>
+                          <div class="ribbon dark fondo_accion" style="">
+                            <span class="ma-0 prop-info-btn" v-if="saleOrRent == 'buy'">
                             <PriceWithCurrency :value="property.price_sale_current_cents"></PriceWithCurrency>
                           </span>
-                          <span class="ma-0 prop-info-btn" v-if="saleOrRent == 'rent'">
+                            <span class="ma-0 prop-info-btn" v-if="saleOrRent == 'rent'">
                             <PriceWithCurrency :value="property.price_rental_monthly_current_cents"></PriceWithCurrency>
                           </span>
-                        </div>
-                        <span class="headline white--text" v-text="" />
-                      </v-flex>
-                    </v-layout>
-                  </v-container>
-                </v-card-media>
-              </v-card>
-            </v-flex>
-            <v-flex style="padding: 0px;height:200px;" xs6>
-              <v-layout row wrap align-end>
-                <v-flex style="height: 96px;" xs12>
-                  <v-card-title class="pb-0" primary-title>
-                    <div>
-                      <div class="headline">{{ property.title }}</div>
-                      <span class="grey--text"></span>
-                    </div>
-                  </v-card-title>
-                </v-flex>
-              </v-layout>
-              <v-layout row wrap align-end ma-0 style="height: 108px;padding-right: 4px;">
-                <v-flex xs4 pa-0>
-                  <v-btn class="ma-0 prop-info-btn" color="">
-                    <v-icon small>fa fa-shower</v-icon>
-                    <span class="pl-1"></span> {{property.count_bathrooms }}
-                  </v-btn>
-                </v-flex>
-                <v-flex xs4 pa-0>
-                  <v-btn class="ma-0 prop-info-btn" color="">
-                    <v-icon small>fa fa-bed</v-icon>
-                    <span class="pl-1"></span> {{property.count_bedrooms }}
-                  </v-btn>
-                </v-flex>
-                <v-flex xs4 pa-0>
-                  <v-btn class="ma-0 prop-info-btn"><i class="fa fa-arrows-alt"></i>
-                    <span class="pl-1"></span> {{property.constructed_area }}m<sup>2</sup>
-                  </v-btn>
-                </v-flex>
-              </v-layout>
-            </v-flex>
-          </v-layout>
+                          </div>
+                          <span class="headline white--text" v-text="" />
+                        </v-flex>
+                      </v-layout>
+                    </v-container>
+                  </v-card-media>
+                </v-card>
+              </v-flex>
+              <v-flex style="padding: 0px;height:200px;" xs6>
+                <v-layout row wrap align-end>
+                  <v-flex style="height: 96px;" xs12>
+                    <v-card-title class="pb-0" primary-title>
+                      <div>
+                        <div class="headline">{{ property.title }}</div>
+                        <span class="grey--text"></span>
+                      </div>
+                    </v-card-title>
+                  </v-flex>
+                </v-layout>
+                <v-layout row wrap align-end ma-0 style="height: 108px;padding-right: 4px;">
+                  <v-flex xs4 pa-0>
+                    <v-btn class="ma-0 prop-info-btn" color="">
+                      <v-icon small>fa fa-shower</v-icon>
+                      <span class="pl-1"></span> {{property.count_bathrooms }}
+                    </v-btn>
+                  </v-flex>
+                  <v-flex xs4 pa-0>
+                    <v-btn class="ma-0 prop-info-btn" color="">
+                      <v-icon small>fa fa-bed</v-icon>
+                      <span class="pl-1"></span> {{property.count_bedrooms }}
+                    </v-btn>
+                  </v-flex>
+                  <v-flex xs4 pa-0>
+                    <v-btn class="ma-0 prop-info-btn"><i class="fa fa-arrows-alt"></i>
+                      <span class="pl-1"></span> {{property.constructed_area }}m<sup>2</sup>
+                    </v-btn>
+                  </v-flex>
+                </v-layout>
+              </v-flex>
+            </v-layout>
+          </transition>
         </v-card>
       </v-flex>
     </v-layout>
@@ -73,10 +75,52 @@ export default {
     PriceWithCurrency
   },
   props: ["propertiesToDisplay", "saleOrRent"],
+  data: () => ({
+    showTrans: false
+  }),
+  mounted: function() {
+    var that = this
+    setTimeout(function() {
+      // debugger
+      that.showTrans = true
+    }, 2000)
+  }
 }
 
 </script>
 <style scoped>
+.tray-enter,
+.tray-leave-to {
+  opacity: 0
+}
+
+.tray-leave,
+.tray-enter-to {
+  opacity: 1
+}
+
+.tray-enter-active,
+.tray-leave-active {
+  transition: opacity 300ms
+}
+
+
+
+.slide-fade-enter-active {
+  transition: all 3s ease;
+}
+.slide-fade-leave-active {
+  transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+  transition-delay: 3s;
+}
+.slide-fade-enter,
+.slide-fade-leave-to {
+  transform: translateX(10px);
+  opacity: 0;
+}
+
+
+
 .cuadro_inmueble {
   position: relative;
 }
@@ -90,8 +134,6 @@ export default {
 .cuadro_inmueble .descripcion_destacado {
   width: 300px;
 }
-
-
 
 
 /*ribbon is for highlighted price*/

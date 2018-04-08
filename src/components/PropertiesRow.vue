@@ -1,9 +1,12 @@
 <template>
-  <v-container grid-list-md>
+  <v-container pb-5 grid-list-md>
     <div>
       <!-- {{ $t("requestPropertyInfo") }} -->
     </div>
     <v-layout row wrap>
+    </v-layout>
+          <transition-group name="slide-fade" class="layout row wrap" tag="div">
+
       <v-flex xs6 sm4 v-for="property in propertiesToDisplay" :key="property.id">
         <v-card hover :to="{name: 'propertyDetails',
          params: { locale: $store.state.currentLocale, 
@@ -46,7 +49,7 @@
           </v-card-actions>
         </v-card>
       </v-flex>
-    </v-layout>
+    </transition-group>
   </v-container>
 </template>
 <script>
@@ -56,11 +59,17 @@ export default {
     PriceWithCurrency,
   },
   props: ["propertiesToDisplay", "saleOrRent"],
-  // computed: {
-  //   currentLocale() {
-  //     return this.$store.state.currentLocale
-  //   },
-  // }
+  data: () => ({
+    show: false,
+    showTrans: false
+  }),
+  mounted: function() {
+    this.show = true
+    var that = this
+    setTimeout(function() {
+      // debugger
+      that.showTrans = true
+    }, 2000)
+  }
 }
-
 </script>
