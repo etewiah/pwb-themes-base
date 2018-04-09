@@ -1,7 +1,7 @@
 <template>
-  <v-container>
+  <v-container pt-2>
     <v-card height="">
-      <transition name="slide-fade">
+      <transition name="search-box-fade">
         <v-card-text v-if="showTrans">
           <v-layout wrap row>
             <v-flex v-for="(fieldDetails, index) in searchFields" :key="fieldDetails.fieldName" :class="fieldDetails.classNames" offset-sm0>
@@ -46,40 +46,21 @@ export default {
     this.show = true
     var that = this
     setTimeout(function() {
-      // debugger
       that.showTrans = true
-    }, 2000)
+    }, 100)
   }
 }
-
 </script>
 <style>
-.tray-enter,
-.tray-leave-to {
-  opacity: 0
-}
-
-.tray-leave,
-.tray-enter-to {
-  opacity: 1
-}
-
-.tray-enter-active,
-.tray-leave-active {
-  transition: opacity 300ms
-}
-
-
-
-.slide-fade-enter-active {
+.search-box-fade-enter-active {
   transition: all 3s ease;
 }
-.slide-fade-leave-active {
-  transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+.search-box-fade-leave-active {
+  /*transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);*/
   transition-delay: 3s;
 }
-.slide-fade-enter,
-.slide-fade-leave-to {
+.search-box-fade-enter,
+.search-box-fade-leave-to {
   transform: translateX(10px);
   opacity: 0;
 }
