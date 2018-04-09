@@ -16,7 +16,7 @@
       </v-card-media>
       <v-card-title primary-title>
         <div>
-          <div class="headline">{{ property.title }}</div>
+          <truncate clamp="..." :length="25" class="headline" less="Show Less" :text="property.title"></truncate>
           <span class="grey--text"></span>
         </div>
       </v-card-title>
@@ -44,9 +44,11 @@
 </template>
 <script>
 import PriceWithCurrency from '@/components/PriceWithCurrency'
+import truncate from 'vue-truncate-collapsed'
 export default {
   components: {
     PriceWithCurrency,
+    truncate
   },
   props: ["property", "saleOrRent", "showTransition", "index"],
   data: () => ({
@@ -73,3 +75,12 @@ export default {
 }
 
 </script>
+<style>
+/*.truncate {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  width: 95%;
+}*/
+
+</style>
