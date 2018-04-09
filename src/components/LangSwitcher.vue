@@ -42,7 +42,7 @@ export default {
   },
   methods: {
     switchLocale(locale) {
-      console.log(this.$route)
+      // console.log(this.$route)
       let params = this.$route.params
       // params["locale"] = locale.shortLocale
       // doing above and pushing that to the router

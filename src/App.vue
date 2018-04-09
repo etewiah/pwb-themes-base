@@ -64,9 +64,9 @@ export default {
     onResize() {
       // TODO - make use of this event
       // this.$vuetify.breakpoint.smAndDown
-      this.windowSize = { x: window.innerWidth, y: window.innerHeight }
-      console.log(this.windowSize)
-      console.log(this.$vuetify.breakpoint)
+      // this.windowSize = { x: window.innerWidth, y: window.innerHeight }
+      // console.log(this.windowSize)
+      // console.log(this.$vuetify.breakpoint)
     }
   },
   name: 'App',

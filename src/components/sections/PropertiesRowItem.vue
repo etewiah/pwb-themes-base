@@ -1,6 +1,6 @@
 <template>
   <transition name="slide-fade">
-    <v-card v-if="showTransition" hover :to="{name: 'propertyDetails',
+    <v-card v-if="showTransitionWithDelay" hover :to="{name: 'propertyDetails',
          params: { locale: $store.state.currentLocale, 
          propertyId: property.id,
          saleOrRent: saleOrRent}
@@ -48,10 +48,21 @@ export default {
   components: {
     PriceWithCurrency,
   },
-  props: ["property", "saleOrRent", "showTransition"],
+  props: ["property", "saleOrRent", "showTransition", "index"],
   data: () => ({
-    // showTrans: false
+    showTransitionWithDelay: false
   }),
+  watch: {
+    'showTransition' (newVal, oldVal) {
+      if (newVal) {
+        var delay = this.index * 500
+        var that = this
+        setTimeout(function() {
+          that.showTransitionWithDelay = true
+        }, delay)
+      }
+    }
+  },
   mounted: function() {
     // var that = this
     // setTimeout(function() {
