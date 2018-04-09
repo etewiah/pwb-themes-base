@@ -1,5 +1,11 @@
 <template>
   <div class="footercolor" style="color:white;" flat tile>
+    <cookie-law theme="dark-lime" :buttonText="$t('client.gotIt')">
+      <div slot="message">
+        {{$t("client.cookieMessage") }}
+        <router-link :to="{path: cookieLawLink}">{{$t("client.clickForMore") }}</router-link>
+      </div>
+    </cookie-law>
     <v-container fill-height :dark="dark" class="pb-0 pt-4">
       <v-layout row wrap align-baseline>
         <v-flex xs4>
@@ -24,7 +30,7 @@
             </template>
           </template>
         </v-flex>
-        <v-flex xs4 class="" style="margin-top:auto;"align-baseline>
+        <v-flex xs4 class="" style="margin-top:auto;" align-baseline>
           <div> <span v-html="displaySettings.footer_html"></span>
           </div>
         </v-flex>
@@ -35,9 +41,14 @@
       <v-layout>
         <v-flex xs12 class="">
           <span class="text-sm-left">
-            <router-link :to="{path: link.target_path}" exact v-for="link in displaySettings.footer_links" :key="link.slug" icon class="white--text mr-3">
+            <template  v-for="link in footerLinks" >
+            <router-link v-if="link.slug !== 'footer_admin'" :to="{path: link.target_path}" :key="link.slug" exact icon class="white--text mr-3">
               {{link.link_title}}
             </router-link>
+            <a v-else :href="link.target_path">
+              {{link.link_title}}
+            </a>
+            </template>
           </span>
           <span class="text-sm-right ml-3" style="float:right;">
             Powered by <a class="white--text" href="https://propertywebbuilder.com" target="_blank"><strong>PropertyWebBuilder</strong></a>
@@ -48,9 +59,10 @@
   </div>
 </template>
 <script>
+import CookieLaw from 'vue-cookie-law'
 export default {
   components: {
-    // faCoffee,
+    CookieLaw,
     // FontAwesomeIcon
   },
   data() {
@@ -90,6 +102,29 @@ export default {
     currentAgency: function() {
       return this.$store.state.currentAgency
     },
+    cookieLawLink() {
+      let locale = this.$route.params.locale || "en"
+      // debugger
+      return "/" + locale + "/p/legal"
+    },
+    footerLinks() {
+      let footerLinks = []
+      if (this.displaySettings.footer_links) {
+        let adminUrl = this.currentAgency.admin_url
+        this.displaySettings.footer_links.forEach(function(link) {
+          if (link.slug === "footer_admin") {
+            // debugger
+            link.target_path = adminUrl
+          }
+          footerLinks.push(link)
+
+          // if (link.slug !== "footer_admin") {
+          // }
+        })
+      }
+      return footerLinks
+    }
+
   },
   methods: {}
 }
