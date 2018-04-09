@@ -9,10 +9,10 @@
         </div>
       </v-flex>
       <v-flex xs12>
-        <transition name="tray">
+<!--         <transition name="tray">
           <p v-if="showTrans" class="headline text-sm-right">
             Beautiful property listings</p>
-        </transition>
+        </transition> -->
         <transition name="slide-fade">
           <v-card v-if="showTrans" class="elevation-5 transparent">
             <v-container grid-list-xl>
@@ -69,14 +69,11 @@
 <script>
 export default {
   data: () => ({
-    show: false,
     showTrans: false
   }),
   mounted: function() {
-    this.show = true
     var that = this
     setTimeout(function() {
-      // debugger
       that.showTrans = true
     }, 2000)
   },
@@ -85,7 +82,7 @@ export default {
 
 </script>
 <style>
-.tray-enter,
+/*.tray-enter,
 .tray-leave-to {
   opacity: 0
 }
@@ -99,7 +96,7 @@ export default {
 .tray-leave-active {
   transition: opacity 300ms
 }
-
+*/
 
 
 .slide-fade-enter-active {

@@ -1,7 +1,7 @@
 <template>
   <v-container fluid grid-list-md>
     <v-layout row wrap>
-      <transition-group name="prop-slide-fade" class="layout row wrap" tag="div">
+      <transition-group name="prop-slide-fade" mode="out-in" class="layout row wrap" tag="div">
         <v-flex xs12 v-for="property in propertiesToDisplay" :key="property.id">
           <v-card hover style="margin: 9px 0px;" :to="{name: 'propertyDetails',
          params: { locale: $store.state.currentLocale, 
