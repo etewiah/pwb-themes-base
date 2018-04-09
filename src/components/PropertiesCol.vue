@@ -1,14 +1,14 @@
 <template>
   <v-container fluid grid-list-md>
     <v-layout row wrap>
-      <v-flex xs12 v-for="property in propertiesToDisplay" :key="property.id">
-        <v-card hover style="margin: 9px 0px;" :to="{name: 'propertyDetails',
+      <transition-group name="prop-slide-fade" class="layout row wrap" tag="div">
+        <v-flex xs12 v-for="property in propertiesToDisplay" :key="property.id">
+          <v-card hover style="margin: 9px 0px;" :to="{name: 'propertyDetails',
          params: { locale: $store.state.currentLocale, 
          propertyId: property.id,
          saleOrRent: saleOrRent}
        }">
-          <transition name="slide-fade">
-            <v-layout v-if="showTrans" row wrap>
+            <v-layout row wrap>
               <v-flex style="padding: 0px;" xs6>
                 <v-card transition="slide-x-transition">
                   <v-card-media :src="property.primary_image_url" height="200px">
@@ -62,9 +62,9 @@
                 </v-layout>
               </v-flex>
             </v-layout>
-          </transition>
-        </v-card>
-      </v-flex>
+          </v-card>
+        </v-flex>
+      </transition-group>
     </v-layout>
   </v-container>
 </template>
@@ -80,16 +80,15 @@ export default {
   }),
   mounted: function() {
     var that = this
-    setTimeout(function() {
-      // debugger
-      that.showTrans = true
-    }, 2000)
+    // setTimeout(function() {
+    //   that.showTrans = true
+    // }, 2000)
   }
 }
 
 </script>
 <style scoped>
-.tray-enter,
+/*.tray-enter,
 .tray-leave-to {
   opacity: 0
 }
@@ -103,23 +102,25 @@ export default {
 .tray-leave-active {
   transition: opacity 300ms
 }
+*/
 
 
-
-.slide-fade-enter-active {
-  transition: all 3s ease;
+.prop-slide-fade-enter-active {
+  transition: all .25s ease;
 }
-.slide-fade-leave-active {
-  transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);
-  transition-delay: 3s;
+.prop-slide-fade-leave-active {
+  transition: all .5s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+  transition-delay: .25s;
 }
-.slide-fade-enter,
-.slide-fade-leave-to {
+.prop-slide-fade-enter,
+.prop-slide-fade-leave-to {
   transform: translateX(10px);
   opacity: 0;
 }
 
-
+.prop-slide-fade-move {
+  transition: transform 1s;
+}
 
 .cuadro_inmueble {
   position: relative;
@@ -134,6 +135,7 @@ export default {
 .cuadro_inmueble .descripcion_destacado {
   width: 300px;
 }
+
 
 
 /*ribbon is for highlighted price*/

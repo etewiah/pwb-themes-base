@@ -27,7 +27,7 @@ export default {
     //   return this.$store.state.currentPage
     // },
     currentPageParts() {
-      return this.$store.state.currentPageParts
+      return this.$store.state.currentPageParts || {}
     }
   },
 }

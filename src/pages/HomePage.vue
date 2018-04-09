@@ -47,7 +47,7 @@ export default {
       return this.$store.state.currentPage
     },
     currentPageParts() {
-      return this.$store.state.currentPageParts
+      return this.$store.state.currentPageParts || {}
     },
     propertiesForSale() {
       if (this.$store.state.summaryProperties) {

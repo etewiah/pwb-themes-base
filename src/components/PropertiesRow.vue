@@ -5,8 +5,7 @@
     </div>
     <v-layout row wrap>
     </v-layout>
-          <transition-group name="slide-fade" class="layout row wrap" tag="div">
-
+    <transition-group name="slide-fade" class="layout row wrap" tag="div">
       <v-flex xs6 sm4 v-for="property in propertiesToDisplay" :key="property.id">
         <v-card hover :to="{name: 'propertyDetails',
          params: { locale: $store.state.currentLocale, 
@@ -72,4 +71,5 @@ export default {
     }, 2000)
   }
 }
+
 </script>
