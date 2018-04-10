@@ -73,7 +73,19 @@ export default {
   beforeCreate: function() {
     // when served by rails, "/" should redirect to a route 
     // with a locale but just in case will default to "en"
-    let locale = this.$route.params["locale"] || "en"
+    let locale = this.$route.params["locale"]
+
+    // let params = this.$route.params
+    if (!locale) {
+      locale = "en"
+      let newParams = {
+        locale: locale
+      }
+      this.$router.push({ name: 'landing', params: newParams })
+    }
+
+
+    // || "en"
     this.$store.commit('setCurrentLocale', locale)
   },
   watch: {
