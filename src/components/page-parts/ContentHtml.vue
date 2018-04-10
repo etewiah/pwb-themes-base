@@ -19,13 +19,19 @@ export default {
   }),
   watch: {
     'blockContents' (newVal, oldVal) {
-      if (newVal && oldVal) {
+      if (oldVal) {
+        // if there had been blockContents before
+        // below will activate transition out
         this.showTransition = false
       }
-      var that = this
-      setTimeout(function() {
-        that.showTransition = true
-      }, 200)
+      if (newVal) {
+        // and below will activate transition in
+        // if there is new content
+        var that = this
+        setTimeout(function() {
+          that.showTransition = true
+        }, 200)
+      }
 
     }
   },
