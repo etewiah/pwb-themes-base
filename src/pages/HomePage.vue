@@ -2,8 +2,9 @@
   <div>
     <LandingHero :blockContents="currentPageParts.landing_hero"></LandingHero>
     <AboutUsServices :blockContents="currentPageParts.about_us_services"></AboutUsServices>
-    <PropertiesRow :propertiesToDisplay="propertiesForSale" :saleOrRent="'buy'"></PropertiesRow>
-    <!-- <PropertiesRow :propertiesToDisplay="propertiesForRent" :saleOrRent="'rent'" ></PropertiesRow> -->
+    <PropertiesRow :propertiesForSale="propertiesForSale"
+      :propertiesForRent="propertiesForRent" ></PropertiesRow>
+    <!-- <PropertiesRow :propertiesForSale="propertiesForRent" :saleOrRent="'rent'" ></PropertiesRow> -->
     <section style="display:none;">
       <v-container grid-list-xl>
         <v-layout row wrap justify-center class="my-5">
