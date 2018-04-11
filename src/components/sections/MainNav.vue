@@ -12,7 +12,7 @@
       <v-spacer></v-spacer>
       <v-toolbar-items class="hidden-sm-and-down">
         <template v-for="item in visibleLinks">
-          <v-btn :key="item.slug" :to="{path: item.target_path}" exact flat>{{item.link_title}}</v-btn>
+          <v-btn :key="item.slug" :to="{path: item.target_path}" color="accent" exact flat>{{item.link_title}}</v-btn>
         </template>
       </v-toolbar-items>
       <!-- <span class="hidden-sm-and-up"> <v-toolbar-side-icon> </v-toolbar-side-icon> </span> -->

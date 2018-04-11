@@ -22,39 +22,30 @@
       <v-layout row wrap justify-center class="my-0">
         <v-flex xs12 sm8>
           <v-card class="elevation-1">
-            <v-card-title primary-title class="layout justify-center">
-              <v-btn>
+            <v-card-title primary-title class="layout row wrap justify-center">
+              <v-btn class="xs3">
                 <PriceWithCurrency :value="currentProperty.price_sale_current_cents"></PriceWithCurrency>
               </v-btn>
-              <v-btn color="">
+              <v-btn class="xs3" color="">
                 <v-icon small>fa fa-shower</v-icon>
                 <v-spacer></v-spacer>
                 {{currentProperty.count_bathrooms }}
               </v-btn>
-              <v-btn color="">
+              <v-btn class="xs3" color="">
                 <v-icon small>fa fa-bed</v-icon>
                 <v-spacer></v-spacer>
                 {{currentProperty.count_bedrooms }}
               </v-btn>
-              <v-btn><i class="fa fa-arrows-alt"></i>
+              <v-btn class="xs3"><i class="fa fa-arrows-alt"></i>
                 <v-spacer></v-spacer>
                 {{currentProperty.constructed_area }}m<sup>2</sup>
               </v-btn>
               <div class="headline">
               </div>
             </v-card-title>
-            <!--            <v-card-media :src="currentProperty.primary_image_url" height="500px">
-              <v-container fill-height fluid>
-                <v-layout fill-height>
-                  <v-flex xs12 align-end flexbox>
-                    <span class="headline white--text" v-text="" />
-                  </v-flex>
-                </v-layout>
-              </v-container>
-            </v-card-media> -->
             <v-card-text>
-              <div class="title">
-                {{currentProperty.description}}
+              <div class="">
+                <span v-html="currentProperty.description"></span>
               </div>
               <div class="pt-5">
                 <v-chip outline v-for="(item,i) in currentProperty.extras_for_display" :src="item" :key="i" color="green">
@@ -63,19 +54,9 @@
               </div>
             </v-card-text>
             <v-card-actions>
-              <!--               <li class="hidden-xs"><i class="fa fa-bed"></i> <small>
-                      1
-                    </small></li>
-              <li class="hidden-xs"><i class="fa fa-shower"></i> <small>
-                      1.0
-                    </small></li>
-              <li class="hidden-xs"><i class="fa fa-arrows-alt"></i> <small>
-                      90.0m<sup>2</sup></small></li>
-              <li class="hidden-xs"></li>
-              <v-spacer></v-spacer> -->
             </v-card-actions>
           </v-card>
-          <div class="justify-center text-xs-center">
+          <div class="justify-center text-xs-center pt-4">
             <social-sharing class="center" inline-template>
               <div class="social-icons icon-circle">
                 <network network="facebook">
@@ -166,14 +147,31 @@ export default {
 </script>
 <style scoped>
 .carousel {
-  height: 600px;
+  height: 1000px;
 }
-
-@media only screen and (min-width: 768px) {
+@media only screen and (max-width: 1903px) {
   .carousel {
     height: 800px;
   }
 }
+@media only screen and (max-width: 1263px) {
+  .carousel {
+    height: 600px;
+  }
+}
+@media only screen and (max-width: 959px) {
+  .carousel {
+    height: 500px;
+  }
+}
+
+@media only screen and (max-width: 599px) {
+  .carousel {
+    height: 350px;
+  }
+}
+
+@media only screen and (min-width: 768px) {}
 
 @media only screen and (max-width: 599px) {}
 
