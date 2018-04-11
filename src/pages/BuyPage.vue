@@ -1,22 +1,22 @@
 <template>
   <section fluid>
     <v-container>
-      <v-layout wrap >
+      <v-layout row wrap >
         <v-flex  xs12>
           <div class="my-4 mx-1 display-1">
             {{$t("client.searchForProperties") }}            
           </div>
         </v-flex>
-        <v-flex hidden-md-and-up>
+        <v-flex xs12>
           <PropertySearchCol :routeParams="routeParams" :searchFields="searchFields" @updateSearch="updateSearch"></PropertySearchCol>
         </v-flex>
-        <v-flex xs12 md8>
+        <v-flex xs12>
           <PropertiesCol :propertiesToDisplay="propertiesForSale" :saleOrRent="'buy'"></PropertiesCol>
         </v-flex>
-        <v-flex hidden-sm-and-down md4>
+<!--         <v-flex hidden-sm-and-down md4>
           <PropertySearchCol :routeParams="routeParams" :searchFields="searchFields" @updateSearch="updateSearch"></PropertySearchCol>
         </v-flex>
-      </v-layout>
+ -->      </v-layout>
     </v-container>
     <v-flex xs12>
       <pwb-map style="min-height: 600px;" :mapMarkers="mapMarkers" :zoom="15">
@@ -81,7 +81,7 @@ export default {
     return {
       searchFields: [{
         labelTextTKey: "common.fieldLabels.propertyType",
-        classNames: "xs12",
+        classNames: "xs12 sm4",
         tooltipTextTKey: "",
         fieldName: "prop_type_key",
         queryStringName: "type",
@@ -89,7 +89,7 @@ export default {
         optionsKey: "propertyTypes",
       }, {
         labelTextTKey: "common.fieldLabels.bathrooms",
-        classNames: "xs6",
+        classNames: "xs6 sm4",
         tooltipTextTKey: "",
         fieldName: "bathrooms",
         inputType: "slider",
@@ -111,7 +111,7 @@ export default {
         }
       }, {
         labelTextTKey: "common.fieldLabels.bedrooms",
-        classNames: "xs6",
+        classNames: "xs6 sm4",
         tooltipTextTKey: "",
         fieldName: "bedrooms",
         inputType: "slider",

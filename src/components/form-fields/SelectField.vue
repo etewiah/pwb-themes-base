@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="mt-4 mr-5">
     <div class="text-xs-left">
     </div>
     <v-select :items="selectItems" v-model="localFieldValue" :label="$t(fieldDetails.labelTextTKey)" @change="fieldChangeHandler" item-text="name" single-line bottom></v-select>
