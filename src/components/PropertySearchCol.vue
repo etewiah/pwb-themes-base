@@ -1,10 +1,10 @@
 <template>
-  <v-container pt-2>
+  <v-container pt-2 px-0>
     <v-card height="">
       <transition name="search-box-fade">
         <v-card-text v-if="showTrans">
           <v-layout wrap row>
-            <v-flex v-for="(fieldDetails, index) in searchFields" :key="fieldDetails.fieldName" :class="fieldDetails.classNames" offset-sm0>
+            <v-flex v-for="(fieldDetails, index) in searchFields" :key="fieldDetails.fieldName" :class="fieldDetails.classNames" offset-xs0>
               <template v-if="fieldDetails.inputType == 'select'">
                 <SelectField @selectChanged="updateSearch" :fieldDetails="fieldDetails" :currentFieldValue="routeParams[fieldDetails.queryStringName]" :fieldOptions="searchFieldOptions"></SelectField>
               </template>

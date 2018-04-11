@@ -1,7 +1,7 @@
 <template>
   <v-container v-scroll="onScroll" pb-5 grid-list-md>
     <v-layout row wrap>
-      <v-flex xs6 sm4 v-for="(property, index) in propertiesToDisplay" :key="property.id">
+      <v-flex xs12 sm6 md4 v-for="(property, index) in propertiesToDisplay" :key="property.id">
         <PropertiesRowItem :showTransition="showTransition" :property="property" :saleOrRent="saleOrRent" :index="index"></PropertiesRowItem>
       </v-flex>
     </v-layout>

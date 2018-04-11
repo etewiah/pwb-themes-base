@@ -3,7 +3,7 @@
     <v-toolbar class="elevation-0">
       <v-toolbar-title>
         <template v-if="displaySettings.logo_url">
-          <img :src="displaySettings.logo_url" alt="Logo" style="height: 72px;padding-top: 8px;">
+          <img :src="displaySettings.logo_url" alt="Logo" class="main-logo" style="padding-top: 8px;">
         </template>
         <template v-else>
           {{displaySettings.company_display_name }}
@@ -75,3 +75,15 @@ export default {
 }
 
 </script>
+<style scoped>
+.main-logo {
+  height: 72px;
+}
+/*@media only screen and (max-width: 768px) {
+*/
+@media only screen and (max-width: 959px) {
+  .main-logo {
+    height: 56px;
+  }
+}
+</style>

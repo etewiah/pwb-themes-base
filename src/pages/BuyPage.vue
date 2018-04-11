@@ -7,10 +7,13 @@
             {{$t("client.searchForProperties") }}            
           </div>
         </v-flex>
-        <v-flex xs8>
+        <v-flex hidden-md-and-up>
+          <PropertySearchCol :routeParams="routeParams" :searchFields="searchFields" @updateSearch="updateSearch"></PropertySearchCol>
+        </v-flex>
+        <v-flex xs12 md8>
           <PropertiesCol :propertiesToDisplay="propertiesForSale" :saleOrRent="'buy'"></PropertiesCol>
         </v-flex>
-        <v-flex xs4>
+        <v-flex hidden-sm-and-down md4>
           <PropertySearchCol :routeParams="routeParams" :searchFields="searchFields" @updateSearch="updateSearch"></PropertySearchCol>
         </v-flex>
       </v-layout>
@@ -73,7 +76,7 @@ export default {
     return {
       searchFields: [{
         labelTextTKey: "common.fieldLabels.propertyType",
-        classNames: "sm12",
+        classNames: "xs12",
         tooltipTextTKey: "",
         fieldName: "prop_type_key",
         queryStringName: "type",
@@ -81,7 +84,7 @@ export default {
         optionsKey: "propertyTypes",
       }, {
         labelTextTKey: "common.fieldLabels.bathrooms",
-        classNames: "sm6",
+        classNames: "xs6",
         tooltipTextTKey: "",
         fieldName: "bathrooms",
         inputType: "slider",
@@ -103,7 +106,7 @@ export default {
         }
       }, {
         labelTextTKey: "common.fieldLabels.bedrooms",
-        classNames: "sm6",
+        classNames: "xs6",
         tooltipTextTKey: "",
         fieldName: "bedrooms",
         inputType: "slider",
@@ -124,7 +127,7 @@ export default {
         }
       }, {
         labelTextTKey: "common.fieldLabels.salePrice",
-        classNames: "sm12",
+        classNames: "xs12",
         tooltipTextTKey: "",
         fieldName: "price",
         inputType: "slider",

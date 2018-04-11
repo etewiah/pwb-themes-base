@@ -55,23 +55,12 @@ export default new Router({
       path: '/:locale/properties/:saleOrRent/:propertyId',
       name: 'propertyDetails',
       component: PropertyDetails,
-      // children: [{
-      //     path: '',
-      //     name: 'homePage',
-      //     component: HomePage,
-      //   },
-      //   {
-      //     path: '/p',
-      //     name: 'standardPage',
-      //     component: GenericContainer,
-      //     children: [{
-      //       name: 'standardPageDetails',
-      //       path: '/:pageName',
-      //       component: HomePage
-      //     }]
-      //   }
-      // ]
     },
+    {
+      path: '/:locale/properties/:saleOrRent/:propertyId/:slug',
+      name: 'propertyDetailsWithSlug',
+      component: PropertyDetails,
+    }
     // {
     //   path: '/:locale',
     //   // name: 'site-page',
