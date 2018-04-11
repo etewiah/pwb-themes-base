@@ -11,6 +11,11 @@ import ContentHtml from '@/components/page-parts/ContentHtml'
 import OurAgency from '@/components/page-parts/OurAgency'
 // import PropertiesRow from '@/components/PropertiesRow'
 export default {
+  metaInfo() {
+    return {
+      title: this.$store.state.currentPage.page_title,
+    }
+  },
   components: {
     // PropertiesRow,
     OurAgency,

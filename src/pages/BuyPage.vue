@@ -29,6 +29,11 @@ import PropertiesCol from '@/components/PropertiesCol'
 import PropertySearchCol from '@/components/PropertySearchCol'
 import PwbMap from '@/components/PwbMap'
 export default {
+  metaInfo() {
+    return {
+      title: this.$store.state.currentPage.page_title,
+    }
+  },
   components: {
     PwbMap,
     PropertiesCol,

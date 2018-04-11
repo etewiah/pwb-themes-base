@@ -28,6 +28,11 @@ import LandingHero from '@/components/page-parts/LandingHero'
 import AboutUsServices from '@/components/page-parts/AboutUsServices'
 import PropertiesRow from '@/components/PropertiesRow'
 export default {
+  metaInfo() {
+    return {
+      title: this.currentPage.page_title,
+    }
+  },
   components: {
     PropertiesRow,
     AboutUsServices,
