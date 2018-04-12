@@ -1,6 +1,6 @@
 <template>
-  <div class="mt-5">
-    <v-subheader class="mb-5 pl-0 subheading text-xs-left">
+  <div class="mb-4">
+    <v-subheader class="mb-3 pl-0 subheading text-xs-left">
       {{$t(fieldDetails.labelTextTKey) }}:
     </v-subheader>
     <vue-slider ref="slider" v-model="value" v-bind="fieldDetails.sliderOptions" @callback="fieldChangeHandler">

@@ -1,19 +1,22 @@
 <template>
   <section fluid>
     <v-container>
-      <v-layout wrap>
+      <v-layout row wrap >
         <v-flex  xs12>
           <div class="my-4 mx-1 display-1">
             {{$t("client.searchForProperties") }}            
           </div>
         </v-flex>
-        <v-flex xs8>
-          <PropertiesCol :propertiesToDisplay="propertiesForRent" :saleOrRent="'rent'"></PropertiesCol>
-        </v-flex>
-        <v-flex xs4>
+        <v-flex xs12>
           <PropertySearchCol :routeParams="routeParams" :searchFields="searchFields" @updateSearch="updateSearch"></PropertySearchCol>
         </v-flex>
-      </v-layout>
+        <v-flex xs12>
+          <PropertiesCol :propertiesToDisplay="propertiesForRent" :saleOrRent="'rent'"></PropertiesCol>
+        </v-flex>
+<!--         <v-flex hidden-sm-and-down md4>
+          <PropertySearchCol :routeParams="routeParams" :searchFields="searchFields" @updateSearch="updateSearch"></PropertySearchCol>
+        </v-flex>
+ -->      </v-layout>
     </v-container>
     <v-flex xs12>
       <pwb-map style="min-height: 600px;" :mapMarkers="mapMarkers" :zoom="15">
@@ -26,6 +29,11 @@ import PropertiesCol from '@/components/PropertiesCol'
 import PropertySearchCol from '@/components/PropertySearchCol'
 import PwbMap from '@/components/PwbMap'
 export default {
+  metaInfo() {
+    return {
+      title: this.$store.state.currentPage.page_title,
+    }
+  },
   components: {
     PwbMap,
     PropertiesCol,
@@ -72,7 +80,7 @@ export default {
       // searchFieldOptions: [],
       searchFields: [{
         labelTextTKey: "common.fieldLabels.propertyType",
-        classNames: "sm12",
+        classNames: "xs12 sm4",
         tooltipTextTKey: "",
         fieldName: "prop_type_key",
         queryStringName: "type",
@@ -80,7 +88,7 @@ export default {
         optionsKey: "propertyTypes",
       }, {
         labelTextTKey: "common.fieldLabels.bathrooms",
-        classNames: "sm6",
+        classNames: "xs6 sm4",
         tooltipTextTKey: "",
         fieldName: "bathrooms",
         inputType: "slider",
@@ -101,8 +109,8 @@ export default {
           ]
         }
       }, {
-        labelTextTKey: "common.fieldLabels.bathrooms",
-        classNames: "sm6",
+        labelTextTKey: "common.fieldLabels.bedrooms",
+        classNames: "xs6 sm4",
         tooltipTextTKey: "",
         fieldName: "bedrooms",
         inputType: "slider",
@@ -123,7 +131,7 @@ export default {
         }
       }, {
         labelTextTKey: "common.fieldLabels.rentalPricePerMonth",
-        classNames: "sm12",
+        classNames: "xs12",
         tooltipTextTKey: "",
         fieldName: "price",
         inputType: "slider",

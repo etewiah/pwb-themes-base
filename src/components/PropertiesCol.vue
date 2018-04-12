@@ -2,7 +2,7 @@
   <v-container fluid grid-list-md>
     <v-layout row wrap>
       <transition-group name="prop-slide-fade" mode="out-in" class="layout row wrap" tag="div">
-        <v-flex xs12 v-for="property in propertiesToDisplay" :key="property.id">
+        <v-flex xs12 sm6 v-for="property in propertiesToDisplay" :key="property.id">
           <v-card hover style="margin: 9px 0px;" :to="{name: 'propertyDetails',
          params: { locale: $store.state.currentLocale, 
          propertyId: property.id,
@@ -17,13 +17,12 @@
                         <v-flex xs12 align-end flexbox>
                           <div class="ribbon dark fondo_accion" style="">
                             <span class="ma-0 prop-info-btn" v-if="saleOrRent == 'buy'">
-                            <PriceWithCurrency :value="property.price_sale_current_cents"></PriceWithCurrency>
-                          </span>
-                            <span class="ma-0 prop-info-btn" v-if="saleOrRent == 'rent'">
-                            <PriceWithCurrency :value="property.price_rental_monthly_current_cents"></PriceWithCurrency>
-                          </span>
+                              <PriceWithCurrency :value="property.price_sale_current_cents"></PriceWithCurrency>
+                            </span>
+                              <span class="ma-0 prop-info-btn" v-if="saleOrRent == 'rent'">
+                              <PriceWithCurrency :value="property.price_rental_monthly_current_cents"></PriceWithCurrency>
+                            </span>
                           </div>
-                          <span class="headline white--text" v-text="" />
                         </v-flex>
                       </v-layout>
                     </v-container>
@@ -88,22 +87,6 @@ export default {
 
 </script>
 <style scoped>
-/*.tray-enter,
-.tray-leave-to {
-  opacity: 0
-}
-
-.tray-leave,
-.tray-enter-to {
-  opacity: 1
-}
-
-.tray-enter-active,
-.tray-leave-active {
-  transition: opacity 300ms
-}
-*/
-
 
 .prop-slide-fade-enter-active {
   transition: all .25s ease;

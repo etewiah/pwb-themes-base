@@ -12,7 +12,7 @@
         </v-container>
       </v-toolbar>
       <MainNav :displaySettings="displaySettings"></MainNav>
-      <v-expansion-panel>
+      <v-expansion-panel style="display: none;">
         <v-expansion-panel-content>
           <v-card>
             <v-card-text>tttt</v-card-text>

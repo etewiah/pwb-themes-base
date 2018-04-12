@@ -1,23 +1,28 @@
 <template>
   <div>
-    <ContentHtml :blockContents="currentPageParts.content_html" ></ContentHtml>
+    <ContentHtml :blockContents="currentPageParts.content_html"></ContentHtml>
     <FormAndMap></FormAndMap>
   </div>
 </template>
 <script>
 import ContentHtml from '@/components/page-parts/ContentHtml'
 import FormAndMap from '@/components/page-parts/FormAndMap'
-// import PropertiesRow from '@/components/PropertiesRow'
 export default {
+  metaInfo() {
+    return {
+      title: this.$store.state.currentPage.page_title,
+    }
+  },
   components: {
-    // PropertiesRow,
     FormAndMap,
     ContentHtml,
   },
   watch: {
-    // '$route' (to, from) {
-    //   this.$store.dispatch('loadPage', to.params.pageName)
-    // }
+    '$route' (to, from) {
+      this.$store.dispatch('loadPage', 'contact-us')
+      // all above achieves is to ensure that title meta
+      // is updated correctly when languabe changes
+    }
   },
   mounted: function() {
     this.$store.dispatch('loadPage', 'contact-us')
@@ -31,10 +36,10 @@ export default {
     }
   },
 }
+
 </script>
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-h1,
+/*h1,
 h2 {
   font-weight: normal;
 }
@@ -48,6 +53,6 @@ li {
 }
 a {
   color: #42b983;
-}
+}*/
 
 </style>

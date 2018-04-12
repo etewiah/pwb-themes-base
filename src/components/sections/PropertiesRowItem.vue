@@ -3,7 +3,7 @@
     <v-card v-if="showTransitionWithDelay" hover :to="{name: 'propertyDetails',
          params: { locale: $store.state.currentLocale, 
          propertyId: property.id,
-         saleOrRent: saleOrRent}
+         saleOrRent: buyOrRent}
        }">
       <v-card-media :src="property.primary_image_url" height="300px">
         <v-container fill-height fluid>
@@ -22,7 +22,12 @@
       </v-card-title>
       <v-card-actions>
         <v-btn>
-          <PriceWithCurrency :value="property.price_sale_current_cents"></PriceWithCurrency>
+          <span class="" v-if="buyOrRent == 'buy'">
+            <PriceWithCurrency :value="property.price_sale_current_cents"></PriceWithCurrency>
+            </span>
+          <span class="" v-if="buyOrRent == 'rent'">
+            <PriceWithCurrency :value="property.price_rental_monthly_current_cents"></PriceWithCurrency>
+          </span>
         </v-btn>
         <v-btn color="">
           <v-icon small>fa fa-shower</v-icon>
@@ -50,7 +55,7 @@ export default {
     PriceWithCurrency,
     truncate
   },
-  props: ["property", "saleOrRent", "showTransition", "index"],
+  props: ["property", "buyOrRent", "showTransition", "index"],
   data: () => ({
     showTransitionWithDelay: false
   }),

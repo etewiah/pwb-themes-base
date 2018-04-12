@@ -1,8 +1,11 @@
 <template>
   <v-container v-scroll="onScroll" pb-5 grid-list-md>
     <v-layout row wrap>
-      <v-flex xs6 sm4 v-for="(property, index) in propertiesToDisplay" :key="property.id">
-        <PropertiesRowItem :showTransition="showTransition" :property="property" :saleOrRent="saleOrRent" :index="index"></PropertiesRowItem>
+      <v-flex xs12 sm6 md4 v-for="(property, index) in propertiesForRent" :key="property.id">
+        <PropertiesRowItem :showTransition="showTransition" :property="property" :buyOrRent="'rent'" :index="index"></PropertiesRowItem>
+      </v-flex>
+      <v-flex xs12 sm6 md4 v-for="(property, index) in propertiesForSale" :key="property.id + 'sale'">
+        <PropertiesRowItem :showTransition="showTransition" :property="property" :buyOrRent="'buy'" :index="index"></PropertiesRowItem>
       </v-flex>
     </v-layout>
   </v-container>
@@ -15,7 +18,7 @@ export default {
     PriceWithCurrency,
     PropertiesRowItem
   },
-  props: ["propertiesToDisplay", "saleOrRent"],
+  props: ["propertiesForSale", "propertiesForRent"],
   data: () => ({
     show: false,
     showTransition: false,
@@ -28,35 +31,27 @@ export default {
       // console.log(e.target.scrollTop)
       let rect = this.$el.getBoundingClientRect()
       this.inView = (
-
         rect.bottom > 0 &&
         rect.right > 0 &&
         rect.top < (window.innerHeight || document.documentElement.clientHeight) &&
         rect.left < (window.innerWidth || document.documentElement.clientWidth)
-
-        // rect.width > 0 &&
-        // rect.height > 0 &&
-        // rect.top >= 0 &&
-        // rect.bottom <= (window.innerHeight || document.documentElement.clientHeight)
       )
 
       if (this.inView && this.scrollWatchReady) {
         this.showTransition = true
-        // debugger
-        // el.classList.add(binding.value)
-        // window.removeEventListener('scroll', f)
       }
-
-      // this.offsetTop = e.target.scrollTop
     }
   },
+  // computed: {
+  //   allPropertiesToDisplay() {
+  //     let mergedProps = this.propertiesForRent
+  //     return mergedProps
+  //   },
+  // },
   watch: {
-    'propertiesToDisplay' (newVal, oldVal) {
+    'propertiesForSale' (newVal, oldVal) {
       if (newVal) {
         this.scrollWatchReady = true
-        // if (this.inView) {
-        //   debugger
-        // }
       }
     }
   },
