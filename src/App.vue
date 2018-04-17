@@ -156,6 +156,11 @@ export default {
 
 </script>
 <style>
+/*@import "scss/fontawesome.scss"*/
+/*@import url("https://fonts.googleapis.com/css?family=Roboto:100,300,100italic,300italic");
+*/
+@import url("https://use.fontawesome.com/releases/v5.0.6/css/all.css");
+
 body {
   background-color: #fafafa;
 }
