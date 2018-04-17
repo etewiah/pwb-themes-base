@@ -1,6 +1,7 @@
 <template>
   <v-app v-resize="onResize" light>
-    <v-container :fluid="fluid" class="pb-4 pl-0 pr-0 pt-0 elevation-20">
+    <v-container :fluid="fluid" class="pb-4 pl-0 pr-0 pt-0 elevation-0">
+      <!-- had elavation-20 above but it causes a horizontal cross shadow on old ios safari -->
       <v-toolbar class="primary elevation-0" style="height:28px;" primary>
         <v-container pt-1 mt-0>
           <v-toolbar-items>
