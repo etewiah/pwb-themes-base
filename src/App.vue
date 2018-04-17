@@ -23,7 +23,7 @@
       <v-content class="">
         <router-view/>
       </v-content>
-      <v-footer class="pt-2" style="background: transparent;" absolute>
+      <v-footer class="pt-2" style="background: transparent;">
         <v-container :fluid="fluid" class="pa-0" light>
           <PageFooter></PageFooter>
           <!--  -->
