@@ -29,7 +29,7 @@
             <v-list class="transparent">
               <v-list-tile v-if="$store.state.currentAgency.phone_number_primary">
                 <v-list-tile-action>
-                  <v-icon class="blue--text text--lighten-2">phone</v-icon>
+                  <v-icon class="accent--text text--lighten-2">phone</v-icon>
                 </v-list-tile-action>
                 <v-list-tile-content>
                   <v-list-tile-title>{{ $store.state.currentAgency.phone_number_primary }}</v-list-tile-title>
@@ -37,7 +37,7 @@
               </v-list-tile>
               <v-list-tile v-if="$store.state.currentAgency.email_primary">
                 <v-list-tile-action>
-                  <v-icon class="blue--text text--lighten-2">email</v-icon>
+                  <v-icon class="accent--text text--lighten-2">email</v-icon>
                 </v-list-tile-action>
                 <v-list-tile-content>
                   <v-list-tile-title>{{ $store.state.currentAgency.email_primary }}</v-list-tile-title>

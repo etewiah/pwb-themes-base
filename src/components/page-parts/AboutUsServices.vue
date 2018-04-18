@@ -9,7 +9,7 @@
         </div>
       </v-flex>
       <v-flex xs12>
-<!--         <transition name="tray">
+        <!--         <transition name="tray">
           <p v-if="showTrans" class="headline text-sm-right">
             Beautiful property listings</p>
         </transition> -->
@@ -19,9 +19,9 @@
               <v-layout row wrap align-center>
                 <v-flex xs12 md4>
                   <v-card class="aus-card elevation-0 transparent">
-                    <v-card-text class="text-xs-center pt-4">
-                      <v-icon x-large class="accent--text">fa fa-home icon-service</v-icon>
-                    </v-card-text>
+                    <div class="text-xs-center pt-4">
+                        <v-icon x-large class="primary--text">fa fa-home icon-service</v-icon>
+                    </div>
                     <v-card-title primary-title class="layout justify-center">
                       <div class="headline text-xs-center">{{blockContents.blocks.title_a.content}}</div>
                     </v-card-title>
@@ -31,9 +31,9 @@
                 </v-flex>
                 <v-flex xs12 md4>
                   <v-card class="aus-card elevation-0 transparent">
-                    <v-card-text class="text-xs-center pt-4">
-                      <v-icon x-large class="accent--text">fa fa-user icon-service</v-icon>
-                    </v-card-text>
+                    <div class="text-xs-center pt-4">
+                      <v-icon x-large class="primary--text">fa fa-user icon-service</v-icon>
+                    </div>
                     <!--                 <v-card-text class="text-xs-center">
                   <v-btn fab dark large color="purple">
                     <v-icon small class="">fa fa-user</v-icon>
@@ -49,7 +49,7 @@
                 <v-flex xs12 md4>
                   <v-card class="aus-card elevation-0 transparent">
                     <div class="text-xs-center pt-4">
-                      <v-icon x-large class="accent--text">fa fa-money-bill-alt icon-service</v-icon>
+                      <v-icon x-large class="primary--text">fa fa-money-bill-alt icon-service</v-icon>
                     </div>
                     <v-card-title primary-title class="layout justify-center">
                       <div class="headline text-xs-center">{{blockContents.blocks.title_c.content}}</div>
@@ -82,6 +82,32 @@ export default {
 
 </script>
 <style>
+.icon-service {
+  text-align: center;
+  -webkit-border-radius: 100px;
+  -moz-border-radius: 100px;
+  -ms-border-radius: 100px;
+  -o-border-radius: 100px;
+  border-radius: 100px;
+  width: 110px;
+  padding: 30px;
+  margin: 13px 0;
+  font-size: 45px;
+  border: 1px solid;
+  -webkit-border-radius: 100px;
+  -moz-border-radius: 100px;
+  -ms-border-radius: 100px;
+  -o-border-radius: 100px;
+  border-radius: 100px;
+  /* padding:20px; */
+  /* margin:13px 0; */
+  transition: all 300ms ease-in-out;
+  -o-transition: all 300ms ease-in-out;
+  -moz-transition: all 300ms ease-in-out;
+  -webkit-transition: all 300ms ease-in-out;
+
+}
+
 /*.tray-enter,
 .tray-leave-to {
   opacity: 0
@@ -97,7 +123,6 @@ export default {
   transition: opacity 300ms
 }
 */
-
 
 .slide-fade-enter-active {
   transition: all 3s ease;

@@ -29,7 +29,9 @@
             <template v-if="contactUsSending">
               <v-progress-linear :indeterminate="true"></v-progress-linear>
             </template>
-            <v-btn class="primary" type="submit">Send</v-btn>
+            <v-btn class="accent" type="submit">
+            {{$t("client.send") }}
+            </v-btn>
           </v-flex>
         </v-form>
       </v-card-text>
