@@ -12,7 +12,7 @@
       <v-spacer></v-spacer>
       <v-toolbar-items class="hidden-sm-and-down">
         <template v-for="item in visibleLinks">
-          <v-btn :key="item.slug" :to="{path: item.target_path}" color="accent" :exact="item.exact" flat>{{item.link_title}}</v-btn>
+          <MainNavBtn :item="item"></MainNavBtn>
         </template>
       </v-toolbar-items>
       <!-- <span class="hidden-sm-and-up"> <v-toolbar-side-icon> </v-toolbar-side-icon> </span> -->
@@ -57,7 +57,12 @@
   </v-container>
 </template>
 <script>
+import MainNavBtn from '@/components/sections/MainNavBtn'
+
 export default {
+  components: {
+    MainNavBtn
+  },
   props: ["displaySettings"],
   computed: {
     visibleLinks() {
@@ -79,6 +84,9 @@ export default {
 
 </script>
 <style scoped>
+/*.btn--active {
+  background-color: "$vuetify.theme.footerSecColor";
+}*/
 .main-logo {
   height: 72px;
 }
