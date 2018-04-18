@@ -130,11 +130,14 @@ export default {
       // || "#8ec449"
       let footerColor = this.styleVariables.footer_bg_color
       let footerMainTextColor = this.styleVariables.footer_main_text_color
+      // below shoud be footerSecColor
       let footerSecTextColor = this.styleVariables.footer_sec_text_color
       let labelsTextColor = this.styleVariables.labels_text_color
       let actionColor = this.styleVariables.action_color
       // debugger 8E24AA
       let theme = {
+        footerTextColor: footerMainTextColor,
+        footerSecColor: footerSecTextColor,
         primary: primaryColor,
         secondary: secondaryColor,
         // secondary: "#e57373",

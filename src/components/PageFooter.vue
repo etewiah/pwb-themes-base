@@ -1,5 +1,5 @@
 <template>
-  <div class="footercolor" style="color:white;" flat tile>
+  <div class="footercolor" :style="{ color: $vuetify.theme.footerTextColor }" flat tile>
     <cookie-law theme="dark-lime" :buttonText="$t('client.gotIt')">
       <div slot="message">
         {{$t("client.cookieMessage") }}
@@ -13,11 +13,11 @@
             {{ currentAgency.display_name }}
           </div>
           <div v-if="currentAgency.phone_number_primary">
-            <v-icon size="18px" color="white" class="mr-3">fa-phone</v-icon>
+            <v-icon size="18px" color="footerTextColor" class="mr-3">fa-phone</v-icon>
             {{ currentAgency.phone_number_primary }}
           </div>
           <div v-if="currentAgency.email_primary">
-            <v-icon size="18px" color="white" class="mr-3">fa-envelope</v-icon>
+            <v-icon size="18px" color="footerTextColor" class="mr-3">fa-envelope</v-icon>
             {{ currentAgency.email_primary }}
           </div>
         </v-flex>
@@ -25,7 +25,7 @@
           <template v-for="(value, key) in displaySettings.social_media">
             <template v-if="socialMediaIcons[key]">
               <v-btn :href="value" icon class="mx-3">
-                <v-icon large color="accent" size="24px">{{ socialMediaIcons[key].classes }}</v-icon>
+                <v-icon large color="footerSecColor" size="24px">{{ socialMediaIcons[key].classes }}</v-icon>
               </v-btn>
             </template>
           </template>
@@ -42,16 +42,17 @@
         <v-flex xs12 class="">
           <span class="text-sm-left">
             <template  v-for="link in footerLinks" >
-            <router-link v-if="link.slug !== 'footer_admin'" :to="{path: link.target_path}" :key="link.slug" exact icon class="white--text mr-3">
+            <router-link v-if="link.slug !== 'footer_admin'" :to="{path: link.target_path}" :key="link.slug" exact icon class="mr-3"
+            :style="{ color: $vuetify.theme.footerTextColor }">
               {{link.link_title}}
             </router-link>
-            <a v-else :href="link.target_path">
+            <a v-else :href="link.target_path" :style="{ color: $vuetify.theme.footerTextColor }">
               {{link.link_title}}
             </a>
             </template>
           </span>
           <span class="text-sm-right ml-3" style="float:right;">
-            Powered by <a class="white--text" href="https://propertywebbuilder.com" target="_blank"><strong>PropertyWebBuilder</strong></a>
+            Powered by <a class="" href="https://propertywebbuilder.com" target="_blank" :style="{ color: $vuetify.theme.footerTextColor }"><strong>PropertyWebBuilder</strong></a>
           </span>
         </v-flex>
       </v-layout>
@@ -91,6 +92,9 @@ export default {
     }
   },
   computed: {
+    // colors: function() {
+    //   return this.$vuetify.theme
+    // },
     dark: function() {
       // TODO - figure out how to calculate this 
       // based on how dark the footer color is
@@ -104,7 +108,6 @@ export default {
     },
     cookieLawLink() {
       let locale = this.$route.params.locale || "en"
-      // debugger
       return "/" + locale + "/p/legal"
     },
     footerLinks() {
@@ -113,7 +116,6 @@ export default {
         let adminUrl = this.currentAgency.admin_url
         this.displaySettings.footer_links.forEach(function(link) {
           if (link.slug === "footer_admin") {
-            // debugger
             link.target_path = adminUrl
           }
           footerLinks.push(link)
