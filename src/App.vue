@@ -105,12 +105,12 @@ export default {
   },
   mounted: function() {
     this.$store.dispatch('loadSettings')
-    // let primaryColour = this.styleVariables.primary_color || "#68c368"
-    // let secondaryColour = this.styleVariables.secondary_color || "#8ec449"
+    // let primaryColor = this.styleVariables.primary_color || "#68c368"
+    // let secondaryColor = this.styleVariables.secondary_color || "#8ec449"
     // // debugger 8E24AA
     // this.$vuetify.theme = {
-    //   primary: primaryColour,
-    //   secondary: secondaryColour,
+    //   primary: primaryColor,
+    //   secondary: secondaryColor,
     //   // secondary: "#e57373",
     //   accent: "#9c27b0",
     //   error: "#f44336",
@@ -124,23 +124,26 @@ export default {
       return this.$store.state.displaySettings.style_variables || {}
     },
     theme() {
-      let primaryColour = this.styleVariables.primary_color
+      let primaryColor = this.styleVariables.primary_color
       // || "#68c368"
-      let secondaryColour = this.styleVariables.secondary_color
+      let secondaryColor = this.styleVariables.secondary_color
       // || "#8ec449"
-      let footerColour = this.styleVariables.footer_bg_color
-      let actionColour = this.styleVariables.action_color
+      let footerColor = this.styleVariables.footer_bg_color
+      let footerMainTextColor = this.styleVariables.footer_main_text_color
+      let footerSecTextColor = this.styleVariables.footer_sec_text_color
+      let labelsTextColor = this.styleVariables.labels_text_color
+      let actionColor = this.styleVariables.action_color
       // debugger 8E24AA
       let theme = {
-        primary: primaryColour,
-        secondary: secondaryColour,
+        primary: primaryColor,
+        secondary: secondaryColor,
         // secondary: "#e57373",
-        accent: actionColour,
+        accent: actionColor,
         error: "#f44336",
         warning: "#ffeb3b",
         info: "#2196f3",
         success: "#4caf50",
-        footercolor: footerColour
+        footercolor: footerColor
       }
       return theme
     },

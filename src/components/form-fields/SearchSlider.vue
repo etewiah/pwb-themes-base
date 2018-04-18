@@ -3,9 +3,9 @@
     <v-subheader class="mb-3 pl-0 subheading text-xs-left">
       {{$t(fieldDetails.labelTextTKey) }}:
     </v-subheader>
-    <vue-slider ref="slider" v-model="value" v-bind="fieldDetails.sliderOptions" @callback="fieldChangeHandler">
+    <vue-slider ref="slider" v-model="value" v-bind="sliderOptions" @callback="fieldChangeHandler">
       <template v-if="fieldDetails.fieldName == 'price'" slot="tooltip" slot-scope="{ value }">
-        <span class="vue-slider-tooltip" :style="">
+        <span class="vue-slider-tooltip" :style="sliderOptions.tooltipStyle" >
           <PriceWithCurrency :value="value * 100"></PriceWithCurrency>
         </span>
       </template>
@@ -28,7 +28,18 @@ export default {
     }
   },
   computed: {
-
+    sliderOptions() {
+      let sliderOptions = this.fieldDetails.sliderOptions
+      let tooltipStyle = {
+        backgroundColor: this.$vuetify.theme.accent,
+        borderColor: this.$vuetify.theme.accent
+      }
+      sliderOptions.tooltipStyle = tooltipStyle
+      sliderOptions.processStyle = tooltipStyle
+      // sliderOptions.tooltipStyle.backgroundColor = this.$vuetify.theme.accent
+      // debugger
+      return sliderOptions
+    },
   },
   mounted: function() {
     // this.$refs.slider.setValue([23, 44])
