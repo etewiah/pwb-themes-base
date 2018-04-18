@@ -48,7 +48,7 @@ export default {
 }
 
 .router-anim-leave-active {
-  animation: going .9s;
+  animation: going .1s;
   animation-timing-function: cubic-bezier(.8, -0.49, .36, 1);
 }
 

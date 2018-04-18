@@ -1,6 +1,6 @@
 <template>
   <v-app v-resize="onResize" light>
-    <v-container :fluid="fluid" class="pb-4 pl-0 pr-0 pt-0 elevation-0">
+    <v-container :fluid="fluid" class="pb-0 pl-0 pr-0 pt-0 elevation-0">
       <!-- had elavation-20 above but it causes a horizontal cross shadow on old ios safari -->
       <v-toolbar class="primary elevation-0" style="height:28px;" primary>
         <v-container pt-1 mt-0>
@@ -24,13 +24,13 @@
       <v-content class="">
         <router-view/>
       </v-content>
-      <v-footer class="pt-2" style="background: transparent;">
-        <v-container :fluid="fluid" class="pa-0" light>
-          <PageFooter></PageFooter>
-          <!--  -->
-        </v-container>
-      </v-footer>
     </v-container>
+    <v-footer class="pt-0" style="background: transparent;">
+      <v-container :fluid="fluid" class="pa-0" light>
+        <PageFooter></PageFooter>
+        <!--  -->
+      </v-container>
+    </v-footer>
   </v-app>
 </template>
 <script>
@@ -163,8 +163,11 @@ export default {
 </script>
 <style>
 /*@import "scss/fontawesome.scss"*/
+
+
 /*@import url("https://fonts.googleapis.com/css?family=Roboto:100,300,100italic,300italic");
 */
+
 @import url("https://use.fontawesome.com/releases/v5.0.6/css/all.css");
 
 body {
